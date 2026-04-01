@@ -1,0 +1,135 @@
+---
+// website/src/components/IpShareTrendChart.astro
+import ipShareTrend from '../data/ip-share-trend.json';
+
+const IP_COLORS: Record<string, string> = {
+  Labubu: '#FF6F00', Dimoo: '#1976D2', Molly: '#E91E63',
+  Skullpanda: '#7B1FA2', 'Pop Mart': '#D32F2F',
+};
+const IP_IMAGES: Record<string, string> = {
+  Labubu: '/popmart/characters/labubu.png',
+  Dimoo: '/popmart/characters/dimoo.png',
+  Molly: '/popmart/characters/molly.png',
+  Skullpanda: '/popmart/characters/skullpanda.png',
+};
+
+const allData = ipShareTrend as any[];
+const months = [...new Set(allData.map((r: any) => r.month))].sort() as string[];
+const ips = [...new Set(allData.map((r: any) => r.ip))] as string[];
+
+// Sort IPs by total share descending
+const ipsByShare = ips.sort((a, b) => {
+  const sumA = allData.filter((r: any) => r.ip === a).reduce((s: number, r: any) => s + r.share_pct, 0);
+  const sumB = allData.filter((r: any) => r.ip === b).reduce((s: number, r: any) => s + r.share_pct, 0);
+  return sumB - sumA;
+});
+
+const series = ipsByShare.map(ip => ({
+  name: ip,
+  type: 'line',
+  stack: 'total',
+  areaStyle: { opacity: 0.75 },
+  emphasis: { focus: 'series' },
+  smooth: true,
+  symbol: 'none',
+  data: months.map(m => {
+    const row = allData.find((r: any) => r.month === m && r.ip === ip);
+    return row ? row.share_pct : 0;
+  }),
+  itemStyle: { color: IP_COLORS[ip] || '#999' },
+  lineStyle: { color: IP_COLORS[ip] || '#999' },
+  areaStyleColor: IP_COLORS[ip] || '#999',
+}));
+
+const totalMonths = months.length;
+const xInterval = totalMonths > 10 ? Math.ceil(totalMonths / 10) - 1 : 0;
+
+const chartData = JSON.stringify({ months, series, xInterval });
+---
+<section class="section">
+  <div class="section-header">
+    <h2>IP 份额趋势</h2>
+    <span class="en">IP Share Trend</span>
+  </div>
+  <div class="chart-container">
+    <div id="ip-share-trend-chart" class="chart-area"></div>
+    <div class="chart-legend">
+      {ipsByShare.map(ip => (
+        <div class="legend-item">
+          {IP_IMAGES[ip] && (
+            <div class="legend-avatar">
+              <img src={IP_IMAGES[ip]} alt={ip} width="36" height="36" loading="lazy" />
+            </div>
+          )}
+          <div class="legend-color" style={'background:' + (IP_COLORS[ip] || '#999')}></div>
+          {ip}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ chartData }}>
+  import('https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.esm.min.js').then(echarts => {
+    const data = JSON.parse(chartData);
+    const chart = echarts.init(document.getElementById('ip-share-trend-chart'));
+
+    // Attach color back to series areaStyle
+    const seriesOpt = data.series.map(function(s) {
+      return Object.assign({}, s, {
+        areaStyle: { opacity: 0.75, color: s.itemStyle.color }
+      });
+    });
+
+    chart.setOption({
+      tooltip: {
+        trigger: 'axis',
+        formatter: function(params) {
+          let result = params[0].axisValue + '<br/>';
+          params.forEach(function(p) {
+            result += p.marker + ' ' + p.seriesName + ': ' + p.value.toFixed(1) + '%<br/>';
+          });
+          return result;
+        }
+      },
+      grid: { left: 48, right: 20, top: 20, bottom: 20 },
+      xAxis: {
+        type: 'category',
+        data: data.months,
+        axisLabel: { rotate: 30, fontSize: 10, interval: data.xInterval },
+        boundaryGap: false
+      },
+      yAxis: {
+        type: 'value',
+        min: 0,
+        max: 100,
+        axisLabel: { formatter: '{value}%' }
+      },
+      series: seriesOpt
+    });
+    window.addEventListener('resize', () => chart.resize());
+  });
+</script>
+
+<style>
+  .chart-container {
+    background: var(--color-card); border-radius: 20px;
+    padding: 32px; box-shadow: var(--shadow);
+  }
+  .chart-area { width: 100%; height: 400px; }
+  .chart-legend {
+    display: flex; justify-content: center; gap: 28px;
+    margin-top: 20px; flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; font-weight: 600; color: #444;
+  }
+  .legend-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    border: 2px solid white; flex-shrink: 0; background: #fff;
+  }
+  .legend-avatar img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.3); }
+  .legend-color { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+</style>

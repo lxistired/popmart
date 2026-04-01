@@ -1,0 +1,114 @@
+---
+// website/src/components/CommentQualityChart.astro
+import commentQuality from '../data/comment-quality.json';
+
+const data = commentQuality as any[];
+const platforms = data.map((r: any) => r.platform);
+const highData = data.map((r: any) => r.high_pct);
+const medData = data.map((r: any) => r.med_pct);
+const lowData = data.map((r: any) => r.low_pct);
+const totals = data.map((r: any) => r.total);
+
+const chartData = JSON.stringify({ platforms, highData, medData, lowData, totals });
+---
+<section class="section">
+  <div class="section-header">
+    <h2>评论质量分布</h2>
+    <span class="en">Comment Quality Distribution</span>
+  </div>
+  <div class="chart-container">
+    <div id="comment-quality-chart" class="chart-area"></div>
+  </div>
+</section>
+
+<script define:vars={{ chartData }}>
+  import('https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.esm.min.js').then(echarts => {
+    const data = JSON.parse(chartData);
+    const chart = echarts.init(document.getElementById('comment-quality-chart'));
+    chart.setOption({
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow' },
+        formatter: function(params) {
+          const idx = params[0].dataIndex;
+          let result = data.platforms[idx] + '  (共 ' + data.totals[idx].toLocaleString() + ' 条)<br/>';
+          params.forEach(function(p) {
+            result += p.marker + ' ' + p.seriesName + ': ' + p.value.toFixed(1) + '%<br/>';
+          });
+          return result;
+        }
+      },
+      legend: { data: ['高质量', '中质量', '低质量'], bottom: 0 },
+      grid: { left: 48, right: 20, top: 24, bottom: 48 },
+      xAxis: {
+        type: 'category',
+        data: data.platforms,
+        axisLabel: { fontSize: 12 }
+      },
+      yAxis: {
+        type: 'value',
+        max: 100,
+        axisLabel: { formatter: '{value}%' }
+      },
+      series: [
+        {
+          name: '高质量',
+          type: 'bar',
+          stack: 'total',
+          barMaxWidth: 80,
+          data: data.highData,
+          itemStyle: { color: '#4CAF50' },
+          label: {
+            show: true,
+            position: 'inside',
+            formatter: function(params) {
+              return params.value > 3 ? params.value.toFixed(1) + '%' : '';
+            },
+            fontSize: 11, color: '#fff', fontWeight: 600
+          }
+        },
+        {
+          name: '中质量',
+          type: 'bar',
+          stack: 'total',
+          barMaxWidth: 80,
+          data: data.medData,
+          itemStyle: { color: '#FFC107' },
+          label: {
+            show: true,
+            position: 'inside',
+            formatter: function(params) {
+              return params.value > 3 ? params.value.toFixed(1) + '%' : '';
+            },
+            fontSize: 11, color: '#fff', fontWeight: 600
+          }
+        },
+        {
+          name: '低质量',
+          type: 'bar',
+          stack: 'total',
+          barMaxWidth: 80,
+          data: data.lowData,
+          itemStyle: { color: '#E0E0E0', borderRadius: [4, 4, 0, 0] },
+          label: {
+            show: true,
+            position: 'inside',
+            formatter: function(params) {
+              return params.value > 3 ? params.value.toFixed(1) + '%' : '';
+            },
+            fontSize: 11, color: '#666', fontWeight: 600
+          }
+        }
+      ]
+    });
+    window.addEventListener('resize', () => chart.resize());
+  });
+</script>
+
+<style>
+  .chart-container {
+    background: var(--color-card); border-radius: 20px;
+    padding: 32px; box-shadow: var(--shadow);
+  }
+  .chart-area { width: 100%; height: 400px; }
+</style>
