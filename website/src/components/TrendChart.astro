@@ -28,6 +28,13 @@ const series = ips.map(ip => ({
 }));
 
 const chartData = JSON.stringify({ weeks, series });
+
+const IP_IMAGES: Record<string, string> = {
+  Labubu: '/popmart/characters/labubu.png',
+  Dimoo: '/popmart/characters/dimoo.png',
+  Molly: '/popmart/characters/molly.png',
+  Skullpanda: '/popmart/characters/skullpanda.png',
+};
 ---
 <section class="section">
   <div class="section-header">
@@ -39,12 +46,12 @@ const chartData = JSON.stringify({ weeks, series });
     <div class="chart-legend">
       {ips.map(ip => (
         <div class="legend-item">
-          {['/characters/labubu.png','/characters/dimoo.png','/characters/molly.png','/characters/skullpanda.png',''][ips.indexOf(ip)] && (
+          {IP_IMAGES[ip] && (
             <div class="legend-avatar">
-              <img src={['/characters/labubu.png','/characters/dimoo.png','/characters/molly.png','/characters/skullpanda.png',''][ips.indexOf(ip)]} alt={ip} width="36" height="36" loading="lazy">
+              <img src={IP_IMAGES[ip]} alt={ip} width="36" height="36" loading="lazy">
             </div>
           )}
-          <div class="legend-color" style={`background:${IP_COLORS[ip]}`}></div>
+          <div class="legend-color" style={'background:' + IP_COLORS[ip]}></div>
           {ip}
         </div>
       ))}
