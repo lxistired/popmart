@@ -1,0 +1,707 @@
+[
+  {
+    "week": "2021-W09",
+    "ip": "Pop Mart",
+    "count": 1
+  },
+  {
+    "week": "2021-W10",
+    "ip": "Pop Mart",
+    "count": 1
+  },
+  {
+    "week": "2023-W33",
+    "ip": "Labubu",
+    "count": 1
+  },
+  {
+    "week": "2024-W23",
+    "ip": "Pop Mart",
+    "count": 14
+  },
+  {
+    "week": "2024-W26",
+    "ip": "Pop Mart",
+    "count": 1
+  },
+  {
+    "week": "2024-W27",
+    "ip": "Labubu",
+    "count": 4
+  },
+  {
+    "week": "2024-W28",
+    "ip": "Labubu",
+    "count": 1
+  },
+  {
+    "week": "2024-W29",
+    "ip": "Labubu",
+    "count": 3
+  },
+  {
+    "week": "2024-W30",
+    "ip": "Labubu",
+    "count": 6
+  },
+  {
+    "week": "2024-W31",
+    "ip": "Pop Mart",
+    "count": 6
+  },
+  {
+    "week": "2024-W35",
+    "ip": "Pop Mart",
+    "count": 1
+  },
+  {
+    "week": "2024-W36",
+    "ip": "Pop Mart",
+    "count": 1
+  },
+  {
+    "week": "2024-W37",
+    "ip": "Labubu",
+    "count": 7
+  },
+  {
+    "week": "2024-W37",
+    "ip": "Pop Mart",
+    "count": 1
+  },
+  {
+    "week": "2024-W39",
+    "ip": "Labubu",
+    "count": 1
+  },
+  {
+    "week": "2024-W39",
+    "ip": "Pop Mart",
+    "count": 1
+  },
+  {
+    "week": "2024-W41",
+    "ip": "Labubu",
+    "count": 1
+  },
+  {
+    "week": "2024-W41",
+    "ip": "Pop Mart",
+    "count": 10
+  },
+  {
+    "week": "2024-W42",
+    "ip": "Labubu",
+    "count": 5
+  },
+  {
+    "week": "2024-W42",
+    "ip": "Pop Mart",
+    "count": 2
+  },
+  {
+    "week": "2024-W44",
+    "ip": "Labubu",
+    "count": 1
+  },
+  {
+    "week": "2024-W47",
+    "ip": "Pop Mart",
+    "count": 1
+  },
+  {
+    "week": "2024-W51",
+    "ip": "Labubu",
+    "count": 5
+  },
+  {
+    "week": "2024-W52",
+    "ip": "Labubu",
+    "count": 2
+  },
+  {
+    "week": "2024-W52",
+    "ip": "Pop Mart",
+    "count": 12
+  },
+  {
+    "week": "2025-W01",
+    "ip": "Labubu",
+    "count": 1
+  },
+  {
+    "week": "2025-W01",
+    "ip": "Pop Mart",
+    "count": 2
+  },
+  {
+    "week": "2025-W03",
+    "ip": "Labubu",
+    "count": 1
+  },
+  {
+    "week": "2025-W04",
+    "ip": "Labubu",
+    "count": 1
+  },
+  {
+    "week": "2025-W05",
+    "ip": "Labubu",
+    "count": 1
+  },
+  {
+    "week": "2025-W06",
+    "ip": "Labubu",
+    "count": 2
+  },
+  {
+    "week": "2025-W08",
+    "ip": "Labubu",
+    "count": 2
+  },
+  {
+    "week": "2025-W09",
+    "ip": "Labubu",
+    "count": 1
+  },
+  {
+    "week": "2025-W10",
+    "ip": "Pop Mart",
+    "count": 13
+  },
+  {
+    "week": "2025-W11",
+    "ip": "Labubu",
+    "count": 1
+  },
+  {
+    "week": "2025-W11",
+    "ip": "Pop Mart",
+    "count": 1
+  },
+  {
+    "week": "2025-W12",
+    "ip": "Pop Mart",
+    "count": 2
+  },
+  {
+    "week": "2025-W13",
+    "ip": "Labubu",
+    "count": 1
+  },
+  {
+    "week": "2025-W14",
+    "ip": "Labubu",
+    "count": 3
+  },
+  {
+    "week": "2025-W15",
+    "ip": "Labubu",
+    "count": 2
+  },
+  {
+    "week": "2025-W17",
+    "ip": "Labubu",
+    "count": 7
+  },
+  {
+    "week": "2025-W18",
+    "ip": "Labubu",
+    "count": 2
+  },
+  {
+    "week": "2025-W18",
+    "ip": "Pop Mart",
+    "count": 6
+  },
+  {
+    "week": "2025-W19",
+    "ip": "Labubu",
+    "count": 1
+  },
+  {
+    "week": "2025-W20",
+    "ip": "Labubu",
+    "count": 4
+  },
+  {
+    "week": "2025-W20",
+    "ip": "Pop Mart",
+    "count": 20
+  },
+  {
+    "week": "2025-W21",
+    "ip": "Labubu",
+    "count": 3
+  },
+  {
+    "week": "2025-W21",
+    "ip": "Pop Mart",
+    "count": 21
+  },
+  {
+    "week": "2025-W22",
+    "ip": "Labubu",
+    "count": 3
+  },
+  {
+    "week": "2025-W22",
+    "ip": "Pop Mart",
+    "count": 3
+  },
+  {
+    "week": "2025-W23",
+    "ip": "Labubu",
+    "count": 4
+  },
+  {
+    "week": "2025-W23",
+    "ip": "Pop Mart",
+    "count": 1
+  },
+  {
+    "week": "2025-W24",
+    "ip": "Labubu",
+    "count": 2
+  },
+  {
+    "week": "2025-W24",
+    "ip": "Pop Mart",
+    "count": 7
+  },
+  {
+    "week": "2025-W25",
+    "ip": "Labubu",
+    "count": 22
+  },
+  {
+    "week": "2025-W25",
+    "ip": "Pop Mart",
+    "count": 33
+  },
+  {
+    "week": "2025-W26",
+    "ip": "Labubu",
+    "count": 13
+  },
+  {
+    "week": "2025-W26",
+    "ip": "Pop Mart",
+    "count": 14
+  },
+  {
+    "week": "2025-W27",
+    "ip": "Labubu",
+    "count": 24
+  },
+  {
+    "week": "2025-W27",
+    "ip": "Pop Mart",
+    "count": 3
+  },
+  {
+    "week": "2025-W28",
+    "ip": "Labubu",
+    "count": 25
+  },
+  {
+    "week": "2025-W28",
+    "ip": "Pop Mart",
+    "count": 11
+  },
+  {
+    "week": "2025-W29",
+    "ip": "Labubu",
+    "count": 57
+  },
+  {
+    "week": "2025-W29",
+    "ip": "Pop Mart",
+    "count": 5
+  },
+  {
+    "week": "2025-W30",
+    "ip": "Labubu",
+    "count": 16
+  },
+  {
+    "week": "2025-W30",
+    "ip": "Pop Mart",
+    "count": 5
+  },
+  {
+    "week": "2025-W31",
+    "ip": "Labubu",
+    "count": 8
+  },
+  {
+    "week": "2025-W31",
+    "ip": "Pop Mart",
+    "count": 5
+  },
+  {
+    "week": "2025-W32",
+    "ip": "Labubu",
+    "count": 11
+  },
+  {
+    "week": "2025-W32",
+    "ip": "Pop Mart",
+    "count": 5
+  },
+  {
+    "week": "2025-W33",
+    "ip": "Labubu",
+    "count": 32
+  },
+  {
+    "week": "2025-W33",
+    "ip": "Pop Mart",
+    "count": 25
+  },
+  {
+    "week": "2025-W34",
+    "ip": "Labubu",
+    "count": 63
+  },
+  {
+    "week": "2025-W34",
+    "ip": "Pop Mart",
+    "count": 14
+  },
+  {
+    "week": "2025-W35",
+    "ip": "Labubu",
+    "count": 59
+  },
+  {
+    "week": "2025-W35",
+    "ip": "Pop Mart",
+    "count": 13
+  },
+  {
+    "week": "2025-W36",
+    "ip": "Labubu",
+    "count": 36
+  },
+  {
+    "week": "2025-W36",
+    "ip": "Pop Mart",
+    "count": 9
+  },
+  {
+    "week": "2025-W37",
+    "ip": "Labubu",
+    "count": 9
+  },
+  {
+    "week": "2025-W37",
+    "ip": "Pop Mart",
+    "count": 22
+  },
+  {
+    "week": "2025-W38",
+    "ip": "Labubu",
+    "count": 19
+  },
+  {
+    "week": "2025-W38",
+    "ip": "Pop Mart",
+    "count": 6
+  },
+  {
+    "week": "2025-W39",
+    "ip": "Labubu",
+    "count": 13
+  },
+  {
+    "week": "2025-W39",
+    "ip": "Pop Mart",
+    "count": 32
+  },
+  {
+    "week": "2025-W40",
+    "ip": "Labubu",
+    "count": 24
+  },
+  {
+    "week": "2025-W40",
+    "ip": "Pop Mart",
+    "count": 126
+  },
+  {
+    "week": "2025-W41",
+    "ip": "Labubu",
+    "count": 26
+  },
+  {
+    "week": "2025-W41",
+    "ip": "Pop Mart",
+    "count": 57
+  },
+  {
+    "week": "2025-W42",
+    "ip": "Labubu",
+    "count": 21
+  },
+  {
+    "week": "2025-W42",
+    "ip": "Pop Mart",
+    "count": 74
+  },
+  {
+    "week": "2025-W43",
+    "ip": "Labubu",
+    "count": 22
+  },
+  {
+    "week": "2025-W43",
+    "ip": "Pop Mart",
+    "count": 21
+  },
+  {
+    "week": "2025-W44",
+    "ip": "Labubu",
+    "count": 38
+  },
+  {
+    "week": "2025-W44",
+    "ip": "Pop Mart",
+    "count": 18
+  },
+  {
+    "week": "2025-W45",
+    "ip": "Labubu",
+    "count": 59
+  },
+  {
+    "week": "2025-W45",
+    "ip": "Pop Mart",
+    "count": 13
+  },
+  {
+    "week": "2025-W46",
+    "ip": "Labubu",
+    "count": 70
+  },
+  {
+    "week": "2025-W46",
+    "ip": "Pop Mart",
+    "count": 16
+  },
+  {
+    "week": "2025-W47",
+    "ip": "Labubu",
+    "count": 47
+  },
+  {
+    "week": "2025-W47",
+    "ip": "Pop Mart",
+    "count": 14
+  },
+  {
+    "week": "2025-W48",
+    "ip": "Labubu",
+    "count": 38
+  },
+  {
+    "week": "2025-W48",
+    "ip": "Pop Mart",
+    "count": 20
+  },
+  {
+    "week": "2025-W49",
+    "ip": "Labubu",
+    "count": 46
+  },
+  {
+    "week": "2025-W49",
+    "ip": "Pop Mart",
+    "count": 44
+  },
+  {
+    "week": "2025-W50",
+    "ip": "Labubu",
+    "count": 47
+  },
+  {
+    "week": "2025-W50",
+    "ip": "Pop Mart",
+    "count": 2
+  },
+  {
+    "week": "2025-W51",
+    "ip": "Labubu",
+    "count": 17
+  },
+  {
+    "week": "2025-W51",
+    "ip": "Pop Mart",
+    "count": 22
+  },
+  {
+    "week": "2025-W52",
+    "ip": "Labubu",
+    "count": 26
+  },
+  {
+    "week": "2025-W52",
+    "ip": "Pop Mart",
+    "count": 28
+  },
+  {
+    "week": "2026-W01",
+    "ip": "Labubu",
+    "count": 39
+  },
+  {
+    "week": "2026-W01",
+    "ip": "Pop Mart",
+    "count": 10
+  },
+  {
+    "week": "2026-W02",
+    "ip": "Labubu",
+    "count": 16
+  },
+  {
+    "week": "2026-W02",
+    "ip": "Pop Mart",
+    "count": 1
+  },
+  {
+    "week": "2026-W03",
+    "ip": "Labubu",
+    "count": 16
+  },
+  {
+    "week": "2026-W03",
+    "ip": "Pop Mart",
+    "count": 45
+  },
+  {
+    "week": "2026-W04",
+    "ip": "Labubu",
+    "count": 34
+  },
+  {
+    "week": "2026-W04",
+    "ip": "Pop Mart",
+    "count": 43
+  },
+  {
+    "week": "2026-W05",
+    "ip": "Labubu",
+    "count": 18
+  },
+  {
+    "week": "2026-W05",
+    "ip": "Pop Mart",
+    "count": 14
+  },
+  {
+    "week": "2026-W06",
+    "ip": "Labubu",
+    "count": 9
+  },
+  {
+    "week": "2026-W06",
+    "ip": "Pop Mart",
+    "count": 15
+  },
+  {
+    "week": "2026-W07",
+    "ip": "Labubu",
+    "count": 44
+  },
+  {
+    "week": "2026-W07",
+    "ip": "Pop Mart",
+    "count": 14
+  },
+  {
+    "week": "2026-W08",
+    "ip": "Labubu",
+    "count": 47
+  },
+  {
+    "week": "2026-W08",
+    "ip": "Pop Mart",
+    "count": 3
+  },
+  {
+    "week": "2026-W09",
+    "ip": "Labubu",
+    "count": 45
+  },
+  {
+    "week": "2026-W09",
+    "ip": "Pop Mart",
+    "count": 31
+  },
+  {
+    "week": "2026-W10",
+    "ip": "Labubu",
+    "count": 105
+  },
+  {
+    "week": "2026-W10",
+    "ip": "Pop Mart",
+    "count": 12
+  },
+  {
+    "week": "2026-W11",
+    "ip": "Dimoo",
+    "count": 35
+  },
+  {
+    "week": "2026-W11",
+    "ip": "Labubu",
+    "count": 88
+  },
+  {
+    "week": "2026-W11",
+    "ip": "Pop Mart",
+    "count": 166
+  },
+  {
+    "week": "2026-W12",
+    "ip": "Dimoo",
+    "count": 3
+  },
+  {
+    "week": "2026-W12",
+    "ip": "Labubu",
+    "count": 48
+  },
+  {
+    "week": "2026-W12",
+    "ip": "Molly",
+    "count": 78
+  },
+  {
+    "week": "2026-W12",
+    "ip": "Pop Mart",
+    "count": 48
+  },
+  {
+    "week": "2026-W13",
+    "ip": "Dimoo",
+    "count": 14
+  },
+  {
+    "week": "2026-W13",
+    "ip": "Labubu",
+    "count": 281
+  },
+  {
+    "week": "2026-W13",
+    "ip": "Molly",
+    "count": 25
+  },
+  {
+    "week": "2026-W13",
+    "ip": "Pop Mart",
+    "count": 1578
+  }
+]

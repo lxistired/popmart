@@ -1,0 +1,126 @@
+{
+  "collected_at": "2026-03-26",
+  "note": "Top ASINs per IP on Amazon US, ranked by review count (sales proxy). Key insight: searching 'Dimoo' on Amazon returns Labubu/Monsters products at top—Dimoo max reviews only 129 vs Labubu 2100.",
+  "skus": [
+    {
+      "ip": "Labubu",
+      "asin": "B0DT44TSM2",
+      "title": "THE Monsters Big into Energy Series-Vinyl Plush Pendant Blind Box",
+      "price_usd": 27.99,
+      "reviews": 2100,
+      "bought_monthly": "20K+",
+      "rating": 4.7,
+      "rank": 1
+    },
+    {
+      "ip": "Labubu",
+      "asin": "B0FJFV4PQN",
+      "title": "The Monster Pin for Love Series (A-M) Mini Labubu Doll Blind Box Keychain",
+      "price_usd": 22.99,
+      "reviews": 1300,
+      "bought_monthly": "8K+",
+      "rating": 4.5,
+      "rank": 2
+    },
+    {
+      "ip": "Labubu",
+      "asin": "B0DWXDYD7X",
+      "title": "The Monsters Let's Checkmate Series Vinyl Plush Doll",
+      "price_usd": 46.99,
+      "reviews": 1200,
+      "bought_monthly": "2K+",
+      "rating": 4.8,
+      "rank": 3
+    },
+    {
+      "ip": "Skullpanda",
+      "asin": "B0BG8QHZV5",
+      "title": "SKULLPANDA Warmth Series Blind Box Figures",
+      "price_usd": 19.99,
+      "reviews": 869,
+      "bought_monthly": "600+",
+      "rating": 4.8,
+      "rank": 1
+    },
+    {
+      "ip": "Skullpanda",
+      "asin": "B0D2D7MRRL",
+      "title": "SKULLPANDA The Sound Series Blind Box Figures",
+      "price_usd": 19.99,
+      "reviews": 849,
+      "bought_monthly": "700+",
+      "rating": 4.7,
+      "rank": 2
+    },
+    {
+      "ip": "Skullpanda",
+      "asin": "B0F7R3F1VX",
+      "title": "SKULLPANDA L'impressionnisme Series Plush Doll Blind Box Figures",
+      "price_usd": 32.99,
+      "reviews": 692,
+      "bought_monthly": "1K+",
+      "rating": 4.6,
+      "rank": 3
+    },
+    {
+      "ip": "Dimoo",
+      "asin": "B0DT95S945",
+      "title": "DIMOO World × Disney Series Figures Blind Box",
+      "price_usd": 20.99,
+      "reviews": 129,
+      "bought_monthly": "",
+      "rating": 4.7,
+      "rank": 1
+    },
+    {
+      "ip": "Dimoo",
+      "asin": "B0DMVGH9M6",
+      "title": "DIMOO Stories in The Cup Series Figures Blind Box",
+      "price_usd": 19.99,
+      "reviews": 100,
+      "bought_monthly": "100+",
+      "rating": 4.5,
+      "rank": 2
+    },
+    {
+      "ip": "Dimoo",
+      "asin": "B0DBPX3DHM",
+      "title": "DIMOO Weaving Wonders Series Figures Blind Box",
+      "price_usd": 19.99,
+      "reviews": 93,
+      "bought_monthly": "100+",
+      "rating": 4.7,
+      "rank": 3
+    },
+    {
+      "ip": "Molly",
+      "asin": "B0D3T2QJ1W",
+      "title": "MEGA Space Molly 100% Series 3 Blind Box Figures",
+      "price_usd": 20.99,
+      "reviews": 210,
+      "bought_monthly": "100+",
+      "rating": 4.5,
+      "rank": 1
+    },
+    {
+      "ip": "Molly",
+      "asin": "B0F18PJ29F",
+      "title": "Baby Molly Pocket Friends Series-Vinyl Plush Pendant Blind Box",
+      "price_usd": 22.99,
+      "reviews": 140,
+      "bought_monthly": "",
+      "rating": 4.5,
+      "rank": 2
+    },
+    {
+      "ip": "Molly",
+      "asin": "B0C7Z6BY3M",
+      "title": "MEGA Space Molly 100% 2-B Blind Box Figures",
+      "price_usd": 188.91,
+      "reviews": 211,
+      "bought_monthly": "",
+      "rating": 4.5,
+      "rank": 3
+    }
+  ]
+}

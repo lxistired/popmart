@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Credentials / secrets
+.env
+instagram_session.json
+tiktok_cookies.json
+amazon_cookies.json
+
+# Database (large, local-only)
+*.db
+
+# Screenshots / temp images
+amazon_signin_check.png
+
+# Generated runtime state
+checkpoints/
+
+# Log files
+*_log.txt
+scripts/daily_update.log
+
+# Chrome profiles
+chrome_data/
+
+# Node
+node_modules/
+
+# Astro
+website/dist/
+website/.astro/
+website/node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Planning artifacts (local)
+.planning/
+.superpowers/
+.claude/
+
+# Playwright MCP
+.playwright-mcp/
+
+# Temp files
+*.fuse_hidden*

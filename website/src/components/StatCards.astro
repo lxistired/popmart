@@ -1,0 +1,40 @@
+---
+// website/src/components/StatCards.astro
+import overview from '../data/overview.json';
+const stats = [
+  { icon: '\u{1F4F9}', value: overview.tiktok_videos.toLocaleString(), label: 'TikTok 视频', bg: '#fff3e0' },
+  { icon: '\u{1F4AC}', value: (overview.tiktok_comments + overview.instagram_comments).toLocaleString(), label: '总评论数', bg: '#e8f5e9' },
+  { icon: '\u{1F4F8}', value: overview.instagram_posts.toLocaleString(), label: 'Instagram 帖子', bg: '#fce4ec' },
+  { icon: '\u{1F4CA}', value: `${((overview.tiktok_comments + overview.instagram_comments) / (overview.tiktok_videos + overview.instagram_posts)).toFixed(1)}`, label: '平均评论/帖', bg: '#e3f2fd' },
+];
+---
+<div class="stats-row">
+  {stats.map(s => (
+    <article class="stat-card">
+      <div class="stat-icon" style={`background:${s.bg}`}>{s.icon}</div>
+      <div class="stat-value">{s.value}</div>
+      <div class="stat-label">{s.label}</div>
+    </article>
+  ))}
+</div>
+
+<style>
+  .stats-row {
+    max-width: var(--max-width); margin: -50px auto 0;
+    padding: 0 24px; position: relative; z-index: 10;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  .stat-card {
+    background: var(--color-card); border-radius: var(--radius);
+    padding: 24px; box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  .stat-icon {
+    width: 40px; height: 40px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; margin-bottom: 16px;
+  }
+  .stat-value { font-size: 32px; font-weight: 900; letter-spacing: -1px; }
+  .stat-label { font-size: 13px; color: var(--color-muted); margin-top: 4px; font-weight: 500; }
+</style>

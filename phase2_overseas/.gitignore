@@ -1,0 +1,15 @@
+# Credentials
+.env
+instagram_session.json
+
+# Generated runtime state
+checkpoints/
+
+# Log files
+*_log.txt
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/

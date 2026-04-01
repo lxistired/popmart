@@ -1,0 +1,90 @@
+---
+// website/src/components/TrendChart.astro
+// This component renders the ECharts container and injects data as a script
+import tiktokTrend from '../data/tiktok-trend.json';
+import instagramTrend from '../data/instagram-trend.json';
+
+// Merge both platform trends
+const allTrend = [...tiktokTrend, ...instagramTrend];
+
+// Get unique weeks and IPs
+const weeks = [...new Set(allTrend.map((r: any) => r.week))].sort();
+const ips = ['Labubu', 'Dimoo', 'Molly', 'Skullpanda', 'Pop Mart'];
+const IP_COLORS: Record<string, string> = {
+  Labubu: '#FF6F00', Dimoo: '#1976D2', Molly: '#E91E63',
+  Skullpanda: '#7B1FA2', 'Pop Mart': '#D32F2F',
+};
+
+// Build series data
+const series = ips.map(ip => ({
+  name: ip,
+  type: 'bar',
+  stack: 'total',
+  data: weeks.map(w => {
+    const matches = allTrend.filter((r: any) => r.week === w && r.ip === ip);
+    return matches.reduce((sum: number, r: any) => sum + r.count, 0);
+  }),
+  itemStyle: { color: IP_COLORS[ip] || '#999' },
+}));
+
+const chartData = JSON.stringify({ weeks, series });
+---
+<section class="section">
+  <div class="section-header">
+    <h2>评论趋势</h2>
+    <span class="en">Weekly Comment Trend</span>
+  </div>
+  <div class="chart-container">
+    <div id="trend-chart" style="width:100%;height:400px;"></div>
+    <div class="chart-legend">
+      {ips.map(ip => (
+        <div class="legend-item">
+          {['/characters/labubu.png','/characters/dimoo.png','/characters/molly.png','/characters/skullpanda.png',''][ips.indexOf(ip)] && (
+            <div class="legend-avatar">
+              <img src={['/characters/labubu.png','/characters/dimoo.png','/characters/molly.png','/characters/skullpanda.png',''][ips.indexOf(ip)]} alt={ip} width="36" height="36" loading="lazy">
+            </div>
+          )}
+          <div class="legend-color" style={`background:${IP_COLORS[ip]}`}></div>
+          {ip}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ chartData }}>
+  import('https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.esm.min.js').then(echarts => {
+    const data = JSON.parse(chartData);
+    const chart = echarts.init(document.getElementById('trend-chart'));
+    chart.setOption({
+      tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+      grid: { left: 40, right: 20, top: 20, bottom: 40 },
+      xAxis: { type: 'category', data: data.weeks, axisLabel: { rotate: 45, fontSize: 10 } },
+      yAxis: { type: 'value' },
+      series: data.series,
+    });
+    window.addEventListener('resize', () => chart.resize());
+  });
+</script>
+
+<style>
+  .chart-container {
+    background: var(--color-card); border-radius: 20px;
+    padding: 32px; box-shadow: var(--shadow);
+  }
+  .chart-legend {
+    display: flex; justify-content: center; gap: 28px;
+    margin-top: 20px; flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; font-weight: 600; color: #444;
+  }
+  .legend-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    border: 2px solid white; flex-shrink: 0; background: #fff;
+  }
+  .legend-avatar img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.3); }
+  .legend-color { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+</style>

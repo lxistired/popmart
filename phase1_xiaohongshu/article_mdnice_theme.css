@@ -1,0 +1,304 @@
+/*
+ * 泡泡玛特 Pop Mart — mdnice 自定义CSS主题
+ *
+ * 设计理念：
+ * - 品牌红 #D32F2F 作为主色调，呼应泡泡玛特视觉识别
+ * - 暖橙 #FF6F00 作为辅助色，用于强调和投资含义区块
+ * - 温暖米色 #FFF8F0 作为背景色，营造亲和的阅读体验
+ * - 深灰 #2D2D2D 作为正文色，确保可读性
+ *
+ * 使用方法：
+ * 1. 打开 editor.mdnice.com
+ * 2. 点击右上角 "主题" → "自定义CSS"
+ * 3. 将本文件全部内容粘贴进去
+ * 4. 点击确认即可生效
+ */
+
+/* ========== 全局容器 ========== */
+#nice {
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', 'Segoe UI', sans-serif;
+  font-size: 15px;
+  color: #2D2D2D;
+  line-height: 2.0;
+  letter-spacing: 0.5px;
+  padding: 0 8px;
+  background: #FFFFFF;
+}
+
+/* ========== 主标题 H1 ========== */
+#nice h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #D32F2F;
+  text-align: center;
+  line-height: 1.6;
+  margin: 32px 0 8px 0;
+  padding-bottom: 16px;
+  border-bottom: 3px solid transparent;
+  border-image: linear-gradient(90deg, transparent, #D32F2F, #FF6F00, #D32F2F, transparent) 1;
+}
+
+/* 副标题（紧跟H1的斜体段落） */
+#nice h1 + p {
+  text-align: center;
+  font-size: 13px;
+  color: #999;
+  letter-spacing: 0.3px;
+  margin-bottom: 16px;
+}
+
+/* ========== 章节标题 H2 ========== */
+#nice h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2D2D2D;
+  margin: 32px 0 20px 0;
+  padding-left: 12px;
+  border-left: 4px solid #D32F2F;
+  line-height: 1.6;
+}
+
+/* ========== 三级标题 H3（方法论子节） ========== */
+#nice h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1976D2;
+  margin: 24px 0 12px 0;
+  line-height: 1.6;
+}
+
+/* ========== 正文段落 ========== */
+#nice p {
+  font-size: 15px;
+  line-height: 2.0;
+  letter-spacing: 0.5px;
+  color: #2D2D2D;
+  margin: 0 0 16px 0;
+}
+
+/* ========== 加粗文字（IP名称高亮） ========== */
+#nice strong {
+  color: #D32F2F;
+  font-weight: 700;
+}
+
+/* ========== 斜体文字 ========== */
+#nice em {
+  font-style: italic;
+  color: #666;
+}
+
+/* ========== 引用块（投资含义卡片） ========== */
+#nice blockquote {
+  background: #FFF8F0;
+  border-left: 4px solid #FF6F00;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 24px 0;
+  color: #2D2D2D;
+  box-shadow: 0 2px 8px rgba(211, 47, 47, 0.06);
+}
+
+#nice blockquote p {
+  font-size: 15px;
+  line-height: 2.0;
+  margin: 0 0 8px 0;
+  color: #2D2D2D;
+}
+
+#nice blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* 引用块内的加粗标题 */
+#nice blockquote strong {
+  color: #D32F2F;
+  font-weight: 700;
+}
+
+/* ========== 表格（数据卡片） ========== */
+#nice table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(211, 47, 47, 0.06);
+}
+
+#nice thead {
+  background: #FFF3E0;
+}
+
+#nice th {
+  font-size: 14px;
+  font-weight: 600;
+  color: #D32F2F;
+  text-align: center;
+  padding: 12px 8px;
+  border-bottom: 2px solid #FFCDD2;
+  background: #FFF3E0;
+}
+
+#nice td {
+  font-size: 15px;
+  text-align: center;
+  padding: 14px 8px;
+  border-bottom: 1px solid #FFF3E0;
+  color: #2D2D2D;
+}
+
+#nice td strong {
+  font-size: 24px;
+  color: #D32F2F;
+  font-weight: 700;
+}
+
+#nice tr:last-child td {
+  border-bottom: none;
+}
+
+/* ========== 代码块（终端模拟） ========== */
+#nice pre {
+  background: #1A1A2E;
+  border-radius: 8px;
+  padding: 0;
+  margin: 24px 0;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+#nice pre code {
+  display: block;
+  background: #1A1A2E;
+  color: #E0E0E0;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  padding: 20px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  border-radius: 8px;
+}
+
+/* ========== 行内代码 ========== */
+#nice code {
+  background: #FFF3E0;
+  color: #D32F2F;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
+  font-size: 13px;
+}
+
+/* pre内的code不需要行内代码样式 */
+#nice pre code {
+  background: #1A1A2E;
+  color: #E0E0E0;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* ========== 水平分割线 ========== */
+#nice hr {
+  border: none;
+  border-top: 1px solid #FFCDD2;
+  margin: 30px auto;
+  width: 40%;
+}
+
+/* ========== 图片 ========== */
+#nice img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  margin: 16px 0 4px 0;
+  display: block;
+}
+
+/* ========== 图片说明文字（alt text 渲染为 figcaption） ========== */
+#nice figcaption {
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+  margin: 4px 0 16px 0;
+  line-height: 1.6;
+}
+
+/* 备用：部分mdnice版本用 .image-caption */
+#nice .image-caption {
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+  margin: 4px 0 16px 0;
+}
+
+/* ========== 链接 ========== */
+#nice a {
+  color: #D32F2F;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(211, 47, 47, 0.3);
+}
+
+#nice a:hover {
+  color: #FF6F00;
+  border-bottom-color: #FF6F00;
+}
+
+/* ========== 列表 ========== */
+#nice ul,
+#nice ol {
+  padding-left: 24px;
+  margin: 8px 0 16px 0;
+}
+
+#nice li {
+  font-size: 15px;
+  line-height: 2.0;
+  color: #2D2D2D;
+  margin-bottom: 4px;
+}
+
+/* ========== 标记/高亮文本 ========== */
+#nice mark {
+  background: linear-gradient(transparent 60%, #FFCCBC 60%);
+  padding: 0 2px;
+  color: inherit;
+}
+
+/* ========== HTML 注释不可见（mdnice 默认） ========== */
+
+/* ========== 底部署名区域 ========== */
+#nice p:last-of-type {
+  /* 保持默认样式，不做特殊处理 */
+}
+
+/* ========== 响应式微调 ========== */
+@media screen and (max-width: 480px) {
+  #nice h1 {
+    font-size: 20px;
+  }
+
+  #nice h2 {
+    font-size: 16px;
+  }
+
+  #nice p {
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  #nice td strong {
+    font-size: 20px;
+  }
+
+  #nice blockquote {
+    padding: 12px 16px;
+  }
+
+  #nice pre code {
+    font-size: 12px;
+    padding: 16px;
+  }
+}

@@ -1,0 +1,63 @@
+---
+// website/src/components/LatestPosts.astro
+import tiktokVideos from '../data/tiktok-videos.json';
+import instagramPosts from '../data/instagram-posts.json';
+
+// Mix latest from both platforms, sort by date desc, take 4
+const tiktok = tiktokVideos.slice(0, 20).map((v: any) => ({ ...v, platform: 'tiktok' }));
+const instagram = instagramPosts.slice(0, 20).map((p: any) => ({ ...p, platform: 'instagram' }));
+const all = [...tiktok, ...instagram]
+  .sort((a: any, b: any) => (b.date || '').localeCompare(a.date || ''))
+  .slice(0, 4);
+---
+<section class="section">
+  <div class="section-header">
+    <h2>最新热门</h2>
+    <span class="en">Trending Now</span>
+  </div>
+  <div class="posts-grid">
+    {all.map((post: any) => (
+      <article class="post-card">
+        <div class={`post-platform ${post.platform}`}>
+          {post.platform === 'tiktok' ? 'T' : 'I'}
+        </div>
+        <div class="post-meta">
+          <h4>{(post.title || post.caption || '').slice(0, 60)}</h4>
+          <div class="post-stats">
+            {post.views != null && <span>&#x1F441; {(post.views/1000).toFixed(0)}K</span>}
+            {post.likes != null && <span>&#x2764;&#xFE0F; {post.likes > 1000 ? `${(post.likes/1000).toFixed(1)}K` : post.likes}</span>}
+            {(post.comments ?? post.comments_count) != null && <span>&#x1F4AC; {(post.comments ?? post.comments_count).toLocaleString()}</span>}
+          </div>
+          <div class="post-date">{post.date} · @{post.author || post.account}</div>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .posts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .post-card {
+    background: var(--color-card); border-radius: var(--radius);
+    padding: 20px 24px; box-shadow: var(--shadow);
+    display: flex; gap: 16px; align-items: flex-start;
+    transition: transform 0.2s;
+  }
+  .post-card:hover { transform: translateY(-2px); }
+  .post-platform {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; color: white; font-weight: 900; font-size: 18px;
+  }
+  .post-platform.tiktok { background: #1a1a1a; }
+  .post-platform.instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+  .post-meta { flex: 1; }
+  .post-meta h4 {
+    font-size: 14px; font-weight: 600;
+    display: -webkit-box; -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical; overflow: hidden;
+    margin-bottom: 6px;
+  }
+  .post-stats { font-size: 12px; color: #888; margin-top: 4px; display: flex; gap: 14px; }
+  .post-date { font-size: 11px; color: #ccc; margin-top: 6px; }
+</style>

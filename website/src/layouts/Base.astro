@@ -1,0 +1,91 @@
+---
+// website/src/layouts/Base.astro
+interface Props { title: string; description?: string; }
+const { title, description = '海外社媒另类数据追踪 · 日更 · LLM 友好' } = Astro.props;
+import '../styles/global.css';
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">
+      <a href="/">POP MART<span>.md</span></a>
+    </div>
+    <div class="nav-links">
+      <a href="/">首页</a>
+      <a href="/tiktok">TikTok</a>
+      <a href="/instagram">Instagram</a>
+      <a href="/methodology">方法论</a>
+      <a href="/llms.txt" class="llms-link">llms.txt</a>
+    </div>
+  </nav>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer>
+    <div>
+      <span class="footer-brand">泡泡玛特.md</span>
+      <span class="footer-desc">海外社媒另类数据追踪 · 数据每日更新</span>
+    </div>
+    <div class="footer-links">
+      <span class="llms-badge">🤖 LLM-friendly · /llms.txt</span>
+      <a href="https://github.com/lxistired/popmart" target="_blank">GitHub</a>
+      <a href="/methodology">方法论</a>
+    </div>
+  </footer>
+</body>
+</html>
+
+<style>
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding: 0 48px; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo a {
+    font-weight: 900; font-size: 20px;
+    letter-spacing: 2px; color: var(--color-brand);
+  }
+  .nav-logo span { color: #1a1a1a; font-weight: 600; font-size: 14px; margin-left: 8px; letter-spacing: 0; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { color: #666; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--color-brand); }
+  .llms-link {
+    font-family: 'SF Mono', 'Fira Code', monospace !important;
+    font-size: 12px !important;
+    background: #f5f5f5; padding: 4px 10px;
+    border-radius: 6px; color: #888 !important;
+  }
+  main { margin-top: 64px; }
+  footer {
+    margin-top: 64px; padding: 32px 48px;
+    background: #1a1a1a; color: rgba(255,255,255,0.5);
+    font-size: 13px; display: flex;
+    justify-content: space-between; align-items: center;
+  }
+  .footer-brand { font-weight: 700; color: rgba(255,255,255,0.8); }
+  .footer-desc { margin-left: 16px; }
+  .footer-links { display: flex; align-items: center; gap: 16px; }
+  .footer-links a { color: rgba(255,255,255,0.7); }
+  .llms-badge {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 6px 12px;
+    font-size: 12px; font-family: 'SF Mono', monospace;
+    color: rgba(255,255,255,0.6);
+  }
+</style>

@@ -1,0 +1,56 @@
+---
+// website/src/components/DataTable.astro
+// Generic semantic table for LLM-readable data
+interface Props {
+  title: string;
+  columns: { key: string; label: string }[];
+  rows: Record<string, any>[];
+  maxRows?: number;
+}
+const { title, columns, rows, maxRows = 50 } = Astro.props;
+const displayRows = rows.slice(0, maxRows);
+---
+<section class="section" aria-label={title}>
+  <div class="section-header">
+    <h2>{title}</h2>
+    <span class="en">{displayRows.length} of {rows.length} rows</span>
+  </div>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          {columns.map(col => <th>{col.label}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {displayRows.map(row => (
+          <tr>
+            {columns.map(col => <td>{row[col.key] ?? ''}</td>)}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+  .table-wrapper { overflow-x: auto; }
+  table {
+    width: 100%; border-collapse: collapse;
+    background: var(--color-card); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  th {
+    text-align: left; padding: 12px 16px;
+    font-size: 12px; font-weight: 600;
+    color: var(--color-muted); text-transform: uppercase;
+    letter-spacing: 0.5px; border-bottom: 2px solid #f0f0f0;
+  }
+  td {
+    padding: 10px 16px; font-size: 13px;
+    border-bottom: 1px solid #f5f5f5;
+    max-width: 300px; overflow: hidden;
+    text-overflow: ellipsis; white-space: nowrap;
+  }
+  tr:hover td { background: #fafafa; }
+</style>

@@ -1,0 +1,33 @@
+---
+// website/src/pages/tiktok.astro
+import Base from '../layouts/Base.astro';
+import DataTable from '../components/DataTable.astro';
+import tiktokVideos from '../data/tiktok-videos.json';
+import tiktokTrend from '../data/tiktok-trend.json';
+
+const columns = [
+  { key: 'date', label: '日期' },
+  { key: 'author', label: '作者' },
+  { key: 'title', label: '标题' },
+  { key: 'views', label: '播放' },
+  { key: 'likes', label: '点赞' },
+  { key: 'comments', label: '评论' },
+  { key: 'ip', label: 'IP' },
+];
+---
+<Base title="TikTok 数据 — 泡泡玛特.md" description="Pop Mart TikTok 视频和评论时序数据">
+  <div class="page-header">
+    <h1>TikTok 视频数据</h1>
+    <p>{tiktokVideos.length} 个视频 · 按播放量排序</p>
+  </div>
+  <DataTable title="热门视频" columns={columns} rows={tiktokVideos} maxRows={100} />
+</Base>
+
+<style>
+  .page-header {
+    max-width: var(--max-width); margin: 32px auto;
+    padding: 0 24px;
+  }
+  .page-header h1 { font-size: 32px; font-weight: 900; margin-bottom: 8px; }
+  .page-header p { color: var(--color-muted); font-size: 14px; }
+</style>

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+:root {
+  --color-brand: #DC143C;
+  --color-bg: #fafafa;
+  --color-card: #ffffff;
+  --color-text: #1a1a1a;
+  --color-muted: #999;
+  --color-labubu: #FF6F00;
+  --color-dimoo: #1976D2;
+  --color-molly: #E91E63;
+  --color-skullpanda: #7B1FA2;
+  --color-popmart: #D32F2F;
+  --radius: 16px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.04);
+  --shadow-hover: 0 12px 32px rgba(0,0,0,0.1);
+  --max-width: 1100px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+
+.section {
+  max-width: var(--max-width);
+  margin: 48px auto;
+  padding: 0 24px;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.section-header h2 { font-size: 24px; font-weight: 800; }
+
+.section-header .en {
+  font-size: 13px; color: #bbb; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase;
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "ip": "Pop Mart",
+    "tiktok_videos": 71,
+    "tiktok_comments": 3619,
+    "instagram_posts": 126,
+    "instagram_comments": 2765,
+    "total_comments": 6384,
+    "share_pct": 34.0
+  },
+  {
+    "ip": "Labubu",
+    "tiktok_videos": 131,
+    "tiktok_comments": 4016,
+    "instagram_posts": 129,
+    "instagram_comments": 1757,
+    "total_comments": 5773,
+    "share_pct": 30.7
+  },
+  {
+    "ip": "Skullpanda",
+    "tiktok_videos": 61,
+    "tiktok_comments": 4154,
+    "instagram_posts": 5,
+    "instagram_comments": 0,
+    "total_comments": 4154,
+    "share_pct": 22.1
+  },
+  {
+    "ip": "Dimoo",
+    "tiktok_videos": 54,
+    "tiktok_comments": 1689,
+    "instagram_posts": 6,
+    "instagram_comments": 52,
+    "total_comments": 1741,
+    "share_pct": 9.3
+  },
+  {
+    "ip": "Molly",
+    "tiktok_videos": 54,
+    "tiktok_comments": 615,
+    "instagram_posts": 13,
+    "instagram_comments": 103,
+    "total_comments": 718,
+    "share_pct": 3.8
+  },
+  {
+    "ip": "Zsiga",
+    "tiktok_videos": 2,
+    "tiktok_comments": 6,
+    "instagram_posts": 0,
+    "instagram_comments": 0,
+    "total_comments": 6,
+    "share_pct": 0.0
+  }
+]

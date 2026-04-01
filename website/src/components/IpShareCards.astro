@@ -1,0 +1,65 @@
+---
+// website/src/components/IpShareCards.astro
+import ipShare from '../data/ip-share.json';
+const IP_COLORS: Record<string, string> = {
+  Labubu: '#FF6F00', Dimoo: '#1976D2', Molly: '#E91E63',
+  Skullpanda: '#7B1FA2', 'Pop Mart': '#D32F2F', Zsiga: '#00897B',
+};
+const IP_IMAGES: Record<string, string> = {
+  Labubu: '/characters/labubu.png', Dimoo: '/characters/dimoo.png',
+  Molly: '/characters/molly.png', Skullpanda: '/characters/skullpanda.png',
+};
+const top5 = ipShare.slice(0, 5);
+---
+<section class="section">
+  <div class="section-header">
+    <h2>IP 声量份额</h2>
+    <span class="en">IP Share of Voice</span>
+  </div>
+  <div class="ip-grid">
+    {top5.map((ip: any) => (
+      <article class="ip-card" style={`--accent: ${IP_COLORS[ip.ip] || '#999'}`}>
+        <div class="ip-avatar">
+          {IP_IMAGES[ip.ip]
+            ? <img src={IP_IMAGES[ip.ip]} alt={ip.ip} width="72" height="72" loading="lazy">
+            : <span class="ip-initial">{ip.ip.slice(0,2)}</span>
+          }
+        </div>
+        <h4>{ip.ip}</h4>
+        <div class="ip-share">{ip.share_pct}%</div>
+        <div class="ip-label">评论占比</div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .ip-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .ip-card {
+    background: var(--color-card); border-radius: var(--radius);
+    padding: 24px 16px; text-align: center;
+    box-shadow: var(--shadow); transition: transform 0.2s;
+    position: relative; overflow: hidden; cursor: default;
+  }
+  .ip-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 4px; background: var(--accent);
+  }
+  .ip-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+  .ip-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    margin: 0 auto 14px; overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    border: 3px solid white; background: #fff;
+  }
+  .ip-avatar img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.3); }
+  .ip-initial {
+    display: flex; width: 100%; height: 100%;
+    align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 900; color: white;
+    background: var(--accent);
+  }
+  .ip-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .ip-share { font-size: 28px; font-weight: 900; }
+  .ip-label { font-size: 11px; color: var(--color-muted); margin-top: 2px; }
+</style>

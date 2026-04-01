@@ -1,0 +1,56 @@
+---
+// website/src/pages/methodology.astro
+import Base from '../layouts/Base.astro';
+import overview from '../data/overview.json';
+---
+<Base title="方法论 — 泡泡玛特.md" description="数据采集方法论和计算公式的完整说明">
+  <div class="page-header">
+    <h1>方法论</h1>
+    <p>数据采集方法 · IP 分类规则 · 数据局限性</p>
+  </div>
+  <article class="content section">
+    <h2>数据采集</h2>
+    <dl>
+      <dt>TikTok</dt>
+      <dd>通过 7 个话题标签（#labubu, #popmart, #dimoo, #skullpanda 等）和 @popmartglobal 官方账号采集视频元数据和评论。采集频率：每日增量。</dd>
+      <dt>Instagram</dt>
+      <dd>通过 @popmart 官方账号、@lalalalisa_m、@davidbeckham 等关联账号采集帖子和评论。采集频率：每日增量。</dd>
+    </dl>
+
+    <h2>IP 分类规则</h2>
+    <p>内容通过来源标签和文本关键词匹配分类到 IP：</p>
+    <ul>
+      <li><strong>Labubu</strong> — 关键词: labubu, 拉布布</li>
+      <li><strong>Molly</strong> — 关键词: molly</li>
+      <li><strong>Dimoo</strong> — 关键词: dimoo</li>
+      <li><strong>Skullpanda</strong> — 关键词: skullpanda, skull panda</li>
+      <li><strong>Zsiga</strong> — 关键词: zsiga, 嘎子</li>
+      <li><strong>Pop Mart</strong> — 未匹配到特定 IP 的内容</li>
+    </ul>
+
+    <h2>数据局限性</h2>
+    <ul>
+      <li>TikTok 数据受平台 API 限制，可能遗漏部分视频</li>
+      <li>Instagram 评论采集依赖页面加载，深层评论可能不完整</li>
+      <li>IP 分类基于关键词匹配，跨 IP 内容可能分类不准确</li>
+      <li>数据每日更新一次，不反映实时变化</li>
+    </ul>
+
+    <h2>开源</h2>
+    <p>本站代码和采集脚本完全开源，欢迎复现和改进。</p>
+  </article>
+</Base>
+
+<style>
+  .page-header {
+    max-width: var(--max-width); margin: 32px auto; padding: 0 24px;
+  }
+  .page-header h1 { font-size: 32px; font-weight: 900; margin-bottom: 8px; }
+  .page-header p { color: var(--color-muted); font-size: 14px; }
+  .content { line-height: 1.8; font-size: 15px; }
+  .content h2 { font-size: 20px; margin: 32px 0 12px; }
+  .content dt { font-weight: 700; margin-top: 12px; }
+  .content dd { margin-left: 0; margin-bottom: 8px; color: #555; }
+  .content ul { padding-left: 20px; }
+  .content li { margin-bottom: 6px; }
+</style>

@@ -1,0 +1,83 @@
+{
+  "collected_at": "2026-03-26",
+  "collector": "Chrome MCP 手动采集",
+  "note": "当前截面数据。时间序列方案：Amazon评论按日期重建、SimilarWeb自带6月趋势、Social Blade历史粉丝数据",
+
+  "tiktok_hashtags": [
+    {"tag": "labubu",       "posts": "3.6M",   "note": "泡泡玛特核心IP，远超其他"},
+    {"tag": "popmart",      "posts": "1.8M",   "note": "品牌整体"},
+    {"tag": "molly",        "posts": "726.7K", "note": "⚠️ 污染：含大量与毒品相关内容"},
+    {"tag": "skullpanda",   "posts": "237.3K", "note": "待最终确认"},
+    {"tag": "dimoo",        "posts": "97.8K",  "note": "远落后于labubu"},
+    {"tag": "popmartlabubu","posts": "22.9K",  "note": "细分精准标签"},
+    {"tag": "themonsters",  "posts": "66.4K",  "note": "Labubu/The Monsters系列官方标签，独立标签声量低于#labubu 54倍"}
+  ],
+
+  "tiktok_accounts": [
+    {
+      "username": "popmartglobal",
+      "followers": "2.7M",
+      "following": 22,
+      "total_likes": "13.5M",
+      "bio": "POP MART official TikTok | Light up your every #popmoment | IG:@popmart",
+      "note": "主力全球官号，bio确认Instagram为@popmart"
+    }
+  ],
+
+  "amazon_skus": {
+    "file": "amazon_sku_list.json",
+    "summary": {
+      "labubu_top_reviews": 2100,
+      "labubu_top_monthly_bought": "20K+",
+      "skullpanda_top_reviews": 869,
+      "skullpanda_top_monthly_bought": "600+",
+      "dimoo_top_reviews": 129,
+      "molly_top_reviews": 210
+    },
+    "key_insight": "搜索'Dimoo'在Amazon前排出现的是Labubu/The Monsters产品（1300+评论），Dimoo自己最高只有129评论——流量洼地明显"
+  },
+
+  "instagram_accounts": [
+    {
+      "username": "popmart",
+      "url": "https://www.instagram.com/popmart/",
+      "followers": "1.7M",
+      "followers_num": 1700000,
+      "posts": 3044,
+      "following": 94,
+      "bio": "Collectibles Store | Creative Culture and Entertainment | communications@popmart.com",
+      "note": "官方账号已确认（@popmart），非@popmart_global）"
+    }
+  ],
+
+  "instagram_hashtags": {
+    "note": "Instagram hashtag需登录才能看帖子数，由overnight任务补采",
+    "labubu_tag": "待采集"
+  },
+
+  "similarweb_status": {
+    "note": "待采集",
+    "domains": ["popmart.com", "global.popmart.com"]
+  },
+
+  "time_series_plan": {
+    "amazon_review_velocity": {
+      "method": "抓每个ASIN产品页的全部评论+日期，按周聚合，重建销量增速曲线",
+      "data_needed": "访问 /dp/{ASIN}?showViewpoints=1 或 /product-reviews/{ASIN}",
+      "expected_output": "周度新增评论数，反映销售节奏、名人效应拉动时点"
+    },
+    "similarweb_trend": {
+      "method": "SimilarWeb页面自带6个月月度流量趋势，直接截取",
+      "expected_output": "popmart.com月度访问量趋势"
+    },
+    "social_blade": {
+      "url": "https://socialblade.com/tiktok/user/popmartglobal",
+      "method": "Social Blade免费提供TikTok/Instagram历史粉丝数据（30天免费）",
+      "expected_output": "TikTok @popmartglobal近30天每日粉丝增量"
+    },
+    "scheduled_scraping": {
+      "method": "overseas_scraper.py + Windows任务计划，每天自动跑一次",
+      "expected_output": "从今天起建立日度时序数据库"
+    }
+  }
+}

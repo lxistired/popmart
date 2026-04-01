@@ -1,0 +1,34 @@
+=== 泡泡玛特评论提取 v3 (uc + 真实点击) ===
+队列: 1 | 已完成: 253 | 待处理: 1
+
+启动Chrome...
+  配置: C:\Users\lxxxxxx\Desktop\个人项目\popmart\.uc_profile
+❌ 启动失败: Message: session not created: cannot connect to chrome at 127.0.0.1:53272
+from session not created: This version of ChromeDriver only supports Chrome version 147
+Current browser version is 146.0.7680.154; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+	undetected_chromedriver!GetHandleVerifier [0x12925e3+10dd3]
+	undetected_chromedriver!GetHandleVerifier [0x1292714+10f04]
+	undetected_chromedriver!(No symbol) [0x10620d0]
+	undetected_chromedriver!(No symbol) [0x109d712]
+	undetected_chromedriver!(No symbol) [0x109c739]
+	undetected_chromedriver!(No symbol) [0x1092865]
+	undetected_chromedriver!(No symbol) [0x1092686]
+	undetected_chromedriver!(No symbol) [0x10d9dbf]
+	undetected_chromedriver!(No symbol) [0x10d95d7]
+	undetected_chromedriver!(No symbol) [0x10cd986]
+	undetected_chromedriver!(No symbol) [0x10a02f9]
+	undetected_chromedriver!(No symbol) [0x10a10b4]
+	undetected_chromedriver!GetHandleVerifier [0x14f2d54+271544]
+	undetected_chromedriver!GetHandleVerifier [0x14ee399+26cb89]
+	undetected_chromedriver!GetHandleVerifier [0x150cc45+28b435]
+	undetected_chromedriver!GetHandleVerifier [0x12acee8+2b6d8]
+	undetected_chromedriver!GetHandleVerifier [0x12b4f1d+3370d]
+	undetected_chromedriver!GetHandleVerifier [0x129af68+19758]
+	undetected_chromedriver!GetHandleVerifier [0x129b132+19922]
+	undetected_chromedriver!GetHandleVerifier [0x12840cf+28bf]
+	KERNEL32!BaseThreadInitThunk [0x76025d49+19]
+	ntdll!RtlInitializeExceptionChain [0x76f3d74b+6b]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x76f3d6d1+231]
+
+请确保已关闭所有Chrome窗口后重试。
