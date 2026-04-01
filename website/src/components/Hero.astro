@@ -71,4 +71,12 @@ const characters = [
   .hero-sub { font-size: 18px; color: rgba(255,255,255,0.6); margin-bottom: 32px; }
   .hero-update { font-size: 13px; color: rgba(255,255,255,0.4); }
   .hero-update strong { color: rgba(255,255,255,0.7); }
+  @media (max-width: 768px) {
+    .hero { height: 320px; }
+    .hero-chars { display: none; }
+    .hero h1 { font-size: 36px; }
+    .hero-sub { font-size: 14px; margin-bottom: 16px; }
+    .hero-update { font-size: 11px; }
+    .hero-badge { font-size: 10px; padding: 4px 12px; margin-bottom: 16px; }
+  }
 </style>

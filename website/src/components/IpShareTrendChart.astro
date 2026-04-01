@@ -132,4 +132,11 @@ const chartData = JSON.stringify({ months, series, xInterval });
   }
   .legend-avatar img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.3); }
   .legend-color { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+  @media (max-width: 768px) {
+    .chart-area { height: 260px; }
+    .chart-container { padding: 16px; border-radius: 14px; }
+    .chart-legend { gap: 12px; margin-top: 12px; }
+    .legend-item { font-size: 11px; gap: 6px; }
+    .legend-avatar { width: 28px; height: 28px; }
+  }
 </style>

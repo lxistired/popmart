@@ -47,3 +47,9 @@ a { text-decoration: none; color: inherit; }
   font-size: 13px; color: #bbb; font-weight: 600;
   letter-spacing: 1px; text-transform: uppercase;
 }
+
+@media (max-width: 768px) {
+  .section { margin: 20px auto; padding: 0 12px; }
+  .section-header h2 { font-size: 18px; }
+  .section-header .en { font-size: 11px; }
+}
