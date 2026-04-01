@@ -1,0 +1,776 @@
+[
+  {
+    "month": "2020-12",
+    "ip": "Skullpanda",
+    "share_pct": 100.0,
+    "count": 1
+  },
+  {
+    "month": "2021-01",
+    "ip": "Skullpanda",
+    "share_pct": 100.0,
+    "count": 19
+  },
+  {
+    "month": "2021-03",
+    "ip": "Pop Mart",
+    "share_pct": 100.0,
+    "count": 2
+  },
+  {
+    "month": "2023-02",
+    "ip": "Dimoo",
+    "share_pct": 8.3,
+    "count": 1
+  },
+  {
+    "month": "2023-02",
+    "ip": "Skullpanda",
+    "share_pct": 91.7,
+    "count": 11
+  },
+  {
+    "month": "2023-03",
+    "ip": "Dimoo",
+    "share_pct": 25.0,
+    "count": 1
+  },
+  {
+    "month": "2023-03",
+    "ip": "Skullpanda",
+    "share_pct": 75.0,
+    "count": 3
+  },
+  {
+    "month": "2023-04",
+    "ip": "Skullpanda",
+    "share_pct": 100.0,
+    "count": 1
+  },
+  {
+    "month": "2023-08",
+    "ip": "Labubu",
+    "share_pct": 5.6,
+    "count": 1
+  },
+  {
+    "month": "2023-08",
+    "ip": "Pop Mart",
+    "share_pct": 94.4,
+    "count": 17
+  },
+  {
+    "month": "2023-09",
+    "ip": "Dimoo",
+    "share_pct": 90.5,
+    "count": 19
+  },
+  {
+    "month": "2023-09",
+    "ip": "Pop Mart",
+    "share_pct": 9.5,
+    "count": 2
+  },
+  {
+    "month": "2023-10",
+    "ip": "Dimoo",
+    "share_pct": 100.0,
+    "count": 15
+  },
+  {
+    "month": "2023-11",
+    "ip": "Dimoo",
+    "share_pct": 100.0,
+    "count": 3
+  },
+  {
+    "month": "2023-12",
+    "ip": "Dimoo",
+    "share_pct": 100.0,
+    "count": 2
+  },
+  {
+    "month": "2024-02",
+    "ip": "Molly",
+    "share_pct": 10.0,
+    "count": 2
+  },
+  {
+    "month": "2024-02",
+    "ip": "Skullpanda",
+    "share_pct": 90.0,
+    "count": 18
+  },
+  {
+    "month": "2024-03",
+    "ip": "Molly",
+    "share_pct": 66.7,
+    "count": 4
+  },
+  {
+    "month": "2024-03",
+    "ip": "Skullpanda",
+    "share_pct": 33.3,
+    "count": 2
+  },
+  {
+    "month": "2024-04",
+    "ip": "Skullpanda",
+    "share_pct": 100.0,
+    "count": 9
+  },
+  {
+    "month": "2024-05",
+    "ip": "Skullpanda",
+    "share_pct": 100.0,
+    "count": 6
+  },
+  {
+    "month": "2024-06",
+    "ip": "Dimoo",
+    "share_pct": 75.5,
+    "count": 105
+  },
+  {
+    "month": "2024-06",
+    "ip": "Molly",
+    "share_pct": 6.5,
+    "count": 9
+  },
+  {
+    "month": "2024-06",
+    "ip": "Pop Mart",
+    "share_pct": 10.8,
+    "count": 15
+  },
+  {
+    "month": "2024-06",
+    "ip": "Skullpanda",
+    "share_pct": 7.2,
+    "count": 10
+  },
+  {
+    "month": "2024-07",
+    "ip": "Dimoo",
+    "share_pct": 32.1,
+    "count": 26
+  },
+  {
+    "month": "2024-07",
+    "ip": "Labubu",
+    "share_pct": 40.7,
+    "count": 33
+  },
+  {
+    "month": "2024-07",
+    "ip": "Pop Mart",
+    "share_pct": 7.4,
+    "count": 6
+  },
+  {
+    "month": "2024-07",
+    "ip": "Skullpanda",
+    "share_pct": 19.8,
+    "count": 16
+  },
+  {
+    "month": "2024-08",
+    "ip": "Dimoo",
+    "share_pct": 40.0,
+    "count": 8
+  },
+  {
+    "month": "2024-08",
+    "ip": "Molly",
+    "share_pct": 10.0,
+    "count": 2
+  },
+  {
+    "month": "2024-08",
+    "ip": "Pop Mart",
+    "share_pct": 5.0,
+    "count": 1
+  },
+  {
+    "month": "2024-08",
+    "ip": "Skullpanda",
+    "share_pct": 45.0,
+    "count": 9
+  },
+  {
+    "month": "2024-09",
+    "ip": "Dimoo",
+    "share_pct": 57.5,
+    "count": 42
+  },
+  {
+    "month": "2024-09",
+    "ip": "Labubu",
+    "share_pct": 11.0,
+    "count": 8
+  },
+  {
+    "month": "2024-09",
+    "ip": "Molly",
+    "share_pct": 6.8,
+    "count": 5
+  },
+  {
+    "month": "2024-09",
+    "ip": "Pop Mart",
+    "share_pct": 4.1,
+    "count": 3
+  },
+  {
+    "month": "2024-09",
+    "ip": "Skullpanda",
+    "share_pct": 20.5,
+    "count": 15
+  },
+  {
+    "month": "2024-10",
+    "ip": "Dimoo",
+    "share_pct": 34.1,
+    "count": 30
+  },
+  {
+    "month": "2024-10",
+    "ip": "Labubu",
+    "share_pct": 11.4,
+    "count": 10
+  },
+  {
+    "month": "2024-10",
+    "ip": "Molly",
+    "share_pct": 3.4,
+    "count": 3
+  },
+  {
+    "month": "2024-10",
+    "ip": "Pop Mart",
+    "share_pct": 13.6,
+    "count": 12
+  },
+  {
+    "month": "2024-10",
+    "ip": "Skullpanda",
+    "share_pct": 37.5,
+    "count": 33
+  },
+  {
+    "month": "2024-11",
+    "ip": "Dimoo",
+    "share_pct": 60.9,
+    "count": 42
+  },
+  {
+    "month": "2024-11",
+    "ip": "Labubu",
+    "share_pct": 27.5,
+    "count": 19
+  },
+  {
+    "month": "2024-11",
+    "ip": "Molly",
+    "share_pct": 1.4,
+    "count": 1
+  },
+  {
+    "month": "2024-11",
+    "ip": "Pop Mart",
+    "share_pct": 1.4,
+    "count": 1
+  },
+  {
+    "month": "2024-11",
+    "ip": "Skullpanda",
+    "share_pct": 8.7,
+    "count": 6
+  },
+  {
+    "month": "2024-12",
+    "ip": "Dimoo",
+    "share_pct": 13.5,
+    "count": 14
+  },
+  {
+    "month": "2024-12",
+    "ip": "Labubu",
+    "share_pct": 8.7,
+    "count": 9
+  },
+  {
+    "month": "2024-12",
+    "ip": "Molly",
+    "share_pct": 3.8,
+    "count": 4
+  },
+  {
+    "month": "2024-12",
+    "ip": "Pop Mart",
+    "share_pct": 42.3,
+    "count": 44
+  },
+  {
+    "month": "2024-12",
+    "ip": "Skullpanda",
+    "share_pct": 31.7,
+    "count": 33
+  },
+  {
+    "month": "2025-01",
+    "ip": "Dimoo",
+    "share_pct": 35.3,
+    "count": 42
+  },
+  {
+    "month": "2025-01",
+    "ip": "Labubu",
+    "share_pct": 13.4,
+    "count": 16
+  },
+  {
+    "month": "2025-01",
+    "ip": "Molly",
+    "share_pct": 36.1,
+    "count": 43
+  },
+  {
+    "month": "2025-01",
+    "ip": "Pop Mart",
+    "share_pct": 13.4,
+    "count": 16
+  },
+  {
+    "month": "2025-01",
+    "ip": "Skullpanda",
+    "share_pct": 1.7,
+    "count": 2
+  },
+  {
+    "month": "2025-02",
+    "ip": "Dimoo",
+    "share_pct": 21.9,
+    "count": 16
+  },
+  {
+    "month": "2025-02",
+    "ip": "Labubu",
+    "share_pct": 24.7,
+    "count": 18
+  },
+  {
+    "month": "2025-02",
+    "ip": "Molly",
+    "share_pct": 17.8,
+    "count": 13
+  },
+  {
+    "month": "2025-02",
+    "ip": "Pop Mart",
+    "share_pct": 32.9,
+    "count": 24
+  },
+  {
+    "month": "2025-02",
+    "ip": "Skullpanda",
+    "share_pct": 2.7,
+    "count": 2
+  },
+  {
+    "month": "2025-03",
+    "ip": "Dimoo",
+    "share_pct": 17.5,
+    "count": 20
+  },
+  {
+    "month": "2025-03",
+    "ip": "Labubu",
+    "share_pct": 15.8,
+    "count": 18
+  },
+  {
+    "month": "2025-03",
+    "ip": "Molly",
+    "share_pct": 7.9,
+    "count": 9
+  },
+  {
+    "month": "2025-03",
+    "ip": "Pop Mart",
+    "share_pct": 57.0,
+    "count": 65
+  },
+  {
+    "month": "2025-03",
+    "ip": "Skullpanda",
+    "share_pct": 1.8,
+    "count": 2
+  },
+  {
+    "month": "2025-04",
+    "ip": "Dimoo",
+    "share_pct": 33.7,
+    "count": 66
+  },
+  {
+    "month": "2025-04",
+    "ip": "Labubu",
+    "share_pct": 50.0,
+    "count": 98
+  },
+  {
+    "month": "2025-04",
+    "ip": "Molly",
+    "share_pct": 4.1,
+    "count": 8
+  },
+  {
+    "month": "2025-04",
+    "ip": "Pop Mart",
+    "share_pct": 11.7,
+    "count": 23
+  },
+  {
+    "month": "2025-04",
+    "ip": "Skullpanda",
+    "share_pct": 0.5,
+    "count": 1
+  },
+  {
+    "month": "2025-05",
+    "ip": "Dimoo",
+    "share_pct": 20.5,
+    "count": 75
+  },
+  {
+    "month": "2025-05",
+    "ip": "Labubu",
+    "share_pct": 43.7,
+    "count": 160
+  },
+  {
+    "month": "2025-05",
+    "ip": "Molly",
+    "share_pct": 14.5,
+    "count": 53
+  },
+  {
+    "month": "2025-05",
+    "ip": "Pop Mart",
+    "share_pct": 19.4,
+    "count": 71
+  },
+  {
+    "month": "2025-05",
+    "ip": "Skullpanda",
+    "share_pct": 1.9,
+    "count": 7
+  },
+  {
+    "month": "2025-06",
+    "ip": "Dimoo",
+    "share_pct": 24.8,
+    "count": 149
+  },
+  {
+    "month": "2025-06",
+    "ip": "Labubu",
+    "share_pct": 51.2,
+    "count": 307
+  },
+  {
+    "month": "2025-06",
+    "ip": "Molly",
+    "share_pct": 3.5,
+    "count": 21
+  },
+  {
+    "month": "2025-06",
+    "ip": "Pop Mart",
+    "share_pct": 14.8,
+    "count": 89
+  },
+  {
+    "month": "2025-06",
+    "ip": "Skullpanda",
+    "share_pct": 5.7,
+    "count": 34
+  },
+  {
+    "month": "2025-07",
+    "ip": "Dimoo",
+    "share_pct": 10.2,
+    "count": 55
+  },
+  {
+    "month": "2025-07",
+    "ip": "Labubu",
+    "share_pct": 62.7,
+    "count": 339
+  },
+  {
+    "month": "2025-07",
+    "ip": "Molly",
+    "share_pct": 3.1,
+    "count": 17
+  },
+  {
+    "month": "2025-07",
+    "ip": "Pop Mart",
+    "share_pct": 7.8,
+    "count": 42
+  },
+  {
+    "month": "2025-07",
+    "ip": "Skullpanda",
+    "share_pct": 16.3,
+    "count": 88
+  },
+  {
+    "month": "2025-08",
+    "ip": "Dimoo",
+    "share_pct": 17.0,
+    "count": 119
+  },
+  {
+    "month": "2025-08",
+    "ip": "Labubu",
+    "share_pct": 61.9,
+    "count": 433
+  },
+  {
+    "month": "2025-08",
+    "ip": "Molly",
+    "share_pct": 2.3,
+    "count": 16
+  },
+  {
+    "month": "2025-08",
+    "ip": "Pop Mart",
+    "share_pct": 14.7,
+    "count": 103
+  },
+  {
+    "month": "2025-08",
+    "ip": "Skullpanda",
+    "share_pct": 4.1,
+    "count": 29
+  },
+  {
+    "month": "2025-09",
+    "ip": "Dimoo",
+    "share_pct": 13.2,
+    "count": 58
+  },
+  {
+    "month": "2025-09",
+    "ip": "Labubu",
+    "share_pct": 38.8,
+    "count": 170
+  },
+  {
+    "month": "2025-09",
+    "ip": "Molly",
+    "share_pct": 4.8,
+    "count": 21
+  },
+  {
+    "month": "2025-09",
+    "ip": "Pop Mart",
+    "share_pct": 22.6,
+    "count": 99
+  },
+  {
+    "month": "2025-09",
+    "ip": "Skullpanda",
+    "share_pct": 20.5,
+    "count": 90
+  },
+  {
+    "month": "2025-10",
+    "ip": "Dimoo",
+    "share_pct": 13.2,
+    "count": 96
+  },
+  {
+    "month": "2025-10",
+    "ip": "Labubu",
+    "share_pct": 31.6,
+    "count": 230
+  },
+  {
+    "month": "2025-10",
+    "ip": "Molly",
+    "share_pct": 1.0,
+    "count": 7
+  },
+  {
+    "month": "2025-10",
+    "ip": "Pop Mart",
+    "share_pct": 39.6,
+    "count": 289
+  },
+  {
+    "month": "2025-10",
+    "ip": "Skullpanda",
+    "share_pct": 14.7,
+    "count": 107
+  },
+  {
+    "month": "2025-11",
+    "ip": "Dimoo",
+    "share_pct": 9.4,
+    "count": 57
+  },
+  {
+    "month": "2025-11",
+    "ip": "Labubu",
+    "share_pct": 50.9,
+    "count": 310
+  },
+  {
+    "month": "2025-11",
+    "ip": "Molly",
+    "share_pct": 2.1,
+    "count": 13
+  },
+  {
+    "month": "2025-11",
+    "ip": "Pop Mart",
+    "share_pct": 10.7,
+    "count": 65
+  },
+  {
+    "month": "2025-11",
+    "ip": "Skullpanda",
+    "share_pct": 26.9,
+    "count": 164
+  },
+  {
+    "month": "2025-12",
+    "ip": "Dimoo",
+    "share_pct": 6.3,
+    "count": 54
+  },
+  {
+    "month": "2025-12",
+    "ip": "Labubu",
+    "share_pct": 36.1,
+    "count": 311
+  },
+  {
+    "month": "2025-12",
+    "ip": "Molly",
+    "share_pct": 9.3,
+    "count": 80
+  },
+  {
+    "month": "2025-12",
+    "ip": "Pop Mart",
+    "share_pct": 36.1,
+    "count": 311
+  },
+  {
+    "month": "2025-12",
+    "ip": "Skullpanda",
+    "share_pct": 12.3,
+    "count": 106
+  },
+  {
+    "month": "2026-01",
+    "ip": "Dimoo",
+    "share_pct": 1.1,
+    "count": 18
+  },
+  {
+    "month": "2026-01",
+    "ip": "Labubu",
+    "share_pct": 30.8,
+    "count": 491
+  },
+  {
+    "month": "2026-01",
+    "ip": "Molly",
+    "share_pct": 2.4,
+    "count": 38
+  },
+  {
+    "month": "2026-01",
+    "ip": "Pop Mart",
+    "share_pct": 33.9,
+    "count": 540
+  },
+  {
+    "month": "2026-01",
+    "ip": "Skullpanda",
+    "share_pct": 31.8,
+    "count": 508
+  },
+  {
+    "month": "2026-02",
+    "ip": "Dimoo",
+    "share_pct": 5.2,
+    "count": 105
+  },
+  {
+    "month": "2026-02",
+    "ip": "Labubu",
+    "share_pct": 27.3,
+    "count": 555
+  },
+  {
+    "month": "2026-02",
+    "ip": "Molly",
+    "share_pct": 4.4,
+    "count": 89
+  },
+  {
+    "month": "2026-02",
+    "ip": "Pop Mart",
+    "share_pct": 29.9,
+    "count": 606
+  },
+  {
+    "month": "2026-02",
+    "ip": "Skullpanda",
+    "share_pct": 33.3,
+    "count": 675
+  },
+  {
+    "month": "2026-03",
+    "ip": "Dimoo",
+    "share_pct": 5.5,
+    "count": 503
+  },
+  {
+    "month": "2026-03",
+    "ip": "Labubu",
+    "share_pct": 24.6,
+    "count": 2237
+  },
+  {
+    "month": "2026-03",
+    "ip": "Molly",
+    "share_pct": 2.9,
+    "count": 260
+  },
+  {
+    "month": "2026-03",
+    "ip": "Pop Mart",
+    "share_pct": 43.3,
+    "count": 3938
+  },
+  {
+    "month": "2026-03",
+    "ip": "Skullpanda",
+    "share_pct": 23.6,
+    "count": 2147
+  },
+  {
+    "month": "2026-03",
+    "ip": "Zsiga",
+    "share_pct": 0.1,
+    "count": 6
+  }
+]

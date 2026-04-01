@@ -1,0 +1,16 @@
+{
+  "brand": {
+    "avg_views": 101187.4,
+    "avg_likes": 7786.5,
+    "avg_er_pct": 4.84,
+    "avg_comments": 72.4,
+    "count": 35
+  },
+  "ugc": {
+    "avg_views": 1926378.2,
+    "avg_likes": 174031.4,
+    "avg_er_pct": 7.69,
+    "avg_comments": 1604.7,
+    "count": 338
+  }
+}

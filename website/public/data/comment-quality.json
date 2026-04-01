@@ -1,0 +1,16 @@
+[
+  {
+    "platform": "TikTok",
+    "high_pct": 42.3,
+    "med_pct": 13.5,
+    "low_pct": 44.2,
+    "total": 14099
+  },
+  {
+    "platform": "Instagram",
+    "high_pct": 1.4,
+    "med_pct": 1.6,
+    "low_pct": 97.0,
+    "total": 4677
+  }
+]

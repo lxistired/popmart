@@ -1,0 +1,362 @@
+[
+  {
+    "month": "2020-12",
+    "platform": "TikTok",
+    "index": 0.0,
+    "density": 0.0
+  },
+  {
+    "month": "2021-01",
+    "platform": "TikTok",
+    "index": 0.0,
+    "density": 0.0
+  },
+  {
+    "month": "2021-03",
+    "platform": "Instagram",
+    "index": 0.0,
+    "density": 0.0
+  },
+  {
+    "month": "2023-02",
+    "platform": "TikTok",
+    "index": 0.0,
+    "density": 0.0
+  },
+  {
+    "month": "2023-03",
+    "platform": "TikTok",
+    "index": 0.0,
+    "density": 0.0
+  },
+  {
+    "month": "2023-04",
+    "platform": "TikTok",
+    "index": 0.0,
+    "density": 0.0
+  },
+  {
+    "month": "2023-08",
+    "platform": "Instagram",
+    "index": 5.2,
+    "density": 1.0
+  },
+  {
+    "month": "2023-08",
+    "platform": "TikTok",
+    "index": 0.0,
+    "density": 0.0
+  },
+  {
+    "month": "2023-09",
+    "platform": "TikTok",
+    "index": 0.0,
+    "density": 0.0
+  },
+  {
+    "month": "2023-10",
+    "platform": "TikTok",
+    "index": 0.0,
+    "density": 0.0
+  },
+  {
+    "month": "2023-11",
+    "platform": "TikTok",
+    "index": 0.0,
+    "density": 0.0
+  },
+  {
+    "month": "2023-12",
+    "platform": "TikTok",
+    "index": 0.0,
+    "density": 0.0
+  },
+  {
+    "month": "2024-02",
+    "platform": "TikTok",
+    "index": 17.1,
+    "density": 10.0
+  },
+  {
+    "month": "2024-03",
+    "platform": "TikTok",
+    "index": 27.4,
+    "density": 6.0
+  },
+  {
+    "month": "2024-04",
+    "platform": "TikTok",
+    "index": 27.4,
+    "density": 0.0
+  },
+  {
+    "month": "2024-05",
+    "platform": "TikTok",
+    "index": 20.6,
+    "density": 6.0
+  },
+  {
+    "month": "2024-06",
+    "platform": "Instagram",
+    "index": 3.5,
+    "density": 0.0
+  },
+  {
+    "month": "2024-06",
+    "platform": "TikTok",
+    "index": 81.1,
+    "density": 41.33
+  },
+  {
+    "month": "2024-07",
+    "platform": "Instagram",
+    "index": 17.4,
+    "density": 4.0
+  },
+  {
+    "month": "2024-07",
+    "platform": "TikTok",
+    "index": 133.3,
+    "density": 30.5
+  },
+  {
+    "month": "2024-08",
+    "platform": "Instagram",
+    "index": 13.9,
+    "density": 0.0
+  },
+  {
+    "month": "2024-08",
+    "platform": "TikTok",
+    "index": 155.6,
+    "density": 19.0
+  },
+  {
+    "month": "2024-09",
+    "platform": "Instagram",
+    "index": 52.3,
+    "density": 11.0
+  },
+  {
+    "month": "2024-09",
+    "platform": "TikTok",
+    "index": 191.0,
+    "density": 62.0
+  },
+  {
+    "month": "2024-10",
+    "platform": "Instagram",
+    "index": 101.0,
+    "density": 18.0
+  },
+  {
+    "month": "2024-10",
+    "platform": "TikTok",
+    "index": 168.7,
+    "density": 17.5
+  },
+  {
+    "month": "2024-11",
+    "platform": "Instagram",
+    "index": 101.0,
+    "density": 0.0
+  },
+  {
+    "month": "2024-11",
+    "platform": "TikTok",
+    "index": 164.9,
+    "density": 16.75
+  },
+  {
+    "month": "2024-12",
+    "platform": "Instagram",
+    "index": 99.3,
+    "density": 10.5
+  },
+  {
+    "month": "2024-12",
+    "platform": "TikTok",
+    "index": 94.2,
+    "density": 20.75
+  },
+  {
+    "month": "2025-01",
+    "platform": "Instagram",
+    "index": 43.6,
+    "density": 2.0
+  },
+  {
+    "month": "2025-01",
+    "platform": "TikTok",
+    "index": 103.6,
+    "density": 23.0
+  },
+  {
+    "month": "2025-02",
+    "platform": "Instagram",
+    "index": 48.2,
+    "density": 1.33
+  },
+  {
+    "month": "2025-02",
+    "platform": "TikTok",
+    "index": 94.6,
+    "density": 11.5
+  },
+  {
+    "month": "2025-03",
+    "platform": "Instagram",
+    "index": 34.8,
+    "density": 6.67
+  },
+  {
+    "month": "2025-03",
+    "platform": "TikTok",
+    "index": 139.6,
+    "density": 47.0
+  },
+  {
+    "month": "2025-04",
+    "platform": "Instagram",
+    "index": 39.2,
+    "density": 3.25
+  },
+  {
+    "month": "2025-04",
+    "platform": "TikTok",
+    "index": 135.0,
+    "density": 20.33
+  },
+  {
+    "month": "2025-05",
+    "platform": "Instagram",
+    "index": 57.4,
+    "density": 6.56
+  },
+  {
+    "month": "2025-05",
+    "platform": "TikTok",
+    "index": 159.2,
+    "density": 25.58
+  },
+  {
+    "month": "2025-06",
+    "platform": "Instagram",
+    "index": 102.5,
+    "density": 19.6
+  },
+  {
+    "month": "2025-06",
+    "platform": "TikTok",
+    "index": 117.7,
+    "density": 22.82
+  },
+  {
+    "month": "2025-07",
+    "platform": "Instagram",
+    "index": 156.9,
+    "density": 18.88
+  },
+  {
+    "month": "2025-07",
+    "platform": "TikTok",
+    "index": 122.2,
+    "density": 22.94
+  },
+  {
+    "month": "2025-08",
+    "platform": "Instagram",
+    "index": 187.5,
+    "density": 15.33
+  },
+  {
+    "month": "2025-08",
+    "platform": "TikTok",
+    "index": 110.6,
+    "density": 18.8
+  },
+  {
+    "month": "2025-09",
+    "platform": "Instagram",
+    "index": 164.8,
+    "density": 13.08
+  },
+  {
+    "month": "2025-09",
+    "platform": "TikTok",
+    "index": 96.8,
+    "density": 14.79
+  },
+  {
+    "month": "2025-10",
+    "platform": "Instagram",
+    "index": 148.9,
+    "density": 14.31
+  },
+  {
+    "month": "2025-10",
+    "platform": "TikTok",
+    "index": 98.9,
+    "density": 24.15
+  },
+  {
+    "month": "2025-11",
+    "platform": "Instagram",
+    "index": 152.4,
+    "density": 16.35
+  },
+  {
+    "month": "2025-11",
+    "platform": "TikTok",
+    "index": 118.3,
+    "density": 30.09
+  },
+  {
+    "month": "2025-12",
+    "platform": "Instagram",
+    "index": 155.1,
+    "density": 13.84
+  },
+  {
+    "month": "2025-12",
+    "platform": "TikTok",
+    "index": 127.1,
+    "density": 19.97
+  },
+  {
+    "month": "2026-01",
+    "platform": "Instagram",
+    "index": 142.6,
+    "density": 10.74
+  },
+  {
+    "month": "2026-01",
+    "platform": "TikTok",
+    "index": 225.9,
+    "density": 81.82
+  },
+  {
+    "month": "2026-02",
+    "platform": "Instagram",
+    "index": 104.8,
+    "density": 5.49
+  },
+  {
+    "month": "2026-02",
+    "platform": "TikTok",
+    "index": 272.2,
+    "density": 57.09
+  },
+  {
+    "month": "2026-03",
+    "platform": "Instagram",
+    "index": 187.8,
+    "density": 37.68
+  },
+  {
+    "month": "2026-03",
+    "platform": "TikTok",
+    "index": 325.0,
+    "density": 50.8
+  }
+]

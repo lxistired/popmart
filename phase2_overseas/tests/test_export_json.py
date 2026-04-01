@@ -114,3 +114,51 @@ def test_export_tiktok_trend(test_db):
     # result is list of {week, ip, count}
     assert isinstance(result, list)
     assert all('week' in r and 'ip' in r and 'count' in r for r in result)
+
+
+def test_export_brand_trend(test_db):
+    from export_json import export_brand_trend
+    result = export_brand_trend(test_db)
+    assert isinstance(result, list)
+    assert len(result) > 0
+    first = result[0]
+    assert 'month' in first and 'comments' in first and 'videos' in first and 'density' in first
+    assert first['density'] == first['comments'] / max(first['videos'], 1)
+
+def test_export_ip_share_trend(test_db):
+    from export_json import export_ip_share_trend
+    result = export_ip_share_trend(test_db)
+    assert isinstance(result, list)
+    assert len(result) > 0
+    first = result[0]
+    assert 'month' in first and 'ip' in first and 'share_pct' in first and 'count' in first
+    for r in result:
+        assert 0 <= r['share_pct'] <= 100
+
+def test_export_cross_platform_index(test_db):
+    from export_json import export_cross_platform_index
+    result = export_cross_platform_index(test_db)
+    assert isinstance(result, list)
+    assert len(result) > 0
+    first = result[0]
+    assert 'month' in first and 'platform' in first and 'index' in first and 'density' in first
+    assert first['platform'] in ('TikTok', 'Instagram')
+
+def test_export_brand_vs_ugc(test_db):
+    from export_json import export_brand_vs_ugc
+    result = export_brand_vs_ugc(test_db)
+    assert isinstance(result, dict)
+    assert 'brand' in result and 'ugc' in result
+    for key in ['avg_views', 'avg_likes', 'avg_er_pct', 'avg_comments']:
+        assert key in result['brand'] and key in result['ugc']
+
+def test_export_comment_quality(test_db):
+    from export_json import export_comment_quality
+    result = export_comment_quality(test_db)
+    assert isinstance(result, list)
+    assert len(result) == 2
+    platforms = {r['platform'] for r in result}
+    assert platforms == {'TikTok', 'Instagram'}
+    for r in result:
+        assert 'high_pct' in r and 'med_pct' in r and 'low_pct' in r and 'total' in r
+        assert abs(r['high_pct'] + r['med_pct'] + r['low_pct'] - 100) < 0.5
