@@ -7,6 +7,17 @@ const characters = [
   { name: 'Dimoo', img: '/popmart/characters/dimoo.png', size: 75, pos: 'left:11%;bottom:14%', delay: '3s' },
   { name: 'Skullpanda', img: '/popmart/characters/skullpanda.png', size: 95, pos: 'right:10%;bottom:16%', delay: '0.8s' },
 ];
+
+const freshness = (overview as any).data_freshness || {};
+const now = new Date();
+const isStale = (dateStr: string | undefined) => {
+  if (!dateStr) return true;
+  const d = new Date(dateStr);
+  return (now.getTime() - d.getTime()) > 7 * 24 * 60 * 60 * 1000;
+};
+const tiktokStale = isStale(freshness.tiktok);
+const instagramStale = isStale(freshness.instagram);
+const anyStale = tiktokStale || instagramStale;
 ---
 <section class="hero">
   <div class="hero-chars">
@@ -21,6 +32,14 @@ const characters = [
     <h1>泡泡玛特<span class="dot-md">.md</span></h1>
     <p class="hero-sub">海外社媒另类数据 · 日更追踪 · LLM 友好</p>
     <p class="hero-update">数据更新于 <strong>{overview.updated_at?.slice(0,16).replace('T',' ')} UTC</strong> · 覆盖 TikTok & Instagram</p>
+    {anyStale && (
+      <div class="freshness-warning">
+        <span class="warning-icon">!</span>
+        数据可能过时
+        {tiktokStale && <span class="stale-platform">TikTok</span>}
+        {instagramStale && <span class="stale-platform">Instagram</span>}
+      </div>
+    )}
   </div>
 </section>
 
@@ -71,6 +90,24 @@ const characters = [
   .hero-sub { font-size: 18px; color: rgba(255,255,255,0.6); margin-bottom: 32px; }
   .hero-update { font-size: 13px; color: rgba(255,255,255,0.4); }
   .hero-update strong { color: rgba(255,255,255,0.7); }
+  .freshness-warning {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,152,0,0.2);
+    border: 1px solid rgba(255,152,0,0.4);
+    border-radius: 20px; padding: 6px 16px;
+    margin-top: 12px; font-size: 12px; color: #FFB74D;
+  }
+  .warning-icon {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #FF9800; color: white;
+    font-size: 11px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .stale-platform {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 2px 8px; font-size: 11px;
+  }
   @media (max-width: 768px) {
     .hero { height: 320px; }
     .hero-chars { display: none; }
@@ -78,5 +115,6 @@ const characters = [
     .hero-sub { font-size: 14px; margin-bottom: 16px; }
     .hero-update { font-size: 11px; }
     .hero-badge { font-size: 10px; padding: 4px 12px; margin-bottom: 16px; }
+    .freshness-warning { font-size: 10px; padding: 4px 12px; }
   }
 </style>
