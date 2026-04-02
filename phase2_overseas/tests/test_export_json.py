@@ -36,7 +36,7 @@ def test_classify_ip_case_insensitive():
 def test_classify_ip_twinkle():
     from export_json import classify_ip
     assert classify_ip('tag/twinkle', '') == 'Twinkle'
-    assert classify_ip('tag/popmart', '星星人 new series') == 'Twinkle'
+    assert classify_ip('tag/popmart', '\u661f\u661f\u4eba new series') == 'Twinkle'
     assert classify_ip('tag/twinkle twinkle popmart', 'cute star') == 'Twinkle'
 
 def test_classify_ip_crybaby():
@@ -44,7 +44,7 @@ def test_classify_ip_crybaby():
     assert classify_ip('tag/crybaby', '') == 'Crybaby'
     assert classify_ip('tag/popmart', 'CryBaby blind box') == 'Crybaby'
     assert classify_ip('tag/popmart', 'cry baby new series') == 'Crybaby'
-    assert classify_ip('tag/popmart', '哭娃盲盒') == 'Crybaby'
+    assert classify_ip('tag/popmart', '\u54ed\u5a03\u76f2\u76d2') == 'Crybaby'
 
 
 import sqlite3
@@ -53,36 +53,35 @@ import json
 
 @pytest.fixture
 def test_db():
-    """Create an in-memory DB with sample data."""
+    """Create an in-memory DB with sample data using init_db for production schema."""
     conn = sqlite3.connect(':memory:')
-    conn.execute("""CREATE TABLE tiktok_videos (
-        id INTEGER PRIMARY KEY, video_id TEXT UNIQUE, author TEXT,
-        title TEXT, views INTEGER, likes INTEGER, comments_count INTEGER,
-        shares INTEGER, create_time TEXT, source TEXT, scraped_at TEXT)""")
-    conn.execute("""CREATE TABLE tiktok_comments (
-        id INTEGER PRIMARY KEY, video_id TEXT, comment_id TEXT UNIQUE,
-        comment_text TEXT, comment_date TEXT, comment_datetime TEXT,
-        likes INTEGER, reply_count INTEGER, author_name TEXT,
-        is_author_reply INTEGER, scraped_at TEXT)""")
-    conn.execute("""CREATE TABLE instagram_posts (
-        id INTEGER PRIMARY KEY, shortcode TEXT UNIQUE, post_url TEXT,
-        account TEXT, caption TEXT, likes INTEGER, comments_count INTEGER,
-        post_date TEXT, source TEXT, scraped_at TEXT)""")
-    conn.execute("""CREATE TABLE instagram_comments (
-        id INTEGER PRIMARY KEY, shortcode TEXT, comment_id TEXT,
-        comment_text TEXT, comment_date TEXT, comment_datetime TEXT,
-        likes INTEGER, author_name TEXT, is_author_reply INTEGER,
-        scraped_at TEXT)""")
+
+    # Use init_db to create tables matching production schema exactly
+    from shared.db import init_db
+    init_db(conn)
 
     # Insert sample tiktok videos (create_time is Unix timestamp)
-    conn.executemany("INSERT INTO tiktok_videos VALUES (?,?,?,?,?,?,?,?,?,?,?)", [
-        (1, 'v1', 'user1', 'Labubu unboxing!', 10000, 500, 50, 10, '1711929600', 'tag/labubu', '2026-03-31'),
-        (2, 'v2', 'user2', 'Dimoo world tour', 5000, 200, 30, 5, '1711929600', 'tag/dimoo', '2026-03-31'),
-        (3, 'v3', 'user3', 'Pop Mart haul', 8000, 300, 40, 8, '1712534400', 'tag/popmart unboxing', '2026-03-31'),
-        (4, 'v4', 'popmartglobal', 'Official Labubu launch', 20000, 1000, 100, 20, '1709251200', 'user/popmartglobal', '2026-03-31'),
+    # v1: Labubu UGC, 2024-04-01, views=10000
+    # v2: Dimoo UGC, 2024-04-01, views=5000
+    # v3: Pop Mart UGC, 2024-04-08, views=8000
+    # v4: Labubu official, 2024-03-01, views=20000
+    # v5: Pop Mart official, 2024-05-01, views=15000
+    # v6: Labubu UGC in 2024-03, views=5000 (for UGC amplification test)
+    conn.executemany("""INSERT INTO tiktok_videos
+        (id, video_id, author, title, views, likes, comments_count, shares, create_time, source, scraped_at, last_comment_scraped_at)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""", [
+        (1, 'v1', 'user1', 'Labubu unboxing!', 10000, 500, 50, 10, '1711929600', 'tag/labubu', '2026-03-31', '2026-03-31'),
+        (2, 'v2', 'user2', 'Dimoo world tour', 5000, 200, 30, 5, '1711929600', 'tag/dimoo', '2026-03-31', '2026-03-31'),
+        (3, 'v3', 'user3', 'Pop Mart haul', 8000, 300, 40, 8, '1712534400', 'tag/popmart unboxing', '2026-03-31', None),
+        (4, 'v4', 'popmartglobal', 'Official Labubu launch', 20000, 1000, 100, 20, '1709251200', 'user/popmartglobal', '2026-03-31', '2026-03-31'),
+        (5, 'v5', 'popmartglobal', 'Pop Mart summer collection', 15000, 800, 80, 15, '1714521600', 'user/popmartglobal', '2026-03-31', '2026-03-31'),
+        (6, 'v6', 'user4', 'Labubu fan art', 5000, 250, 25, 3, '1709251200', 'tag/labubu', '2026-03-31', '2026-03-31'),
     ])
+
     # Insert sample tiktok comments
-    conn.executemany("INSERT INTO tiktok_comments VALUES (?,?,?,?,?,?,?,?,?,?,?)", [
+    conn.executemany("""INSERT INTO tiktok_comments
+        (id, video_id, comment_id, comment_text, comment_date, comment_datetime, likes, reply_count, author_name, is_author_reply, scraped_at)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?)""", [
         (1, 'v1', 'c1', 'Love it!', '2026-03-01', '2026-03-01T10:00:00', 5, 0, 'fan1', 0, '2026-03-31'),
         (2, 'v1', 'c2', 'Want one!', '2026-03-01', '2026-03-01T11:00:00', 3, 0, 'fan2', 0, '2026-03-31'),
         (3, 'v2', 'c3', 'Cute!', '2026-03-08', '2026-03-08T10:00:00', 2, 0, 'fan3', 0, '2026-03-31'),
@@ -90,78 +89,294 @@ def test_db():
         (5, 'v4', 'c5', 'Great product!', '2024-03-05', '2024-03-05T10:00:00', 8, 0, 'fan5', 0, '2026-03-31'),
         (6, 'v4', 'c6', 'Late comment', '2024-06-01', '2024-06-01T10:00:00', 1, 0, 'fan6', 0, '2026-03-31'),
     ])
+
     # Insert sample instagram posts
-    conn.executemany("INSERT INTO instagram_posts VALUES (?,?,?,?,?,?,?,?,?,?)", [
-        (1, 'ABC1', 'https://instagram.com/p/ABC1', 'popmart', 'New Labubu drop!', 1000, 50, '2026-03-01', 'instagrapi', '2026-03-31'),
-        (2, 'ABC2', 'https://instagram.com/p/ABC2', 'popmart', 'Molly series', 800, 30, '2026-03-08', 'instagrapi', '2026-03-31'),
+    conn.executemany("""INSERT INTO instagram_posts
+        (id, shortcode, post_url, account, caption, likes, comments_count, post_date, source, scraped_at, last_comment_scraped_at)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?)""", [
+        (1, 'ABC1', 'https://instagram.com/p/ABC1', 'popmart', 'New Labubu drop!', 1000, 50, '2026-03-01', 'instagrapi', '2026-03-31', '2026-03-31'),
+        (2, 'ABC2', 'https://instagram.com/p/ABC2', 'popmart', 'Molly series', 800, 30, '2026-03-08', 'instagrapi', '2026-03-31', '2026-03-31'),
     ])
+
     # Insert sample instagram comments
-    conn.executemany("INSERT INTO instagram_comments VALUES (?,?,?,?,?,?,?,?,?,?)", [
+    conn.executemany("""INSERT INTO instagram_comments
+        (id, shortcode, comment_id, comment_text, comment_date, comment_datetime, likes, author_name, is_author_reply, scraped_at)
+        VALUES (?,?,?,?,?,?,?,?,?,?)""", [
         (1, 'ABC1', 'ic1', 'Amazing!', '2026-03-01', '2026-03-01T12:00:00', 5, 'fan1', 0, '2026-03-31'),
         (2, 'ABC1', 'ic2', 'Need this!', '2026-03-02', '2026-03-02T12:00:00', 2, 'fan2', 0, '2026-03-31'),
         (3, 'ABC2', 'ic3', 'So pretty', '2026-03-08', '2026-03-08T12:00:00', 1, 'fan3', 0, '2026-03-31'),
     ])
+
     conn.commit()
     yield conn
     conn.close()
 
 
+# ────────────────────────────────────────────────────
+# Export function tests — new format with metadata-driven metrics
+# ────────────────────────────────────────────────────
+
 def test_export_overview(test_db):
+    """ANAL-07 partial: overview has data_freshness, coverage, no comment_quality."""
     from export_json import export_overview
     result = export_overview(test_db)
-    assert result['tiktok_videos'] == 4
-    assert result['tiktok_comments'] == 6
-    assert result['instagram_posts'] == 2
-    assert result['instagram_comments'] == 3
+
+    # Must have data_freshness with platform keys
+    assert 'data_freshness' in result
+    assert 'tiktok' in result['data_freshness']
+    assert 'instagram' in result['data_freshness']
+
+    # Must have coverage dict with counts
+    assert 'coverage' in result
+    assert 'tiktok_videos' in result['coverage']
+    assert 'instagram_posts' in result['coverage']
+
+    # Must NOT have comment_quality
+    assert 'comment_quality' not in result
+
+    # Must have updated_at
     assert 'updated_at' in result
 
 
 def test_export_ip_share(test_db):
+    """ANAL-04, ANAL-08: IP share uses metadata comments_count, excludes Pop Mart."""
     from export_json import export_ip_share
     result = export_ip_share(test_db)
-    # result is a list of {ip, tiktok_videos, tiktok_comments, ...}
+
     assert isinstance(result, list)
+
+    # Pop Mart must be excluded entirely
+    ips_in_result = [r['ip'] for r in result]
+    assert 'Pop Mart' not in ips_in_result
+
+    # Must use new key names (metadata-based)
+    for r in result:
+        assert 'tiktok_posts' in r
+        assert 'tiktok_comments_meta' in r
+        assert 'instagram_posts' in r
+        assert 'instagram_comments_meta' in r
+        assert 'total_engagement' in r
+        assert 'share_pct' in r
+
+    # Old key names must NOT exist
+    for r in result:
+        assert 'tiktok_videos' not in r
+        assert 'tiktok_comments' not in r
+        assert 'instagram_comments' not in r
+        assert 'total_comments' not in r
+
+    # Labubu: v1 (comments_count=50) + v4 (comments_count=100) + v6 (comments_count=25)
+    # tiktok_posts = 3, tiktok_comments_meta = 175
     labubu = next(r for r in result if r['ip'] == 'Labubu')
-    assert labubu['tiktok_videos'] == 2  # v1 + v4 (popmartglobal Labubu)
+    assert labubu['tiktok_posts'] == 3
+    assert labubu['tiktok_comments_meta'] == 175  # SUM of metadata comments_count
+
+    # share_pct should sum to ~100 across all IPs
+    total_pct = sum(r['share_pct'] for r in result)
+    assert abs(total_pct - 100.0) < 0.5
 
 
 def test_export_tiktok_trend(test_db):
+    """ANAL-02: monthly avg_comments_per_post from metadata with n and data_confidence."""
     from export_json import export_tiktok_trend
     result = export_tiktok_trend(test_db)
-    # result is list of {week, ip, count}
+
     assert isinstance(result, list)
-    assert all('week' in r and 'ip' in r and 'count' in r for r in result)
+    assert len(result) > 0
+
+    # Must have new keys, not old ones
+    for r in result:
+        assert 'month' in r  # not 'week'
+        assert 'ip' in r
+        assert 'avg_comments_per_post' in r
+        assert 'n' in r
+        assert 'data_confidence' in r
+        # Old keys must NOT exist
+        assert 'week' not in r
+        assert 'count' not in r
+
+    # Month format must be YYYY-MM
+    for r in result:
+        assert len(r['month']) == 7
+        assert r['month'][4] == '-'
+
+    # Labubu in 2024-04: v1 has comments_count=50, 1 video in that month+IP
+    labubu_apr = [r for r in result if r['ip'] == 'Labubu' and r['month'] == '2024-04']
+    assert len(labubu_apr) == 1
+    assert labubu_apr[0]['avg_comments_per_post'] == 50.0
+    assert labubu_apr[0]['n'] == 1
+    assert labubu_apr[0]['data_confidence'] == 'low'  # n < 5
+
+
+def test_export_instagram_trend(test_db):
+    """ANAL-03: monthly avg_comments_per_post from metadata with n and data_confidence."""
+    from export_json import export_instagram_trend
+    result = export_instagram_trend(test_db)
+
+    assert isinstance(result, list)
+    assert len(result) > 0
+
+    for r in result:
+        assert 'month' in r
+        assert 'ip' in r
+        assert 'avg_comments_per_post' in r
+        assert 'n' in r
+        assert 'data_confidence' in r
+        # Old keys must NOT exist
+        assert 'week' not in r
+        assert 'count' not in r
+
+    # Month format YYYY-MM
+    for r in result:
+        assert len(r['month']) == 7
+
+    # Labubu in 2026-03: ABC1 (caption='New Labubu drop!') has comments_count=50
+    labubu_mar = [r for r in result if r['ip'] == 'Labubu' and r['month'] == '2026-03']
+    assert len(labubu_mar) == 1
+    assert labubu_mar[0]['avg_comments_per_post'] == 50.0
+    assert labubu_mar[0]['n'] == 1
 
 
 def test_export_brand_trend(test_db):
+    """ANAL-01: monthly avg_comments_per_post with n and data_confidence, no density/total_comments."""
     from export_json import export_brand_trend
     result = export_brand_trend(test_db)
+
     assert isinstance(result, list)
     assert len(result) > 0
+
     first = result[0]
-    assert 'month' in first and 'comments' in first and 'videos' in first and 'density' in first
-    assert first['density'] == first['comments'] / max(first['videos'], 1)
+    # Must have new keys
+    assert 'month' in first
+    assert 'avg_comments_per_post' in first
+    assert 'n' in first
+    assert 'data_confidence' in first
+    assert 'videos' in first
+
+    # Old keys must NOT exist
+    assert 'comments' not in first
+    assert 'total_comments' not in first
+    assert 'density' not in first
+
+    # For 2024-04: v1(50) + v2(30) + v3(40) = 3 videos, avg = 120/3 = 40.0
+    apr_2024 = next(r for r in result if r['month'] == '2024-04')
+    assert apr_2024['avg_comments_per_post'] == 40.0
+    assert apr_2024['n'] == 3
+    assert apr_2024['videos'] == 3
+    assert apr_2024['data_confidence'] == 'low'  # n=3 < 5
+
 
 def test_export_ip_share_trend(test_db):
+    """ANAL-04, ANAL-08: monthly IP share excludes Pop Mart, uses metadata engagement."""
     from export_json import export_ip_share_trend
     result = export_ip_share_trend(test_db)
+
     assert isinstance(result, list)
     assert len(result) > 0
-    first = result[0]
-    assert 'month' in first and 'ip' in first and 'share_pct' in first and 'count' in first
+
     for r in result:
-        assert 0 <= r['share_pct'] <= 100
+        assert 'month' in r
+        assert 'ip' in r
+        assert 'share_pct' in r
+        assert 'engagement' in r
+
+    # Pop Mart must be excluded
+    for r in result:
+        assert r['ip'] != 'Pop Mart'
+
+    # Old key 'count' must NOT exist
+    for r in result:
+        assert 'count' not in r
+
+    # engagement values should come from SUM(metadata comments_count), not comment row counts
+    # In 2024-03: Labubu v4(100) + v6(25) = 125 engagement from metadata
+    labubu_mar = [r for r in result if r['ip'] == 'Labubu' and r['month'] == '2024-03']
+    assert len(labubu_mar) == 1
+    assert labubu_mar[0]['engagement'] == 125
+
+    # Check share_pct sums to ~100 per month
+    months = set(r['month'] for r in result)
+    for month in months:
+        month_rows = [r for r in result if r['month'] == month]
+        total_pct = sum(r['share_pct'] for r in month_rows)
+        assert abs(total_pct - 100.0) < 0.5
+
 
 def test_export_cross_platform_index(test_db):
+    """ANAL-05: density uses SUM(metadata comments_count) / COUNT(*), not comment row counts."""
     from export_json import export_cross_platform_index
     result = export_cross_platform_index(test_db)
+
     assert isinstance(result, list)
     assert len(result) > 0
-    first = result[0]
-    assert 'month' in first and 'platform' in first and 'index' in first and 'density' in first
-    assert first['platform'] in ('TikTok', 'Instagram')
+
+    for r in result:
+        assert 'month' in r
+        assert 'platform' in r
+        assert 'density' in r
+        assert 'index' in r
+
+    # TikTok density for 2024-04: SUM(comments_count) / COUNT(*)
+    # v1(50) + v2(30) + v3(40) = 120 / 3 = 40.0
+    tiktok_apr = [r for r in result if r['platform'] == 'TikTok' and r['month'] == '2024-04']
+    assert len(tiktok_apr) == 1
+    assert tiktok_apr[0]['density'] == 40.0
+
+    # Instagram density for 2026-03: SUM(comments_count) / COUNT(*)
+    # ABC1(50) + ABC2(30) = 80 / 2 = 40.0
+    ig_mar = [r for r in result if r['platform'] == 'Instagram' and r['month'] == '2026-03']
+    assert len(ig_mar) == 1
+    assert ig_mar[0]['density'] == 40.0
+
+
+def test_export_official_engagement(test_db):
+    """ANAL-06: official engagement uses metadata directly, no LEFT JOIN comment rows."""
+    from export_json import export_official_engagement
+    result = export_official_engagement(test_db)
+
+    assert 'tiktok' in result
+    assert 'instagram' in result
+
+    tk = result['tiktok']
+    assert isinstance(tk, list)
+    assert len(tk) > 0
+
+    # Check each monthly entry has required keys
+    for entry in tk:
+        assert 'month' in entry
+        assert 'posts' in entry
+        assert 'avg_comments' in entry
+        assert 'avg_views' in entry
+        assert 'avg_likes' in entry
+
+    # Old keys must NOT exist
+    for entry in tk:
+        assert 'total_comments' not in entry
+
+    # TikTok 2024-03: v4 (popmartglobal), comments_count=100, views=20000, likes=1000
+    tk_mar = next(e for e in tk if e['month'] == '2024-03')
+    assert tk_mar['posts'] == 1
+    assert tk_mar['avg_comments'] == 100.0  # from metadata, not 3 comment rows
+    assert tk_mar['avg_views'] == 20000.0
+    assert tk_mar['avg_likes'] == 1000.0
+
+    # TikTok 2024-05: v5 (popmartglobal), comments_count=80, views=15000, likes=800
+    tk_may = next(e for e in tk if e['month'] == '2024-05')
+    assert tk_may['posts'] == 1
+    assert tk_may['avg_comments'] == 80.0
+    assert tk_may['avg_views'] == 15000.0
+
+    # Instagram official (popmart account)
+    ig = result['instagram']
+    assert isinstance(ig, list)
+    assert len(ig) > 0
+    for entry in ig:
+        assert 'avg_comments' in entry
+        assert 'avg_likes' in entry
+
 
 def test_export_brand_vs_ugc(test_db):
+    """Unchanged test — export_brand_vs_ugc already uses metadata correctly."""
     from export_json import export_brand_vs_ugc
     result = export_brand_vs_ugc(test_db)
     assert isinstance(result, dict)
@@ -169,35 +384,74 @@ def test_export_brand_vs_ugc(test_db):
     for key in ['avg_views', 'avg_likes', 'avg_er_pct', 'avg_comments']:
         assert key in result['brand'] and key in result['ugc']
 
-def test_export_comment_quality(test_db):
-    from export_json import export_comment_quality
-    result = export_comment_quality(test_db)
-    assert isinstance(result, list)
-    assert len(result) == 2
-    platforms = {r['platform'] for r in result}
-    assert platforms == {'TikTok', 'Instagram'}
-    for r in result:
-        assert 'high_pct' in r and 'med_pct' in r and 'low_pct' in r and 'total' in r
-        assert abs(r['high_pct'] + r['med_pct'] + r['low_pct'] - 100) < 0.5
 
+def test_export_data_coverage(test_db):
+    """ANAL-07: data coverage replaces comment_quality."""
+    from export_json import export_data_coverage
+    result = export_data_coverage(test_db)
 
-def test_export_official_engagement(test_db):
-    from export_json import export_official_engagement
-    result = export_official_engagement(test_db)
-    assert 'tiktok' in result and 'instagram' in result
+    assert isinstance(result, dict)
+    assert 'tiktok' in result
+    assert 'instagram' in result
 
-    # TikTok: v4 is popmartglobal, create_time=1709251200 (2024-03-01)
-    # Comments c4, c5, c6 — total 3 comments, but c6 is 2024-06 so different period
-    # With total (not 30d), all 3 are counted
+    # Each platform has required fields
+    for platform in ['tiktok', 'instagram']:
+        p = result[platform]
+        assert 'total_posts' in p
+        assert 'date_range' in p
+        assert 'min' in p['date_range']
+        assert 'max' in p['date_range']
+        assert 'monthly_counts' in p
+        assert isinstance(p['monthly_counts'], list)
+        assert 'coverage_pct' in p
+
+    # TikTok: 6 videos, 5 with last_comment_scraped_at, 1 without (v3)
     tk = result['tiktok']
-    assert len(tk) == 1
-    assert tk[0]['month'] == '2024-03'
-    assert tk[0]['posts'] == 1
-    assert tk[0]['total_comments'] == 3  # all comments regardless of date
-    assert tk[0]['avg_comments'] == 3.0
+    assert tk['total_posts'] == 6
+    # coverage_pct = 5/6 * 100 = 83.3
+    assert tk['coverage_pct'] == pytest.approx(83.3, abs=0.1)
 
-    # Instagram: popmart account has 2 posts with 3 total comments
+    # Instagram: 2 posts, both have last_comment_scraped_at
     ig = result['instagram']
-    assert len(ig) >= 1
-    total_ig_comments = sum(m['total_comments'] for m in ig)
-    assert total_ig_comments == 3
+    assert ig['total_posts'] == 2
+    assert ig['coverage_pct'] == 100.0
+
+
+def test_export_ugc_amplification(test_db):
+    """ANAL-09: monthly UGC/official avg_views ratio trend."""
+    from export_json import export_ugc_amplification
+    result = export_ugc_amplification(test_db)
+
+    assert isinstance(result, list)
+
+    for r in result:
+        assert 'month' in r
+        assert 'ugc_avg_views' in r
+        assert 'official_avg_views' in r
+        assert 'amplification_ratio' in r
+        assert 'ugc_n' in r
+        assert 'official_n' in r
+
+    # 2024-03: official v4 views=20000, UGC v6 views=5000
+    # amplification_ratio = 5000 / 20000 = 0.25
+    mar_2024 = [r for r in result if r['month'] == '2024-03']
+    assert len(mar_2024) == 1
+    assert mar_2024[0]['official_avg_views'] == 20000.0
+    assert mar_2024[0]['ugc_avg_views'] == 5000.0
+    assert mar_2024[0]['amplification_ratio'] == 0.25
+    assert mar_2024[0]['official_n'] == 1
+    assert mar_2024[0]['ugc_n'] == 1
+
+    # 2024-04: UGC only (v1, v2, v3) — should NOT appear in result (no official)
+    apr_2024 = [r for r in result if r['month'] == '2024-04']
+    assert len(apr_2024) == 0
+
+    # 2024-05: official only (v5) — should NOT appear in result (no UGC)
+    may_2024 = [r for r in result if r['month'] == '2024-05']
+    assert len(may_2024) == 0
+
+
+def test_no_export_comment_quality():
+    """Verify export_comment_quality function has been removed."""
+    with pytest.raises(ImportError):
+        from export_json import export_comment_quality

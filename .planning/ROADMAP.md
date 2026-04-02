@@ -117,7 +117,10 @@ Plans:
   3. cross-platform-index.json 两个平台均使用 SUM(comments_count) from 元数据表而非 COUNT(评论行)
   4. overview.json 含 data_freshness 字段（最后采集时间戳）和各平台覆盖率摘要，不含 comment_quality 相关键
   5. ugc-amplification.json 输出月度 avg_views(UGC) / avg_views(official) 趋势数组
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 09-01-PLAN.md — TDD rewrite: tests RED then export functions GREEN
 
 #### Phase 10: 网站图表全面重做
 
@@ -159,7 +162,7 @@ v1.1: 7 → 8 → 9 → 10 → 11
 | 5. 分析报告 | v1.0 | 1/1 | Complete | 2026-03-30 |
 | 6. 定时任务 | v1.0 | 0/TBD | Deferred to v1.1 | - |
 | 7. Schema 基础修复 | v1.1 | 1/1 | Complete | 2026-04-02 |
-| 8. 采集器增量化重建 | v1.1 | 0/2 | Planned | - |
-| 9. 分析导出层重写 | v1.1 | 0/TBD | Not started | - |
+| 8. 采集器增量化重建 | v1.1 | 2/2 | Complete | 2026-04-02 |
+| 9. 分析导出层重写 | v1.1 | 0/1 | Planned | - |
 | 10. 网站图表全面重做 | v1.1 | 0/TBD | Not started | - |
 | 11. 全量重采 + 部署上线 | v1.1 | 0/TBD | Not started | - |
