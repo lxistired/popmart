@@ -1,6 +1,7 @@
 """
 shared/db.py — 共享数据库连接层
-提供: get_conn, init_db, ensure_unique_indexes, get_latest_date, batch_insert
+提供: get_conn, init_db, ensure_unique_indexes, get_latest_date, batch_insert,
+      upsert_video_metadata, upsert_post_metadata
 """
 
 import sqlite3
@@ -43,6 +44,7 @@ def _create_timeseries_tables(conn):
         review_title TEXT,
         rating REAL,
         verified INTEGER,
+        helpful_votes TEXT,
         scraped_at TEXT NOT NULL
     )""")
     conn.execute("""CREATE TABLE IF NOT EXISTS tiktok_videos (
@@ -53,9 +55,11 @@ def _create_timeseries_tables(conn):
         views INTEGER,
         likes INTEGER,
         comments_count INTEGER,
+        shares INTEGER,
         create_time TEXT,
         source TEXT,
-        scraped_at TEXT NOT NULL
+        scraped_at TEXT NOT NULL,
+        last_comment_scraped_at TEXT
     )""")
     conn.execute("""CREATE TABLE IF NOT EXISTS tiktok_comments (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -65,7 +69,9 @@ def _create_timeseries_tables(conn):
         comment_date TEXT,
         comment_datetime TEXT,
         likes INTEGER,
+        reply_count INTEGER,
         author_name TEXT,
+        is_author_reply INTEGER,
         scraped_at TEXT NOT NULL
     )""")
     conn.execute("""CREATE TABLE IF NOT EXISTS instagram_posts (
@@ -74,9 +80,12 @@ def _create_timeseries_tables(conn):
         post_url TEXT,
         account TEXT,
         caption TEXT,
+        likes INTEGER,
+        comments_count INTEGER,
         post_date TEXT,
         source TEXT,
-        scraped_at TEXT NOT NULL
+        scraped_at TEXT NOT NULL,
+        last_comment_scraped_at TEXT
     )""")
     conn.execute("""CREATE TABLE IF NOT EXISTS instagram_comments (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -87,15 +96,39 @@ def _create_timeseries_tables(conn):
         comment_datetime TEXT,
         likes INTEGER,
         author_name TEXT,
+        is_author_reply INTEGER,
         scraped_at TEXT NOT NULL
     )""")
     conn.commit()
 
 
-def init_db():
+def _apply_incremental_migrations(conn):
+    """Add columns that may be missing from older databases. Idempotent."""
+    migrations = [
+        "ALTER TABLE tiktok_videos ADD COLUMN shares INTEGER",
+        "ALTER TABLE tiktok_videos ADD COLUMN last_comment_scraped_at TEXT",
+        "ALTER TABLE tiktok_comments ADD COLUMN reply_count INTEGER",
+        "ALTER TABLE tiktok_comments ADD COLUMN is_author_reply INTEGER",
+        "ALTER TABLE instagram_posts ADD COLUMN likes INTEGER",
+        "ALTER TABLE instagram_posts ADD COLUMN comments_count INTEGER",
+        "ALTER TABLE instagram_posts ADD COLUMN last_comment_scraped_at TEXT",
+        "ALTER TABLE instagram_comments ADD COLUMN is_author_reply INTEGER",
+        "ALTER TABLE amazon_review_dates ADD COLUMN helpful_votes TEXT",
+    ]
+    for sql in migrations:
+        try:
+            conn.execute(sql)
+        except sqlite3.OperationalError:
+            pass  # Column already exists
+    conn.commit()
+
+
+def init_db(conn=None):
     """Create all time-series tables if they don't exist, add unique indexes, return conn."""
-    conn = get_conn()
+    if conn is None:
+        conn = get_conn()
     _create_timeseries_tables(conn)
+    _apply_incremental_migrations(conn)
     ensure_unique_indexes(conn)
     return conn
 
