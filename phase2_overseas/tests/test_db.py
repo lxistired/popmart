@@ -251,3 +251,162 @@ def test_init_preserves_existing_rows(tmp_db):
     after_comments = tmp_db.execute("SELECT COUNT(*) FROM tiktok_comments").fetchone()[0]
     assert after_videos == before_videos, "tiktok_videos rows changed"
     assert after_comments == before_comments, "tiktok_comments rows changed"
+
+
+# --- Upsert tests ---
+
+def test_upsert_video_new(tmp_db):
+    from shared.db import init_db, upsert_video_metadata
+    init_db(tmp_db)
+    video = {
+        'video_id': 'v_new1', 'author': 'creator1', 'title': 'Test video',
+        'views': 1000, 'likes': 50, 'comments_count': 10, 'shares': 5,
+        'create_time': '1711929600', 'source': 'tag/labubu', 'scraped_at': '2026-03-31'
+    }
+    upsert_video_metadata(tmp_db, video)
+    row = tmp_db.execute("SELECT * FROM tiktok_videos WHERE video_id='v_new1'").fetchone()
+    assert row is not None
+    cols = [r[1] for r in tmp_db.execute("PRAGMA table_info(tiktok_videos)").fetchall()]
+    data = dict(zip(cols, row))
+    assert data['views'] == 1000
+    assert data['likes'] == 50
+    assert data['shares'] == 5
+    assert data['author'] == 'creator1'
+
+
+def test_upsert_video_update(tmp_db):
+    from shared.db import init_db, upsert_video_metadata
+    init_db(tmp_db)
+    video = {
+        'video_id': 'v_up1', 'author': 'creator1', 'title': 'Original',
+        'views': 100, 'likes': 10, 'comments_count': 5, 'shares': 2,
+        'create_time': '1711929600', 'source': 'tag/labubu', 'scraped_at': '2026-03-30'
+    }
+    upsert_video_metadata(tmp_db, video)
+    original = tmp_db.execute("SELECT id, scraped_at FROM tiktok_videos WHERE video_id='v_up1'").fetchone()
+    original_id, original_scraped = original
+
+    # Upsert with updated metrics
+    video2 = {
+        'video_id': 'v_up1', 'author': 'different_author', 'title': 'Different',
+        'views': 99999, 'likes': 888, 'comments_count': 77, 'shares': 33,
+        'create_time': '9999999999', 'source': 'tag/other', 'scraped_at': '2026-04-01'
+    }
+    upsert_video_metadata(tmp_db, video2)
+
+    cols = [r[1] for r in tmp_db.execute("PRAGMA table_info(tiktok_videos)").fetchall()]
+    row = tmp_db.execute("SELECT * FROM tiktok_videos WHERE video_id='v_up1'").fetchone()
+    data = dict(zip(cols, row))
+
+    # Volatile metrics updated
+    assert data['views'] == 99999
+    assert data['likes'] == 888
+    assert data['comments_count'] == 77
+    assert data['shares'] == 33
+    # Identity fields unchanged
+    assert data['id'] == original_id
+    assert data['author'] == 'creator1'
+    assert data['title'] == 'Original'
+    assert data['create_time'] == '1711929600'
+    assert data['scraped_at'] == '2026-03-30'
+    assert data['source'] == 'tag/labubu'
+
+
+def test_upsert_video_preserves_last_comment(tmp_db):
+    from shared.db import init_db, upsert_video_metadata
+    init_db(tmp_db)
+    video = {
+        'video_id': 'v_lc1', 'author': 'a', 'title': 't',
+        'views': 100, 'likes': 10, 'comments_count': 5, 'shares': 2,
+        'create_time': '1711929600', 'source': 's', 'scraped_at': '2026-03-30'
+    }
+    upsert_video_metadata(tmp_db, video)
+    # Set last_comment_scraped_at directly
+    tmp_db.execute("UPDATE tiktok_videos SET last_comment_scraped_at='2026-03-30T12:00:00' WHERE video_id='v_lc1'")
+    tmp_db.commit()
+
+    # Upsert with new views
+    video2 = {
+        'video_id': 'v_lc1', 'author': 'a', 'title': 't',
+        'views': 999, 'likes': 10, 'comments_count': 5, 'shares': 2,
+        'create_time': '1711929600', 'source': 's', 'scraped_at': '2026-03-30'
+    }
+    upsert_video_metadata(tmp_db, video2)
+
+    lc = tmp_db.execute("SELECT last_comment_scraped_at FROM tiktok_videos WHERE video_id='v_lc1'").fetchone()[0]
+    assert lc == '2026-03-30T12:00:00', "last_comment_scraped_at must not be reset by upsert"
+
+
+def test_upsert_post_new(tmp_db):
+    from shared.db import init_db, upsert_post_metadata
+    init_db(tmp_db)
+    post = {
+        'shortcode': 'ABC123', 'post_url': 'https://instagram.com/p/ABC123',
+        'account': 'popmart', 'caption': 'New collection!',
+        'likes': 500, 'comments_count': 30, 'post_date': '2026-03-01',
+        'source': 'instagrapi', 'scraped_at': '2026-03-31'
+    }
+    upsert_post_metadata(tmp_db, post)
+    row = tmp_db.execute("SELECT * FROM instagram_posts WHERE shortcode='ABC123'").fetchone()
+    assert row is not None
+    cols = [r[1] for r in tmp_db.execute("PRAGMA table_info(instagram_posts)").fetchall()]
+    data = dict(zip(cols, row))
+    assert data['likes'] == 500
+    assert data['comments_count'] == 30
+    assert data['account'] == 'popmart'
+
+
+def test_upsert_post_update(tmp_db):
+    from shared.db import init_db, upsert_post_metadata
+    init_db(tmp_db)
+    post = {
+        'shortcode': 'XYZ789', 'post_url': 'https://instagram.com/p/XYZ789',
+        'account': 'popmart', 'caption': 'Original caption',
+        'likes': 100, 'comments_count': 10, 'post_date': '2026-03-01',
+        'source': 'instagrapi', 'scraped_at': '2026-03-30'
+    }
+    upsert_post_metadata(tmp_db, post)
+    original = tmp_db.execute("SELECT id, scraped_at FROM instagram_posts WHERE shortcode='XYZ789'").fetchone()
+    original_id, original_scraped = original
+
+    # Upsert with updated metrics
+    post2 = {
+        'shortcode': 'XYZ789', 'post_url': 'https://instagram.com/p/DIFFERENT',
+        'account': 'different', 'caption': 'Different caption',
+        'likes': 9999, 'comments_count': 888, 'post_date': '2099-01-01',
+        'source': 'other', 'scraped_at': '2026-04-01'
+    }
+    upsert_post_metadata(tmp_db, post2)
+
+    cols = [r[1] for r in tmp_db.execute("PRAGMA table_info(instagram_posts)").fetchall()]
+    row = tmp_db.execute("SELECT * FROM instagram_posts WHERE shortcode='XYZ789'").fetchone()
+    data = dict(zip(cols, row))
+
+    # Volatile metrics updated
+    assert data['likes'] == 9999
+    assert data['comments_count'] == 888
+    # Identity fields unchanged
+    assert data['id'] == original_id
+    assert data['post_date'] == '2026-03-01'
+    assert data['scraped_at'] == '2026-03-30'
+    assert data['account'] == 'popmart'
+    assert data['caption'] == 'Original caption'
+    assert data['source'] == 'instagrapi'
+
+
+def test_ip_classification_dry_run(tmp_db):
+    """Verify IP classification works on sample video data including Twinkle and Crybaby."""
+    from export_json import classify_ip
+    samples = [
+        ('tag/labubu', 'Labubu blind box unboxing'),
+        ('tag/twinkle', 'Twinkle 星星人 new collection'),
+        ('tag/popmart unboxing', 'crybaby unboxing haul'),
+        ('user/popmartglobal', 'Pop Mart store opening'),
+    ]
+    results = [classify_ip(src, title) for src, title in samples]
+    assert 'Labubu' in results
+    assert 'Twinkle' in results
+    assert 'Crybaby' in results
+    assert 'Pop Mart' in results
+    # Must have multiple distinct IPs
+    assert len(set(results)) > 1

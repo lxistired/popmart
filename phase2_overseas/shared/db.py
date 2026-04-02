@@ -154,3 +154,29 @@ def batch_insert(conn, table: str, rows: list, columns: list):
         data = rows
     conn.executemany(sql, data)
     conn.commit()
+
+
+def upsert_video_metadata(conn, video):
+    """Insert or update TikTok video metadata. Updates views/likes/comments_count/shares on conflict."""
+    conn.execute("""
+        INSERT INTO tiktok_videos (video_id, author, title, views, likes, comments_count, shares, create_time, source, scraped_at)
+        VALUES (:video_id, :author, :title, :views, :likes, :comments_count, :shares, :create_time, :source, :scraped_at)
+        ON CONFLICT(video_id) DO UPDATE SET
+            views = excluded.views,
+            likes = excluded.likes,
+            comments_count = excluded.comments_count,
+            shares = excluded.shares
+    """, video)
+    conn.commit()
+
+
+def upsert_post_metadata(conn, post):
+    """Insert or update Instagram post metadata. Updates likes/comments_count on conflict."""
+    conn.execute("""
+        INSERT INTO instagram_posts (shortcode, post_url, account, caption, likes, comments_count, post_date, source, scraped_at)
+        VALUES (:shortcode, :post_url, :account, :caption, :likes, :comments_count, :post_date, :source, :scraped_at)
+        ON CONFLICT(shortcode) DO UPDATE SET
+            likes = excluded.likes,
+            comments_count = excluded.comments_count
+    """, post)
+    conn.commit()
