@@ -1,6 +1,10 @@
 """
 export_json.py — Export overseas_data.db to JSON files for the Astro website.
 
+All volume metrics use tiktok_videos.comments_count or instagram_posts.comments_count
+(metadata), NOT COUNT of tiktok_comments/instagram_comments rows. This decouples
+analysis metrics from actual comment scraping coverage.
+
 Usage: python export_json.py [--output-dir website/src/data]
 """
 
@@ -8,7 +12,7 @@ import sqlite3
 import json
 import os
 import re
-from datetime import datetime
+from datetime import datetime, timezone
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, 'overseas_data.db')
@@ -36,7 +40,7 @@ def classify_ip(source, text):
 def _unix_to_date(ts):
     """Convert Unix timestamp string to YYYY-MM-DD."""
     try:
-        return datetime.utcfromtimestamp(int(ts)).strftime('%Y-%m-%d')
+        return datetime.fromtimestamp(int(ts), tz=timezone.utc).strftime('%Y-%m-%d')
     except (ValueError, TypeError, OSError):
         return None
 
@@ -50,85 +54,116 @@ def _week_key(date_str):
         return None
 
 
+def _month_key(date_str):
+    """Convert YYYY-MM-DD to YYYY-MM month key."""
+    try:
+        return date_str[:7]
+    except (TypeError, IndexError):
+        return None
+
+
+def _data_confidence(n):
+    """Return confidence level based on sample count n."""
+    if n >= 10:
+        return "high"
+    if n >= 5:
+        return "medium"
+    return "low"
+
+
 def export_overview(conn):
-    """Export summary statistics."""
+    """Export summary statistics with data freshness and coverage."""
     counts = {}
     for table in ['tiktok_videos', 'tiktok_comments', 'instagram_posts', 'instagram_comments']:
         row = conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()
         counts[table] = row[0]
-    counts['updated_at'] = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+
+    # Data freshness: MAX(scraped_at) per platform
+    tk_fresh = conn.execute("SELECT MAX(scraped_at) FROM tiktok_videos").fetchone()[0]
+    ig_fresh = conn.execute("SELECT MAX(scraped_at) FROM instagram_posts").fetchone()[0]
+    counts['data_freshness'] = {
+        'tiktok': tk_fresh,
+        'instagram': ig_fresh,
+    }
+
+    # Coverage summary
+    counts['coverage'] = {
+        'tiktok_videos': counts['tiktok_videos'],
+        'tiktok_comments': counts['tiktok_comments'],
+        'instagram_posts': counts['instagram_posts'],
+        'instagram_comments': counts['instagram_comments'],
+    }
+
+    counts['updated_at'] = datetime.now(tz=timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
     return counts
 
 
 def export_ip_share(conn):
-    """Export IP share of voice across platforms."""
-    # Classify tiktok videos
-    rows = conn.execute("SELECT video_id, source, title FROM tiktok_videos").fetchall()
-    video_ip = {}
+    """Export IP share of voice using metadata comments_count, excluding Pop Mart."""
+    # Classify tiktok videos and accumulate metadata comments_count
+    rows = conn.execute("SELECT video_id, source, title, comments_count FROM tiktok_videos").fetchall()
     ip_stats = {}
-    for video_id, source, title in rows:
+    for video_id, source, title, comments_count in rows:
         ip = classify_ip(source or '', title or '')
-        video_ip[video_id] = ip
         if ip not in ip_stats:
-            ip_stats[ip] = {'ip': ip, 'tiktok_videos': 0, 'tiktok_comments': 0,
-                            'instagram_posts': 0, 'instagram_comments': 0}
-        ip_stats[ip]['tiktok_videos'] += 1
+            ip_stats[ip] = {'ip': ip, 'tiktok_posts': 0, 'tiktok_comments_meta': 0,
+                            'instagram_posts': 0, 'instagram_comments_meta': 0}
+        ip_stats[ip]['tiktok_posts'] += 1
+        ip_stats[ip]['tiktok_comments_meta'] += (comments_count or 0)
 
-    # Count tiktok comments by IP (via video)
-    comment_rows = conn.execute("SELECT video_id FROM tiktok_comments").fetchall()
-    for (vid,) in comment_rows:
-        ip = video_ip.get(vid, 'Pop Mart')
-        if ip not in ip_stats:
-            ip_stats[ip] = {'ip': ip, 'tiktok_videos': 0, 'tiktok_comments': 0,
-                            'instagram_posts': 0, 'instagram_comments': 0}
-        ip_stats[ip]['tiktok_comments'] += 1
-
-    # Classify instagram posts
-    post_ip = {}
-    ig_rows = conn.execute("SELECT shortcode, account, caption FROM instagram_posts").fetchall()
-    for shortcode, account, caption in ig_rows:
+    # Classify instagram posts and accumulate metadata comments_count
+    ig_rows = conn.execute("SELECT shortcode, account, caption, comments_count FROM instagram_posts").fetchall()
+    for shortcode, account, caption, comments_count in ig_rows:
         ip = classify_ip(account or '', caption or '')
-        post_ip[shortcode] = ip
         if ip not in ip_stats:
-            ip_stats[ip] = {'ip': ip, 'tiktok_videos': 0, 'tiktok_comments': 0,
-                            'instagram_posts': 0, 'instagram_comments': 0}
+            ip_stats[ip] = {'ip': ip, 'tiktok_posts': 0, 'tiktok_comments_meta': 0,
+                            'instagram_posts': 0, 'instagram_comments_meta': 0}
         ip_stats[ip]['instagram_posts'] += 1
+        ip_stats[ip]['instagram_comments_meta'] += (comments_count or 0)
 
-    # Count instagram comments by IP (via post)
-    ig_comment_rows = conn.execute("SELECT shortcode FROM instagram_comments").fetchall()
-    for (sc,) in ig_comment_rows:
-        ip = post_ip.get(sc, 'Pop Mart')
-        if ip not in ip_stats:
-            ip_stats[ip] = {'ip': ip, 'tiktok_videos': 0, 'tiktok_comments': 0,
-                            'instagram_posts': 0, 'instagram_comments': 0}
-        ip_stats[ip]['instagram_comments'] += 1
+    # Exclude Pop Mart brand
+    ip_stats.pop('Pop Mart', None)
 
-    # Calculate total share
-    result = sorted(ip_stats.values(), key=lambda x: x['tiktok_comments'] + x['instagram_comments'], reverse=True)
-    total = sum(r['tiktok_comments'] + r['instagram_comments'] for r in result)
+    # Calculate total engagement and share percentages
+    for r in ip_stats.values():
+        r['total_engagement'] = r['tiktok_comments_meta'] + r['instagram_comments_meta']
+
+    result = sorted(ip_stats.values(), key=lambda x: x['total_engagement'], reverse=True)
+    total = sum(r['total_engagement'] for r in result)
     for r in result:
-        r['total_comments'] = r['tiktok_comments'] + r['instagram_comments']
-        r['share_pct'] = round(r['total_comments'] / total * 100, 1) if total else 0
+        r['share_pct'] = round(r['total_engagement'] / total * 100, 1) if total else 0
     return result
 
 
 def export_tiktok_trend(conn):
-    """Export weekly comment counts by IP for TikTok."""
-    # Build video_id → IP mapping
-    rows = conn.execute("SELECT video_id, source, title FROM tiktok_videos").fetchall()
-    video_ip = {vid: classify_ip(src or '', title or '') for vid, src, title in rows}
+    """Export monthly avg_comments_per_post by IP from TikTok metadata."""
+    rows = conn.execute(
+        "SELECT create_time, source, title, comments_count FROM tiktok_videos"
+    ).fetchall()
 
-    # Aggregate comments by week and IP
-    comments = conn.execute("SELECT video_id, comment_date FROM tiktok_comments").fetchall()
-    weekly = {}
-    for vid, date in comments:
-        week = _week_key(date)
-        ip = video_ip.get(vid, 'Pop Mart')
-        if week:
-            key = (week, ip)
-            weekly[key] = weekly.get(key, 0) + 1
+    # Group by (month, IP)
+    groups = {}
+    for ts, source, title, comments_count in rows:
+        date = _unix_to_date(ts)
+        month = _month_key(date)
+        ip = classify_ip(source or '', title or '')
+        if month:
+            key = (month, ip)
+            if key not in groups:
+                groups[key] = []
+            groups[key].append(comments_count or 0)
 
-    result = [{'week': w, 'ip': ip, 'count': c} for (w, ip), c in sorted(weekly.items())]
+    result = []
+    for (month, ip), values in sorted(groups.items()):
+        n = len(values)
+        avg = round(sum(values) / n, 1)
+        result.append({
+            'month': month,
+            'ip': ip,
+            'avg_comments_per_post': avg,
+            'n': n,
+            'data_confidence': _data_confidence(n),
+        })
     return result
 
 
@@ -165,150 +200,135 @@ def export_instagram_posts(conn):
 
 
 def export_instagram_trend(conn):
-    """Export weekly comment counts by IP for Instagram."""
-    # Build shortcode → IP mapping
-    rows = conn.execute("SELECT shortcode, account, caption FROM instagram_posts").fetchall()
-    post_ip = {sc: classify_ip(acc or '', cap or '') for sc, acc, cap in rows}
+    """Export monthly avg_comments_per_post by IP from Instagram metadata."""
+    rows = conn.execute(
+        "SELECT post_date, account, caption, comments_count FROM instagram_posts"
+    ).fetchall()
 
-    comments = conn.execute("SELECT shortcode, comment_date FROM instagram_comments").fetchall()
-    weekly = {}
-    for sc, date in comments:
-        week = _week_key(date)
-        ip = post_ip.get(sc, 'Pop Mart')
-        if week:
-            key = (week, ip)
-            weekly[key] = weekly.get(key, 0) + 1
+    groups = {}
+    for post_date, account, caption, comments_count in rows:
+        month = _month_key(post_date)
+        ip = classify_ip(account or '', caption or '')
+        if month:
+            key = (month, ip)
+            if key not in groups:
+                groups[key] = []
+            groups[key].append(comments_count or 0)
 
-    result = [{'week': w, 'ip': ip, 'count': c} for (w, ip), c in sorted(weekly.items())]
+    result = []
+    for (month, ip), values in sorted(groups.items()):
+        n = len(values)
+        avg = round(sum(values) / n, 1)
+        result.append({
+            'month': month,
+            'ip': ip,
+            'avg_comments_per_post': avg,
+            'n': n,
+            'data_confidence': _data_confidence(n),
+        })
     return result
 
 
-def _month_key(date_str):
-    """Convert YYYY-MM-DD to YYYY-MM month key."""
-    try:
-        return date_str[:7]
-    except (TypeError, IndexError):
-        return None
-
-
 def export_brand_trend(conn):
-    """Monthly TikTok comment volume + video count + density."""
-    # Monthly video count from create_time (Unix timestamp)
-    video_rows = conn.execute("SELECT create_time FROM tiktok_videos").fetchall()
-    monthly_videos = {}
-    for (ts,) in video_rows:
+    """Monthly TikTok avg_comments_per_post from metadata with n and data_confidence."""
+    rows = conn.execute("SELECT create_time, comments_count FROM tiktok_videos").fetchall()
+
+    monthly = {}
+    for ts, comments_count in rows:
         date = _unix_to_date(ts)
         month = _month_key(date)
         if month:
-            monthly_videos[month] = monthly_videos.get(month, 0) + 1
+            if month not in monthly:
+                monthly[month] = []
+            monthly[month].append(comments_count or 0)
 
-    # Monthly comment count from comment_date
-    comment_rows = conn.execute("SELECT comment_date FROM tiktok_comments").fetchall()
-    monthly_comments = {}
-    for (date,) in comment_rows:
-        month = _month_key(date)
-        if month:
-            monthly_comments[month] = monthly_comments.get(month, 0) + 1
-
-    # Combine all months
-    all_months = sorted(set(list(monthly_videos.keys()) + list(monthly_comments.keys())))
     result = []
-    for month in all_months:
-        videos = monthly_videos.get(month, 0)
-        comments = monthly_comments.get(month, 0)
+    for month in sorted(monthly.keys()):
+        values = monthly[month]
+        n = len(values)
+        avg = round(sum(values) / n, 1)
         result.append({
             'month': month,
-            'comments': comments,
-            'videos': videos,
-            'density': round(comments / max(videos, 1), 1),
+            'avg_comments_per_post': avg,
+            'n': n,
+            'data_confidence': _data_confidence(n),
+            'videos': n,
         })
     return result
 
 
 def export_ip_share_trend(conn):
-    """Monthly IP comment share percentages (both platforms combined)."""
-    # Build video_id → IP mapping from tiktok_videos
-    video_rows = conn.execute("SELECT video_id, source, title FROM tiktok_videos").fetchall()
-    video_ip = {vid: classify_ip(src or '', title or '') for vid, src, title in video_rows}
-
-    # Build shortcode → IP mapping from instagram_posts
-    post_rows = conn.execute("SELECT shortcode, account, caption FROM instagram_posts").fetchall()
-    post_ip = {sc: classify_ip(acc or '', cap or '') for sc, acc, cap in post_rows}
-
-    # Aggregate all comments by month and IP
-    monthly_ip_counts = {}
-
-    tiktok_comments = conn.execute("SELECT video_id, comment_date FROM tiktok_comments").fetchall()
-    for vid, date in tiktok_comments:
+    """Monthly IP share from metadata comments_count (both platforms), excluding Pop Mart."""
+    # TikTok videos: classify and accumulate metadata comments_count by (month, IP)
+    tk_rows = conn.execute(
+        "SELECT create_time, source, title, comments_count FROM tiktok_videos"
+    ).fetchall()
+    monthly_ip_engagement = {}
+    for ts, source, title, comments_count in tk_rows:
+        date = _unix_to_date(ts)
         month = _month_key(date)
-        ip = video_ip.get(vid, 'Pop Mart')
+        ip = classify_ip(source or '', title or '')
         if month:
             key = (month, ip)
-            monthly_ip_counts[key] = monthly_ip_counts.get(key, 0) + 1
+            monthly_ip_engagement[key] = monthly_ip_engagement.get(key, 0) + (comments_count or 0)
 
-    ig_comments = conn.execute("SELECT shortcode, comment_date FROM instagram_comments").fetchall()
-    for sc, date in ig_comments:
-        month = _month_key(date)
-        ip = post_ip.get(sc, 'Pop Mart')
+    # Instagram posts: classify and accumulate metadata comments_count by (month, IP)
+    ig_rows = conn.execute(
+        "SELECT post_date, account, caption, comments_count FROM instagram_posts"
+    ).fetchall()
+    for post_date, account, caption, comments_count in ig_rows:
+        month = _month_key(post_date)
+        ip = classify_ip(account or '', caption or '')
         if month:
             key = (month, ip)
-            monthly_ip_counts[key] = monthly_ip_counts.get(key, 0) + 1
+            monthly_ip_engagement[key] = monthly_ip_engagement.get(key, 0) + (comments_count or 0)
 
-    # Calculate per-month share_pct
+    # Exclude Pop Mart
+    ip_engagement_no_brand = {k: v for k, v in monthly_ip_engagement.items() if k[1] != 'Pop Mart'}
+
+    # Calculate per-month totals for share_pct
     month_totals = {}
-    for (month, ip), count in monthly_ip_counts.items():
-        month_totals[month] = month_totals.get(month, 0) + count
-
-    # Exclude 'Pop Mart' (brand, not IP) from trend
-    ip_counts_no_brand = {k: v for k, v in monthly_ip_counts.items() if k[1] != 'Pop Mart'}
-    month_totals_no_brand = {}
-    for (month, ip), count in ip_counts_no_brand.items():
-        month_totals_no_brand[month] = month_totals_no_brand.get(month, 0) + count
+    for (month, ip), engagement in ip_engagement_no_brand.items():
+        month_totals[month] = month_totals.get(month, 0) + engagement
 
     result = []
-    for (month, ip), count in sorted(ip_counts_no_brand.items()):
-        total = month_totals_no_brand.get(month, 1)
+    for (month, ip), engagement in sorted(ip_engagement_no_brand.items()):
+        total = month_totals.get(month, 1)
         result.append({
             'month': month,
             'ip': ip,
-            'share_pct': round(count / total * 100, 1),
-            'count': count,
+            'share_pct': round(engagement / total * 100, 1),
+            'engagement': engagement,
         })
     return result
 
 
 def export_cross_platform_index(conn):
-    """Monthly density index (mean=100) per platform."""
-    # TikTok: monthly video count and comment count
-    tiktok_video_rows = conn.execute("SELECT create_time FROM tiktok_videos").fetchall()
+    """Monthly density index (mean=100) per platform using metadata comments_count."""
+    # TikTok: monthly SUM(comments_count) / COUNT(*) from tiktok_videos
+    tiktok_rows = conn.execute(
+        "SELECT create_time, comments_count FROM tiktok_videos"
+    ).fetchall()
     tiktok_monthly_content = {}
-    for (ts,) in tiktok_video_rows:
+    tiktok_monthly_meta_comments = {}
+    for ts, comments_count in tiktok_rows:
         date = _unix_to_date(ts)
         month = _month_key(date)
         if month:
             tiktok_monthly_content[month] = tiktok_monthly_content.get(month, 0) + 1
+            tiktok_monthly_meta_comments[month] = tiktok_monthly_meta_comments.get(month, 0) + (comments_count or 0)
 
-    tiktok_comment_rows = conn.execute("SELECT comment_date FROM tiktok_comments").fetchall()
-    tiktok_monthly_comments = {}
-    for (date,) in tiktok_comment_rows:
-        month = _month_key(date)
-        if month:
-            tiktok_monthly_comments[month] = tiktok_monthly_comments.get(month, 0) + 1
-
-    # Instagram: monthly post count and comment count
-    ig_post_rows = conn.execute("SELECT post_date FROM instagram_posts").fetchall()
+    # Instagram: monthly SUM(comments_count) / COUNT(*) from instagram_posts
+    ig_rows = conn.execute(
+        "SELECT post_date, comments_count FROM instagram_posts"
+    ).fetchall()
     ig_monthly_content = {}
-    for (date,) in ig_post_rows:
-        month = _month_key(date)
+    ig_monthly_meta_comments = {}
+    for post_date, comments_count in ig_rows:
+        month = _month_key(post_date)
         if month:
             ig_monthly_content[month] = ig_monthly_content.get(month, 0) + 1
-
-    ig_comment_rows = conn.execute("SELECT comment_date FROM instagram_comments").fetchall()
-    ig_monthly_comments = {}
-    for (date,) in ig_comment_rows:
-        month = _month_key(date)
-        if month:
-            ig_monthly_comments[month] = ig_monthly_comments.get(month, 0) + 1
+            ig_monthly_meta_comments[month] = ig_monthly_meta_comments.get(month, 0) + (comments_count or 0)
 
     def _compute_index(monthly_content, monthly_comments):
         all_months = sorted(set(list(monthly_content.keys()) + list(monthly_comments.keys())))
@@ -335,8 +355,8 @@ def export_cross_platform_index(conn):
             })
         return result
 
-    tiktok_data = _compute_index(tiktok_monthly_content, tiktok_monthly_comments)
-    ig_data = _compute_index(ig_monthly_content, ig_monthly_comments)
+    tiktok_data = _compute_index(tiktok_monthly_content, tiktok_monthly_meta_comments)
+    ig_data = _compute_index(ig_monthly_content, ig_monthly_meta_comments)
 
     result = []
     for row in tiktok_data:
@@ -383,120 +403,173 @@ def export_brand_vs_ugc(conn):
     }
 
 
-def export_comment_quality(conn):
-    """Comment quality tiers by platform."""
-    result = []
+def export_official_engagement(conn):
+    """Official account engagement from metadata (no comment JOIN).
 
-    # TikTok comments
-    tiktok_likes = conn.execute("SELECT likes FROM tiktok_comments").fetchall()
-    tiktok_total = len(tiktok_likes)
-    if tiktok_total > 0:
-        high = sum(1 for (l,) in tiktok_likes if (l or 0) >= 10)
-        med = sum(1 for (l,) in tiktok_likes if 3 <= (l or 0) <= 9)
-        low = sum(1 for (l,) in tiktok_likes if (l or 0) < 3)
-        result.append({
-            'platform': 'TikTok',
-            'high_pct': round(high / tiktok_total * 100, 1),
-            'med_pct': round(med / tiktok_total * 100, 1),
-            'low_pct': round(low / tiktok_total * 100, 1),
-            'total': tiktok_total,
-        })
-    else:
-        result.append({'platform': 'TikTok', 'high_pct': 0.0, 'med_pct': 0.0, 'low_pct': 0.0, 'total': 0})
+    TikTok: author='popmartglobal', grouped by month.
+    Instagram: account='popmart', grouped by month.
+    Uses metadata comments_count, views, likes directly.
+    """
+    result = {}
 
-    # Instagram comments
-    ig_likes = conn.execute("SELECT likes FROM instagram_comments").fetchall()
-    ig_total = len(ig_likes)
-    if ig_total > 0:
-        high = sum(1 for (l,) in ig_likes if (l or 0) >= 10)
-        med = sum(1 for (l,) in ig_likes if 3 <= (l or 0) <= 9)
-        low = sum(1 for (l,) in ig_likes if (l or 0) < 3)
-        result.append({
-            'platform': 'Instagram',
-            'high_pct': round(high / ig_total * 100, 1),
-            'med_pct': round(med / ig_total * 100, 1),
-            'low_pct': round(low / ig_total * 100, 1),
-            'total': ig_total,
+    # TikTok: popmartglobal — metadata only
+    tk_rows = conn.execute("""
+        SELECT create_time, comments_count, views, likes
+        FROM tiktok_videos
+        WHERE author = 'popmartglobal'
+    """).fetchall()
+
+    tk_monthly = {}
+    for ts, comments_count, views, likes in tk_rows:
+        date = _unix_to_date(ts)
+        month = _month_key(date)
+        if month:
+            if month not in tk_monthly:
+                tk_monthly[month] = {'comments': [], 'views': [], 'likes': []}
+            tk_monthly[month]['comments'].append(comments_count or 0)
+            tk_monthly[month]['views'].append(views or 0)
+            tk_monthly[month]['likes'].append(likes or 0)
+
+    result['tiktok'] = []
+    for m in sorted(tk_monthly.keys()):
+        v = tk_monthly[m]
+        n = len(v['comments'])
+        result['tiktok'].append({
+            'month': m,
+            'posts': n,
+            'avg_comments': round(sum(v['comments']) / n, 1),
+            'avg_views': round(sum(v['views']) / n, 1),
+            'avg_likes': round(sum(v['likes']) / n, 1),
         })
-    else:
-        result.append({'platform': 'Instagram', 'high_pct': 0.0, 'med_pct': 0.0, 'low_pct': 0.0, 'total': 0})
+
+    # Instagram: popmart — metadata only
+    ig_rows = conn.execute("""
+        SELECT post_date, comments_count, likes
+        FROM instagram_posts
+        WHERE account = 'popmart'
+    """).fetchall()
+
+    ig_monthly = {}
+    for post_date, comments_count, likes in ig_rows:
+        month = _month_key(post_date)
+        if month:
+            if month not in ig_monthly:
+                ig_monthly[month] = {'comments': [], 'likes': []}
+            ig_monthly[month]['comments'].append(comments_count or 0)
+            ig_monthly[month]['likes'].append(likes or 0)
+
+    result['instagram'] = []
+    for m in sorted(ig_monthly.keys()):
+        v = ig_monthly[m]
+        n = len(v['comments'])
+        result['instagram'].append({
+            'month': m,
+            'posts': n,
+            'avg_comments': round(sum(v['comments']) / n, 1),
+            'avg_likes': round(sum(v['likes']) / n, 1),
+        })
 
     return result
 
 
-def export_official_engagement(conn):
-    """Official account engagement analysis.
-
-    For each post by official accounts (@popmartglobal on TikTok,
-    @popmart on Instagram), count total comments. Aggregate by
-    post month to show engagement trends. Skip months with 0 comments.
-    """
+def export_data_coverage(conn):
+    """Platform data coverage stats."""
     result = {}
 
-    # TikTok: popmartglobal
-    tk_rows = conn.execute("""
-        SELECT
-            v.video_id,
-            datetime(v.create_time, 'unixepoch') as post_dt,
-            strftime('%Y-%m', datetime(v.create_time, 'unixepoch')) as post_month,
-            COUNT(c.comment_id) as total_comments
-        FROM tiktok_videos v
-        LEFT JOIN tiktok_comments c ON v.video_id = c.video_id
-        WHERE v.author = 'popmartglobal'
-        GROUP BY v.video_id
-        ORDER BY post_dt
-    """).fetchall()
+    # TikTok coverage
+    tk_total = conn.execute("SELECT COUNT(*) FROM tiktok_videos").fetchone()[0]
+    tk_scraped = conn.execute(
+        "SELECT COUNT(*) FROM tiktok_videos WHERE last_comment_scraped_at IS NOT NULL"
+    ).fetchone()[0]
 
-    tk_monthly = {}
-    for _, _, month, comments in tk_rows:
-        if month not in tk_monthly:
-            tk_monthly[month] = {'posts': 0, 'total': 0}
-        tk_monthly[month]['posts'] += 1
-        tk_monthly[month]['total'] += comments
+    tk_rows = conn.execute("SELECT create_time FROM tiktok_videos").fetchall()
+    tk_dates = [_unix_to_date(ts) for (ts,) in tk_rows]
+    tk_dates = [d for d in tk_dates if d]
 
-    result['tiktok'] = [
-        {
-            'month': m,
-            'posts': v['posts'],
-            'total_comments': v['total'],
-            'avg_comments': round(v['total'] / v['posts'], 1) if v['posts'] else 0,
-        }
-        for m, v in sorted(tk_monthly.items())
-        if v['total'] > 0
-    ]
+    tk_months = {}
+    for d in tk_dates:
+        m = _month_key(d)
+        if m:
+            tk_months[m] = tk_months.get(m, 0) + 1
 
-    # Instagram: popmart
-    ig_rows = conn.execute("""
-        SELECT
-            p.shortcode,
-            p.post_date,
-            strftime('%Y-%m', p.post_date) as post_month,
-            COUNT(c.comment_id) as total_comments
-        FROM instagram_posts p
-        LEFT JOIN instagram_comments c ON p.shortcode = c.shortcode
-        WHERE p.account = 'popmart'
-        GROUP BY p.shortcode
-        ORDER BY p.post_date
-    """).fetchall()
+    result['tiktok'] = {
+        'total_posts': tk_total,
+        'date_range': {
+            'min': min(tk_dates) if tk_dates else None,
+            'max': max(tk_dates) if tk_dates else None,
+        },
+        'monthly_counts': [{'month': m, 'n': n} for m, n in sorted(tk_months.items())],
+        'coverage_pct': round(tk_scraped / tk_total * 100, 1) if tk_total else 0.0,
+    }
 
-    ig_monthly = {}
-    for _, _, month, comments in ig_rows:
-        if month not in ig_monthly:
-            ig_monthly[month] = {'posts': 0, 'total': 0}
-        ig_monthly[month]['posts'] += 1
-        ig_monthly[month]['total'] += comments
+    # Instagram coverage
+    ig_total = conn.execute("SELECT COUNT(*) FROM instagram_posts").fetchone()[0]
+    ig_scraped = conn.execute(
+        "SELECT COUNT(*) FROM instagram_posts WHERE last_comment_scraped_at IS NOT NULL"
+    ).fetchone()[0]
 
-    result['instagram'] = [
-        {
-            'month': m,
-            'posts': v['posts'],
-            'total_comments': v['total'],
-            'avg_comments': round(v['total'] / v['posts'], 1) if v['posts'] else 0,
-        }
-        for m, v in sorted(ig_monthly.items())
-        if v['total'] > 0
-    ]
+    ig_rows = conn.execute("SELECT post_date FROM instagram_posts").fetchall()
+    ig_dates = [d for (d,) in ig_rows if d]
 
+    ig_months = {}
+    for d in ig_dates:
+        m = _month_key(d)
+        if m:
+            ig_months[m] = ig_months.get(m, 0) + 1
+
+    result['instagram'] = {
+        'total_posts': ig_total,
+        'date_range': {
+            'min': min(ig_dates) if ig_dates else None,
+            'max': max(ig_dates) if ig_dates else None,
+        },
+        'monthly_counts': [{'month': m, 'n': n} for m, n in sorted(ig_months.items())],
+        'coverage_pct': round(ig_scraped / ig_total * 100, 1) if ig_total else 0.0,
+    }
+
+    return result
+
+
+def export_ugc_amplification(conn):
+    """Monthly UGC/official avg_views ratio trend from TikTok."""
+    rows = conn.execute(
+        "SELECT create_time, author, views FROM tiktok_videos"
+    ).fetchall()
+
+    official_monthly = {}
+    ugc_monthly = {}
+    for ts, author, views in rows:
+        date = _unix_to_date(ts)
+        month = _month_key(date)
+        if not month:
+            continue
+        if author == 'popmartglobal':
+            if month not in official_monthly:
+                official_monthly[month] = []
+            official_monthly[month].append(views or 0)
+        else:
+            if month not in ugc_monthly:
+                ugc_monthly[month] = []
+            ugc_monthly[month].append(views or 0)
+
+    # Only months with BOTH official and UGC data
+    common_months = sorted(set(official_monthly.keys()) & set(ugc_monthly.keys()))
+
+    result = []
+    for month in common_months:
+        off_views = official_monthly[month]
+        ugc_views = ugc_monthly[month]
+        off_avg = sum(off_views) / len(off_views)
+        ugc_avg = sum(ugc_views) / len(ugc_views)
+        ratio = round(ugc_avg / off_avg, 2) if off_avg else None
+        result.append({
+            'month': month,
+            'ugc_avg_views': round(ugc_avg, 1),
+            'official_avg_views': round(off_avg, 1),
+            'amplification_ratio': ratio,
+            'ugc_n': len(ugc_views),
+            'official_n': len(off_views),
+        })
     return result
 
 
@@ -506,18 +579,19 @@ def write_all(output_dir):
     os.makedirs(output_dir, exist_ok=True)
 
     exports = {
-        'overview.json': export_overview(conn),
-        'tiktok-videos.json': export_tiktok_videos(conn),
-        'tiktok-trend.json': export_tiktok_trend(conn),
+        'brand-trend.json': export_brand_trend(conn),
+        'brand-vs-ugc.json': export_brand_vs_ugc(conn),
+        'cross-platform-index.json': export_cross_platform_index(conn),
+        'data-coverage.json': export_data_coverage(conn),
         'instagram-posts.json': export_instagram_posts(conn),
         'instagram-trend.json': export_instagram_trend(conn),
-        'ip-share.json': export_ip_share(conn),
-        'brand-trend.json': export_brand_trend(conn),
         'ip-share-trend.json': export_ip_share_trend(conn),
-        'cross-platform-index.json': export_cross_platform_index(conn),
-        'brand-vs-ugc.json': export_brand_vs_ugc(conn),
-        'comment-quality.json': export_comment_quality(conn),
+        'ip-share.json': export_ip_share(conn),
         'official-engagement.json': export_official_engagement(conn),
+        'overview.json': export_overview(conn),
+        'tiktok-trend.json': export_tiktok_trend(conn),
+        'tiktok-videos.json': export_tiktok_videos(conn),
+        'ugc-amplification.json': export_ugc_amplification(conn),
     }
 
     for filename, data in exports.items():
