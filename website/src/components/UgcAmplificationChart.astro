@@ -1,0 +1,155 @@
+---
+// website/src/components/UgcAmplificationChart.astro
+import ugcData from '../data/ugc-amplification.json';
+
+const allData = ugcData as any[];
+const months = allData.map((r: any) => r.month);
+const ugcViews = allData.map((r: any) => r.ugc_avg_views ?? null);
+const officialViews = allData.map((r: any) => r.official_avg_views ?? null);
+const ratio = allData.map((r: any) => r.amplification_ratio ?? null);
+const ugcN = allData.map((r: any) => r.ugc_n ?? 0);
+const officialN = allData.map((r: any) => r.official_n ?? 0);
+
+const totalMonths = months.length;
+const xInterval = totalMonths > 10 ? Math.ceil(totalMonths / 10) - 1 : 0;
+
+const chartData = JSON.stringify({ months, ugcViews, officialViews, ratio, ugcN, officialN, xInterval });
+const hasData = allData.length > 0;
+---
+<section class="section">
+  <div class="section-header">
+    <h2>UGC 放大倍率</h2>
+    <span class="en">UGC Amplification Ratio</span>
+  </div>
+  <p class="chart-subtitle">UGC 视频平均播放量 / 官方号平均播放量</p>
+  {hasData ? (
+    <div class="chart-container">
+      <div id="ugc-amplification-chart" class="chart-area"></div>
+    </div>
+  ) : (
+    <div class="chart-container empty-state">
+      <p>暂无数据 — 运行 export_json.py 生成数据后刷新</p>
+    </div>
+  )}
+</section>
+
+<script define:vars={{ chartData, hasData }}>
+  if (hasData) {
+    import('https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.esm.min.js').then(echarts => {
+      var data = JSON.parse(chartData);
+      var chart = echarts.init(document.getElementById('ugc-amplification-chart'));
+
+      function fmtK(v) {
+        if (v === null || v === undefined) return '--';
+        if (v >= 1000) return (v / 1000).toFixed(1) + 'K';
+        return v.toFixed(0);
+      }
+
+      chart.setOption({
+        tooltip: {
+          trigger: 'axis',
+          formatter: function(params) {
+            var idx = params[0].dataIndex;
+            var result = params[0].axisValue + '<br/>';
+            params.forEach(function(p) {
+              if (p.seriesName === 'UGC \u5747\u64AD') {
+                result += p.marker + ' UGC \u5747\u64AD: ' + fmtK(p.value) + ' (n=' + data.ugcN[idx] + ')<br/>';
+              } else if (p.seriesName === '\u5B98\u65B9\u53F7 \u5747\u64AD') {
+                result += p.marker + ' \u5B98\u65B9\u53F7 \u5747\u64AD: ' + fmtK(p.value) + ' (n=' + data.officialN[idx] + ')<br/>';
+              } else if (p.seriesName === 'UGC/\u5B98\u65B9 \u500D\u7387') {
+                result += p.marker + ' \u653E\u5927\u500D\u7387: ' + (p.value !== null ? p.value.toFixed(2) + 'x' : '--') + '<br/>';
+              }
+            });
+            return result;
+          }
+        },
+        legend: { data: ['UGC \u5747\u64AD', '\u5B98\u65B9\u53F7 \u5747\u64AD', 'UGC/\u5B98\u65B9 \u500D\u7387'], bottom: 0 },
+        grid: { left: 64, right: 64, top: 24, bottom: 56 },
+        xAxis: {
+          type: 'category',
+          data: data.months,
+          axisLabel: { rotate: 30, fontSize: 10, interval: data.xInterval }
+        },
+        yAxis: [
+          {
+            type: 'value',
+            name: '\u5E73\u5747\u64AD\u653E\u91CF',
+            nameTextStyle: { fontSize: 10 },
+            axisLabel: {
+              formatter: function(v) {
+                if (v >= 1000) return (v / 1000).toFixed(0) + 'K';
+                return v;
+              }
+            }
+          },
+          {
+            type: 'value',
+            name: '\u653E\u5927\u500D\u7387',
+            nameTextStyle: { fontSize: 10 },
+            splitLine: { show: false }
+          }
+        ],
+        series: [
+          {
+            name: 'UGC \u5747\u64AD',
+            type: 'line',
+            yAxisIndex: 0,
+            data: data.ugcViews,
+            smooth: true,
+            connectNulls: false,
+            symbol: 'circle',
+            symbolSize: 5,
+            lineStyle: { color: '#333', width: 2, type: 'dashed' },
+            itemStyle: { color: '#333' }
+          },
+          {
+            name: '\u5B98\u65B9\u53F7 \u5747\u64AD',
+            type: 'line',
+            yAxisIndex: 0,
+            data: data.officialViews,
+            smooth: true,
+            connectNulls: false,
+            symbol: 'circle',
+            symbolSize: 5,
+            lineStyle: { color: '#E53935', width: 2 },
+            itemStyle: { color: '#E53935' }
+          },
+          {
+            name: 'UGC/\u5B98\u65B9 \u500D\u7387',
+            type: 'line',
+            yAxisIndex: 1,
+            data: data.ratio,
+            smooth: true,
+            connectNulls: false,
+            symbol: 'circle',
+            symbolSize: 8,
+            lineStyle: { color: '#FF9800', width: 3 },
+            itemStyle: { color: '#FF9800' }
+          }
+        ]
+      });
+      window.addEventListener('resize', function() { chart.resize(); });
+    });
+  }
+</script>
+
+<style>
+  .chart-subtitle {
+    font-size: 13px; color: var(--color-muted);
+    margin: -8px 0 16px 0;
+  }
+  .chart-container {
+    background: var(--color-card); border-radius: 20px;
+    padding: 32px; box-shadow: var(--shadow);
+  }
+  .chart-area { width: 100%; height: 400px; }
+  .empty-state {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 200px; color: var(--color-muted); font-size: 14px;
+  }
+  @media (max-width: 768px) {
+    .chart-area { height: 260px; }
+    .chart-container { padding: 16px; border-radius: 14px; }
+    .chart-subtitle { font-size: 11px; margin: -4px 0 10px 0; }
+  }
+</style>

@@ -1,0 +1,167 @@
+---
+// website/src/components/DataCoveragePanel.astro
+import dataCoverage from '../data/data-coverage.json';
+
+const data = dataCoverage as any;
+const tiktok = data.tiktok || { total_posts: 0, date_range: { min: '', max: '' }, monthly_counts: [], coverage_pct: 0 };
+const instagram = data.instagram || { total_posts: 0, date_range: { min: '', max: '' }, monthly_counts: [], coverage_pct: 0 };
+
+// Last 6 months of sparkline data
+const tkCounts = (tiktok.monthly_counts || []).slice(-6);
+const igCounts = (instagram.monthly_counts || []).slice(-6);
+
+const sparkData = JSON.stringify({ tkCounts, igCounts });
+---
+<section class="section">
+  <div class="section-header">
+    <h2>数据覆盖率</h2>
+    <span class="en">Data Coverage</span>
+  </div>
+  <div class="coverage-grid">
+    <article class="coverage-card">
+      <div class="platform-header tiktok">
+        <span class="platform-icon">T</span>
+        <span class="platform-name">TikTok</span>
+      </div>
+      <div class="coverage-stat">
+        <div class="stat-big">{tiktok.total_posts.toLocaleString()}</div>
+        <div class="stat-sub">视频总数</div>
+      </div>
+      <div class="coverage-meta">
+        <div class="meta-row">
+          <span class="meta-label">时间跨度</span>
+          <span class="meta-value">{tiktok.date_range.min || '--'} ~ {tiktok.date_range.max || '--'}</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">评论覆盖率</span>
+          <span class="meta-value">{(tiktok.coverage_pct || 0).toFixed(1)}%</span>
+        </div>
+      </div>
+      <div class="coverage-bar-wrap">
+        <div class="coverage-bar" style={`width: ${Math.min(tiktok.coverage_pct || 0, 100)}%`}></div>
+      </div>
+      <div id="tk-sparkline" class="sparkline-area"></div>
+    </article>
+
+    <article class="coverage-card">
+      <div class="platform-header instagram">
+        <span class="platform-icon">I</span>
+        <span class="platform-name">Instagram</span>
+      </div>
+      <div class="coverage-stat">
+        <div class="stat-big">{instagram.total_posts.toLocaleString()}</div>
+        <div class="stat-sub">帖子总数</div>
+      </div>
+      <div class="coverage-meta">
+        <div class="meta-row">
+          <span class="meta-label">时间跨度</span>
+          <span class="meta-value">{instagram.date_range.min || '--'} ~ {instagram.date_range.max || '--'}</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">评论覆盖率</span>
+          <span class="meta-value">{(instagram.coverage_pct || 0).toFixed(1)}%</span>
+        </div>
+      </div>
+      <div class="coverage-bar-wrap">
+        <div class="coverage-bar ig" style={`width: ${Math.min(instagram.coverage_pct || 0, 100)}%`}></div>
+      </div>
+      <div id="ig-sparkline" class="sparkline-area"></div>
+    </article>
+  </div>
+</section>
+
+<script define:vars={{ sparkData }}>
+  import('https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.esm.min.js').then(echarts => {
+    var data = JSON.parse(sparkData);
+
+    function renderSparkline(elId, counts, color) {
+      var el = document.getElementById(elId);
+      if (!el || !counts || counts.length === 0) return;
+      var chart = echarts.init(el);
+      chart.setOption({
+        grid: { left: 4, right: 4, top: 4, bottom: 16 },
+        xAxis: {
+          type: 'category',
+          data: counts.map(function(c) { return c.month; }),
+          axisLine: { show: false },
+          axisTick: { show: false },
+          axisLabel: { fontSize: 9, color: '#999' }
+        },
+        yAxis: {
+          type: 'value',
+          show: false
+        },
+        tooltip: {
+          trigger: 'axis',
+          formatter: function(params) {
+            return params[0].axisValue + ': ' + params[0].value + ' \u5E16';
+          }
+        },
+        series: [{
+          type: 'bar',
+          data: counts.map(function(c) { return c.count || c.n || 0; }),
+          itemStyle: { color: color, borderRadius: [2, 2, 0, 0] },
+          barMaxWidth: 16
+        }]
+      });
+      window.addEventListener('resize', function() { chart.resize(); });
+    }
+
+    renderSparkline('tk-sparkline', data.tkCounts, '#1a1a1a');
+    renderSparkline('ig-sparkline', data.igCounts, '#E1306C');
+  });
+</script>
+
+<style>
+  .coverage-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+  }
+  .coverage-card {
+    background: var(--color-card); border-radius: var(--radius);
+    padding: 28px; box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .coverage-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  .platform-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+  }
+  .platform-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 900; color: white;
+  }
+  .tiktok .platform-icon { background: #1a1a1a; }
+  .instagram .platform-icon {
+    background: linear-gradient(135deg, #E1306C 0%, #F77737 100%);
+  }
+  .platform-name { font-size: 16px; font-weight: 700; }
+  .coverage-stat { margin-bottom: 16px; }
+  .stat-big { font-size: 36px; font-weight: 900; letter-spacing: -1px; }
+  .stat-sub { font-size: 12px; color: var(--color-muted); margin-top: 2px; }
+  .coverage-meta { margin-bottom: 12px; }
+  .meta-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 4px 0; font-size: 13px;
+  }
+  .meta-label { color: var(--color-muted); }
+  .meta-value { font-weight: 600; }
+  .coverage-bar-wrap {
+    height: 6px; background: #f0f0f0; border-radius: 3px;
+    overflow: hidden; margin-bottom: 16px;
+  }
+  .coverage-bar {
+    height: 100%; border-radius: 3px;
+    background: #1a1a1a; transition: width 0.6s ease;
+  }
+  .coverage-bar.ig {
+    background: linear-gradient(90deg, #E1306C 0%, #F77737 100%);
+  }
+  .sparkline-area { width: 100%; height: 80px; }
+  @media (max-width: 768px) {
+    .coverage-grid { grid-template-columns: 1fr; gap: 14px; }
+    .coverage-card { padding: 20px; }
+    .stat-big { font-size: 28px; }
+    .meta-row { font-size: 11px; }
+    .sparkline-area { height: 60px; }
+  }
+</style>
