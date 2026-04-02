@@ -103,8 +103,8 @@ Plans:
 **UI hint**: no
 
 Plans:
-- [ ] 08-01-PLAN.md — TikTok scraper three-layer fix (checkpoint + upsert + comment refresh)
-- [ ] 08-02-PLAN.md — Instagram scraper three-layer fix + comment backfill
+- [x] 08-01-PLAN.md — TikTok scraper three-layer fix (checkpoint + upsert + comment refresh)
+- [x] 08-02-PLAN.md — Instagram scraper three-layer fix + comment backfill
 
 #### Phase 9: 分析导出层重写（贴均指标）
 
