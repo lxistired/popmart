@@ -259,9 +259,15 @@ def export_ip_share_trend(conn):
     for (month, ip), count in monthly_ip_counts.items():
         month_totals[month] = month_totals.get(month, 0) + count
 
+    # Exclude 'Pop Mart' (brand, not IP) from trend
+    ip_counts_no_brand = {k: v for k, v in monthly_ip_counts.items() if k[1] != 'Pop Mart'}
+    month_totals_no_brand = {}
+    for (month, ip), count in ip_counts_no_brand.items():
+        month_totals_no_brand[month] = month_totals_no_brand.get(month, 0) + count
+
     result = []
-    for (month, ip), count in sorted(monthly_ip_counts.items()):
-        total = month_totals.get(month, 1)
+    for (month, ip), count in sorted(ip_counts_no_brand.items()):
+        total = month_totals_no_brand.get(month, 1)
         result.append({
             'month': month,
             'ip': ip,
@@ -419,11 +425,11 @@ def export_comment_quality(conn):
 
 
 def export_official_engagement(conn):
-    """Official account launch-30d engagement analysis.
+    """Official account engagement analysis.
 
     For each post by official accounts (@popmartglobal on TikTok,
-    @popmart on Instagram), count comments received within 30 days
-    of posting. Aggregate by post month to show engagement trends.
+    @popmart on Instagram), count total comments. Aggregate by
+    post month to show engagement trends. Skip months with 0 comments.
     """
     result = {}
 
@@ -433,10 +439,9 @@ def export_official_engagement(conn):
             v.video_id,
             datetime(v.create_time, 'unixepoch') as post_dt,
             strftime('%Y-%m', datetime(v.create_time, 'unixepoch')) as post_month,
-            COUNT(c.comment_id) as comments_30d
+            COUNT(c.comment_id) as total_comments
         FROM tiktok_videos v
         LEFT JOIN tiktok_comments c ON v.video_id = c.video_id
-            AND julianday(c.comment_date) - julianday(datetime(v.create_time, 'unixepoch')) BETWEEN 0 AND 30
         WHERE v.author = 'popmartglobal'
         GROUP BY v.video_id
         ORDER BY post_dt
@@ -445,18 +450,19 @@ def export_official_engagement(conn):
     tk_monthly = {}
     for _, _, month, comments in tk_rows:
         if month not in tk_monthly:
-            tk_monthly[month] = {'posts': 0, 'total_30d': 0}
+            tk_monthly[month] = {'posts': 0, 'total': 0}
         tk_monthly[month]['posts'] += 1
-        tk_monthly[month]['total_30d'] += comments
+        tk_monthly[month]['total'] += comments
 
     result['tiktok'] = [
         {
             'month': m,
             'posts': v['posts'],
-            'total_30d_comments': v['total_30d'],
-            'avg_30d_comments': round(v['total_30d'] / v['posts'], 1) if v['posts'] else 0,
+            'total_comments': v['total'],
+            'avg_comments': round(v['total'] / v['posts'], 1) if v['posts'] else 0,
         }
         for m, v in sorted(tk_monthly.items())
+        if v['total'] > 0
     ]
 
     # Instagram: popmart
@@ -465,10 +471,9 @@ def export_official_engagement(conn):
             p.shortcode,
             p.post_date,
             strftime('%Y-%m', p.post_date) as post_month,
-            COUNT(c.comment_id) as comments_30d
+            COUNT(c.comment_id) as total_comments
         FROM instagram_posts p
         LEFT JOIN instagram_comments c ON p.shortcode = c.shortcode
-            AND julianday(c.comment_date) - julianday(p.post_date) BETWEEN 0 AND 30
         WHERE p.account = 'popmart'
         GROUP BY p.shortcode
         ORDER BY p.post_date
@@ -477,18 +482,19 @@ def export_official_engagement(conn):
     ig_monthly = {}
     for _, _, month, comments in ig_rows:
         if month not in ig_monthly:
-            ig_monthly[month] = {'posts': 0, 'total_30d': 0}
+            ig_monthly[month] = {'posts': 0, 'total': 0}
         ig_monthly[month]['posts'] += 1
-        ig_monthly[month]['total_30d'] += comments
+        ig_monthly[month]['total'] += comments
 
     result['instagram'] = [
         {
             'month': m,
             'posts': v['posts'],
-            'total_30d_comments': v['total_30d'],
-            'avg_30d_comments': round(v['total_30d'] / v['posts'], 1) if v['posts'] else 0,
+            'total_comments': v['total'],
+            'avg_comments': round(v['total'] / v['posts'], 1) if v['posts'] else 0,
         }
         for m, v in sorted(ig_monthly.items())
+        if v['total'] > 0
     ]
 
     return result

@@ -3,46 +3,40 @@
     {
       "month": "2025-05",
       "posts": 1,
-      "total_30d_comments": 3,
-      "avg_30d_comments": 3.0
+      "total_comments": 19,
+      "avg_comments": 19.0
     },
     {
       "month": "2025-08",
       "posts": 1,
-      "total_30d_comments": 7,
-      "avg_30d_comments": 7.0
+      "total_comments": 33,
+      "avg_comments": 33.0
     },
     {
       "month": "2025-10",
       "posts": 1,
-      "total_30d_comments": 4,
-      "avg_30d_comments": 4.0
+      "total_comments": 19,
+      "avg_comments": 19.0
     },
     {
       "month": "2026-02",
       "posts": 6,
-      "total_30d_comments": 26,
-      "avg_30d_comments": 4.3
+      "total_comments": 56,
+      "avg_comments": 9.3
     },
     {
       "month": "2026-03",
       "posts": 26,
-      "total_30d_comments": 108,
-      "avg_30d_comments": 4.2
+      "total_comments": 237,
+      "avg_comments": 9.1
     }
   ],
   "instagram": [
     {
-      "month": "2026-02",
-      "posts": 16,
-      "total_30d_comments": 0,
-      "avg_30d_comments": 0.0
-    },
-    {
       "month": "2026-03",
       "posts": 44,
-      "total_30d_comments": 2171,
-      "avg_30d_comments": 49.3
+      "total_comments": 2171,
+      "avg_comments": 49.3
     }
   ]
 }

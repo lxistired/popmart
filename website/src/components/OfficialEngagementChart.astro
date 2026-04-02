@@ -11,19 +11,15 @@ const allMonths = [...new Set([
   ...igSeries.map((r: any) => r.month),
 ])].sort() as string[];
 
-const totalMonths = allMonths.length;
-const xInterval = totalMonths > 10 ? Math.ceil(totalMonths / 10) - 1 : 0;
-
 const chartData = JSON.stringify({
   months: allMonths,
-  xInterval,
   tiktok: allMonths.map(m => {
     const row = tkSeries.find((r: any) => r.month === m);
-    return row ? row.avg_30d_comments : null;
+    return row ? row.avg_comments : null;
   }),
   instagram: allMonths.map(m => {
     const row = igSeries.find((r: any) => r.month === m);
-    return row ? row.avg_30d_comments : null;
+    return row ? row.avg_comments : null;
   }),
   tiktokPosts: allMonths.map(m => {
     const row = tkSeries.find((r: any) => r.month === m);
@@ -40,7 +36,7 @@ const chartData = JSON.stringify({
     <h2>官方号帖子热度</h2>
     <span class="en">Official Post Engagement</span>
   </div>
-  <p class="chart-subtitle">帖子发布后 30 天内平均评论数</p>
+  <p class="chart-subtitle">每月帖子平均评论数 (TikTok @popmartglobal / Instagram @popmart)</p>
   <div class="chart-container">
     <div id="official-engagement-chart" class="chart-area"></div>
   </div>
@@ -58,7 +54,7 @@ const chartData = JSON.stringify({
           params.forEach(function(p) {
             if (p.value !== null && p.value !== undefined) {
               var postCount = p.seriesName === 'TikTok' ? d.tiktokPosts[p.dataIndex] : d.instagramPosts[p.dataIndex];
-              result += p.marker + ' ' + p.seriesName + ': ' + p.value.toFixed(1) + ' (' + postCount + ' posts)<br/>';
+              result += p.marker + ' ' + p.seriesName + ': ' + p.value.toFixed(1) + ' avg (' + postCount + ' posts)<br/>';
             }
           });
           return result;
@@ -69,36 +65,45 @@ const chartData = JSON.stringify({
       xAxis: {
         type: 'category',
         data: d.months,
-        axisLabel: { rotate: 30, fontSize: 10, interval: d.xInterval },
-        boundaryGap: false
+        axisLabel: { rotate: 30, fontSize: 10 }
       },
       yAxis: {
         type: 'value',
-        name: '30d Avg Comments',
+        name: 'Avg Comments',
         nameTextStyle: { fontSize: 10 }
       },
       series: [
         {
           name: 'TikTok',
-          type: 'line',
-          smooth: true,
-          symbol: 'circle',
-          symbolSize: 6,
+          type: 'bar',
           data: d.tiktok,
-          itemStyle: { color: '#1a1a1a' },
-          lineStyle: { color: '#1a1a1a', width: 2 },
-          connectNulls: true
+          itemStyle: { color: '#1a1a1a', borderRadius: [4, 4, 0, 0] },
+          barMaxWidth: 32,
+          label: {
+            show: true,
+            position: 'top',
+            fontSize: 10,
+            formatter: function(p) { return p.value !== null ? p.value.toFixed(0) : ''; }
+          }
         },
         {
           name: 'Instagram',
-          type: 'line',
-          smooth: true,
-          symbol: 'circle',
-          symbolSize: 6,
+          type: 'bar',
           data: d.instagram,
-          itemStyle: { color: '#E1306C' },
-          lineStyle: { color: '#E1306C', width: 2 },
-          connectNulls: true
+          itemStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              { offset: 0, color: '#E1306C' },
+              { offset: 1, color: '#F77737' }
+            ]),
+            borderRadius: [4, 4, 0, 0]
+          },
+          barMaxWidth: 32,
+          label: {
+            show: true,
+            position: 'top',
+            fontSize: 10,
+            formatter: function(p) { return p.value !== null ? p.value.toFixed(0) : ''; }
+          }
         }
       ]
     });

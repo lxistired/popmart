@@ -187,18 +187,17 @@ def test_export_official_engagement(test_db):
     assert 'tiktok' in result and 'instagram' in result
 
     # TikTok: v4 is popmartglobal, create_time=1709251200 (2024-03-01)
-    # Comments c4 (2024-03-02) and c5 (2024-03-05) are within 30 days
-    # Comment c6 (2024-06-01) is outside 30 days — should NOT be counted
+    # Comments c4, c5, c6 — total 3 comments, but c6 is 2024-06 so different period
+    # With total (not 30d), all 3 are counted
     tk = result['tiktok']
     assert len(tk) == 1
     assert tk[0]['month'] == '2024-03'
     assert tk[0]['posts'] == 1
-    assert tk[0]['total_30d_comments'] == 2  # c4 + c5, not c6
-    assert tk[0]['avg_30d_comments'] == 2.0
+    assert tk[0]['total_comments'] == 3  # all comments regardless of date
+    assert tk[0]['avg_comments'] == 3.0
 
-    # Instagram: popmart account has 2 posts
+    # Instagram: popmart account has 2 posts with 3 total comments
     ig = result['instagram']
     assert len(ig) >= 1
-    # Both posts have comments within 30 days
-    total_ig_comments = sum(m['total_30d_comments'] for m in ig)
-    assert total_ig_comments == 3  # ic1, ic2, ic3 all within 30d of their posts
+    total_ig_comments = sum(m['total_comments'] for m in ig)
+    assert total_ig_comments == 3
