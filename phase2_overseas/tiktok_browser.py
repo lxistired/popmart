@@ -14,13 +14,13 @@ tiktok_browser.py — TikTok 视频元数据采集器 (DrissionPage)
 """
 
 import os, sys, json, re, time, random
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
-from shared.db import init_db, batch_insert
+from shared.db import init_db, batch_insert, upsert_video_metadata
 from shared.log import get_logger
 from shared.rate import sleep_jitter
 from shared.checkpoint import load_checkpoint, save_checkpoint
@@ -263,6 +263,7 @@ def fetch_video_detail(page, video_id, logger=None):
         'views': stats.get('playCount', 0),
         'likes': stats.get('diggCount', 0),
         'comments_count': stats.get('commentCount', 0),
+        'shares': stats.get('shareCount', 0),
         'create_time': str(int(item.get('createTime', 0))),
     }
 
@@ -366,8 +367,42 @@ def is_drug_content(title):
     return bool(DRUG_KEYWORDS.search(title or ''))
 
 
+def _needs_comment_refresh(conn, video_id):
+    """Check if a video needs comment re-scraping.
+    Returns True if:
+      - last_comment_scraped_at IS NULL (never scraped)
+      - create_time is within 90 days AND last_comment_scraped_at is older than 7 days
+    """
+    row = conn.execute(
+        'SELECT last_comment_scraped_at, create_time FROM tiktok_videos WHERE video_id=?',
+        (video_id,)
+    ).fetchone()
+    if not row:
+        return True
+    last_scraped, create_time = row
+    if last_scraped is None:
+        return True
+    # Check if recent video with stale comment scrape
+    try:
+        now = datetime.now(timezone.utc)
+        ninety_days_ago_ts = int((now - timedelta(days=90)).timestamp())
+        if int(create_time) > ninety_days_ago_ts:
+            seven_days_ago = (now - timedelta(days=7)).isoformat()
+            if last_scraped < seven_days_ago:
+                return True
+    except (ValueError, TypeError):
+        pass
+    return False
+
+
 def scrape_hashtag(page, conn, keyword, max_videos=50, since_date=None, logger=None):
-    """采集一个话题标签的视频元数据并写入数据库。返回 (new_count, skip_count)。"""
+    """采集一个话题标签的视频元数据并写入数据库。返回 (new_count, skip_count)。
+
+    Rebuilt with three-layer fix:
+      - Processes ALL discovered videos (not just new ones)
+      - Uses upsert_video_metadata for each video (refreshes views/likes/comments_count/shares)
+      - Selectively fetches comments based on _needs_comment_refresh()
+    """
     if logger:
         logger.info(f'=== #{keyword} ===')
 
@@ -382,38 +417,36 @@ def scrape_hashtag(page, conn, keyword, max_videos=50, since_date=None, logger=N
     if len(video_ids) > max_videos:
         video_ids = video_ids[:max_videos]
 
-    # 查询已有数据
+    # 查询已有数据 (for logging only — we process ALL videos)
     existing = set()
     rows = conn.execute('SELECT video_id FROM tiktok_videos').fetchall()
     for r in rows:
         existing.add(r[0])
 
-    new_ids = [vid for vid in video_ids if vid not in existing]
+    new_count = len([vid for vid in video_ids if vid not in existing])
     if logger:
-        logger.info(f'  {len(new_ids)} new / {len(video_ids) - len(new_ids)} already in DB')
-
-    if not new_ids:
-        return 0, len(video_ids)
+        logger.info(f'  {new_count} new / {len(video_ids) - new_count} existing — processing ALL')
 
     now_str = datetime.now(timezone.utc).isoformat()
-    results = []
     drug_filtered = 0
+    upserted = 0
+    comments_fetched = 0
 
     fail_streak = 0
-    for i, vid_id in enumerate(new_ids):
+    for i, vid_id in enumerate(video_ids):
         try:
             detail = fetch_video_detail(page, vid_id, logger)
             fail_streak = 0  # reset on success (even if no data)
             if not detail:
                 if logger:
-                    logger.info(f'  [{i+1}/{len(new_ids)}] {vid_id}: no data (private/deleted?)')
+                    logger.info(f'  [{i+1}/{len(video_ids)}] {vid_id}: no data (private/deleted?)')
                 continue
 
             # 毒品过滤
             if is_drug_content(detail['title']):
                 drug_filtered += 1
                 if logger:
-                    logger.info(f'  [{i+1}/{len(new_ids)}] {vid_id}: FILTERED (drug content)')
+                    logger.info(f'  [{i+1}/{len(video_ids)}] {vid_id}: FILTERED (drug content)')
                 continue
 
             # since_date 过滤
@@ -425,40 +458,52 @@ def scrape_hashtag(page, conn, keyword, max_videos=50, since_date=None, logger=N
             detail['source'] = f'tag/{keyword}'
             detail['scraped_at'] = now_str
 
-            # Fetch comments while we're already on the video page
-            try:
-                vid_comments = fetch_video_comments(page, vid_id, logger=logger)
-                if vid_comments:
-                    _save_comments(conn, vid_comments)
-                    if logger:
-                        logger.info(f'    -> {len(vid_comments)} comments saved')
-            except Exception as e:
-                if logger:
-                    logger.warning(f'    comments error: {e}')
+            # Layer 3: upsert metadata (insert new or refresh views/likes/comments_count/shares)
+            upsert_video_metadata(conn, detail)
+            upserted += 1
 
-            results.append(detail)
+            is_new = vid_id not in existing
+            # Layer 2: selective comment fetch
+            needs_comments = is_new or _needs_comment_refresh(conn, vid_id)
+            tag = 'NEW' if is_new else ('REFRESH' if needs_comments else 'meta-only')
+
+            if needs_comments:
+                try:
+                    vid_comments = fetch_video_comments(page, vid_id, logger=logger)
+                    if vid_comments:
+                        _save_comments(conn, vid_comments)
+                        comments_fetched += len(vid_comments)
+                        if logger:
+                            logger.info(f'    -> {len(vid_comments)} comments saved')
+                    # Update last_comment_scraped_at after successful comment scrape
+                    conn.execute(
+                        'UPDATE tiktok_videos SET last_comment_scraped_at=? WHERE video_id=?',
+                        (datetime.now(timezone.utc).isoformat(), vid_id)
+                    )
+                    conn.commit()
+                except Exception as e:
+                    if logger:
+                        logger.warning(f'    comments error: {e}')
 
             ct_str = datetime.fromtimestamp(int(detail['create_time'])).strftime('%Y-%m-%d')
             if logger:
                 logger.info(
-                    f'  [{i+1}/{len(new_ids)}] {vid_id} | {ct_str} | '
-                    f'views={detail["views"]:,} | @{detail["author"]}'
+                    f'  [{i+1}/{len(video_ids)}] {vid_id} | {ct_str} | '
+                    f'views={detail["views"]:,} | @{detail["author"]} | {tag}'
                 )
+
+            # Mark as existing for subsequent iterations in this run
+            existing.add(vid_id)
 
         except Exception as e:
             fail_streak += 1
             if logger:
-                logger.warning(f'  [{i+1}/{len(new_ids)}] {vid_id}: error: {e}')
+                logger.warning(f'  [{i+1}/{len(video_ids)}] {vid_id}: error: {e}')
             if fail_streak >= 3:
                 if logger:
                     logger.warning(f'  3 consecutive failures — browser may be disconnected, stopping #{keyword}')
                 break
             continue
-
-        # 每 5 个视频存一次
-        if len(results) >= 5:
-            _save_videos(conn, results)
-            results = []
 
         # 每 10 个视频休息更久，避免触发 TikTok 反爬
         if (i + 1) % 10 == 0:
@@ -469,21 +514,15 @@ def scrape_hashtag(page, conn, keyword, max_videos=50, since_date=None, logger=N
         else:
             sleep_jitter(random.uniform(5, 9))
 
-    # 保存剩余
-    if results:
-        _save_videos(conn, results)
-
-    total_new = len(new_ids) - drug_filtered
     if logger:
-        if drug_filtered:
-            logger.info(f'  #{keyword}: {total_new} saved, {drug_filtered} drug-filtered')
-    return total_new, drug_filtered
+        logger.info(f'  #{keyword}: {upserted} upserted, {comments_fetched} comments, {drug_filtered} drug-filtered')
+    return upserted, drug_filtered
 
 
 def _save_videos(conn, videos):
-    cols = ['video_id', 'author', 'title', 'views', 'likes',
-            'comments_count', 'create_time', 'source', 'scraped_at']
-    batch_insert(conn, 'tiktok_videos', videos, cols)
+    """Save videos using upsert (Layer 3 fix). Used by scrape_user_videos."""
+    for v in videos:
+        upsert_video_metadata(conn, v)
 
 
 def _save_comments(conn, comments):
@@ -493,7 +532,7 @@ def _save_comments(conn, comments):
 
 
 def scrape_user_videos(page, conn, username, max_videos=30, logger=None):
-    """采集用户的视频列表。"""
+    """采集用户的视频列表。Processes ALL discovered videos via upsert."""
     if logger:
         logger.info(f'=== @{username} ===')
 
@@ -518,44 +557,64 @@ def scrape_user_videos(page, conn, username, max_videos=30, logger=None):
         });
         return JSON.stringify([...seen]);
     ''')
-    video_ids = json.loads(video_ids_json)
+    video_ids = json.loads(video_ids_json)[:max_videos]
     if logger:
         logger.info(f'  @{username}: {len(video_ids)} video IDs')
 
-    # 过滤已有
+    # Query existing for logging (process ALL, not just new)
     existing = set(r[0] for r in conn.execute('SELECT video_id FROM tiktok_videos').fetchall())
-    new_ids = [vid for vid in video_ids if vid not in existing][:max_videos]
+    new_count = len([vid for vid in video_ids if vid not in existing])
     if logger:
-        logger.info(f'  {len(new_ids)} new')
+        logger.info(f'  {new_count} new / {len(video_ids) - new_count} existing — processing ALL')
 
     now_str = datetime.now(timezone.utc).isoformat()
-    results = []
+    upserted = 0
 
-    for i, vid_id in enumerate(new_ids):
+    for i, vid_id in enumerate(video_ids):
         try:
             detail = fetch_video_detail(page, vid_id, logger)
             if not detail:
                 continue
             detail['source'] = f'user/{username}'
             detail['scraped_at'] = now_str
-            results.append(detail)
+
+            # Upsert metadata
+            upsert_video_metadata(conn, detail)
+            upserted += 1
+
+            is_new = vid_id not in existing
+            needs_comments = is_new or _needs_comment_refresh(conn, vid_id)
+            tag = 'NEW' if is_new else ('REFRESH' if needs_comments else 'meta-only')
+
+            if needs_comments:
+                try:
+                    vid_comments = fetch_video_comments(page, vid_id, logger=logger)
+                    if vid_comments:
+                        _save_comments(conn, vid_comments)
+                        if logger:
+                            logger.info(f'    -> {len(vid_comments)} comments saved')
+                    conn.execute(
+                        'UPDATE tiktok_videos SET last_comment_scraped_at=? WHERE video_id=?',
+                        (datetime.now(timezone.utc).isoformat(), vid_id)
+                    )
+                    conn.commit()
+                except Exception as e:
+                    if logger:
+                        logger.warning(f'    comments error: {e}')
+
+            existing.add(vid_id)
 
             ct_str = datetime.fromtimestamp(int(detail['create_time'])).strftime('%Y-%m-%d')
             if logger:
-                logger.info(f'  [{i+1}/{len(new_ids)}] {vid_id} | {ct_str} | views={detail["views"]:,}')
+                logger.info(f'  [{i+1}/{len(video_ids)}] {vid_id} | {ct_str} | views={detail["views"]:,} | {tag}')
         except Exception as e:
             if logger:
-                logger.warning(f'  [{i+1}/{len(new_ids)}] {vid_id}: error: {e}')
+                logger.warning(f'  [{i+1}/{len(video_ids)}] {vid_id}: error: {e}')
             continue
 
-        if len(results) >= 5:
-            _save_videos(conn, results)
-            results = []
         sleep_jitter(random.uniform(3, 6))
 
-    if results:
-        _save_videos(conn, results)
-    return len(new_ids)
+    return upserted
 
 
 def _ensure_browser_global(page, logger=None):
@@ -576,16 +635,16 @@ def _ensure_browser_global(page, logger=None):
 
 def backfill_comments(page, conn, logger=None):
     """
-    Backfill comments for videos already in tiktok_videos that have no rows
-    in tiktok_comments. Used for the pre-existing videos scraped without login.
+    Backfill comments for videos with last_comment_scraped_at IS NULL.
+    Catches both zero-comment videos AND videos that were never comment-scraped.
     Returns total comments saved.
     """
     videos_needing_comments = conn.execute("""
         SELECT v.video_id, v.author, v.comments_count
         FROM tiktok_videos v
-        LEFT JOIN tiktok_comments c ON c.video_id = v.video_id
-        WHERE c.video_id IS NULL
+        WHERE v.last_comment_scraped_at IS NULL
         ORDER BY v.create_time DESC
+        LIMIT 50
     """).fetchall()
 
     if not videos_needing_comments:
@@ -604,6 +663,12 @@ def backfill_comments(page, conn, logger=None):
             if comments:
                 _save_comments(conn, comments)
                 total_saved += len(comments)
+            # Update last_comment_scraped_at after successful scrape
+            conn.execute(
+                'UPDATE tiktok_videos SET last_comment_scraped_at=? WHERE video_id=?',
+                (datetime.now(timezone.utc).isoformat(), vid_id)
+            )
+            conn.commit()
             if logger:
                 logger.info(
                     f'  backfill [{i+1}/{len(videos_needing_comments)}] '
@@ -645,9 +710,9 @@ def main():
     if args:
         queries = [q for q in queries if q['keyword'] in args]
 
-    # Checkpoint
+    # Checkpoint — session-scoped: reset completed set so all keywords are re-scanned
     checkpoint = load_checkpoint('tiktok_browser')
-    completed = set(checkpoint.get('completed', []))
+    completed = set()  # Layer 1 fix: never skip keywords across runs
 
     # DB
     conn = init_db()
