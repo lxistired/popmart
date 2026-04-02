@@ -4,12 +4,15 @@ import ipShare from '../data/ip-share.json';
 const IP_COLORS: Record<string, string> = {
   Labubu: '#FF6F00', Dimoo: '#1976D2', Molly: '#E91E63',
   Skullpanda: '#7B1FA2', 'Pop Mart': '#D32F2F', Zsiga: '#00897B',
+  Twinkle: '#FFD600', Crybaby: '#455A64',
 };
 const IP_IMAGES: Record<string, string> = {
   Labubu: '/popmart/characters/labubu.png', Dimoo: '/popmart/characters/dimoo.png',
   Molly: '/popmart/characters/molly.png', Skullpanda: '/popmart/characters/skullpanda.png',
+  Zsiga: '/popmart/characters/zsiga.png', Twinkle: '/popmart/characters/twinkle.png',
+  Crybaby: '/popmart/characters/crybaby.png',
 };
-const top5 = ipShare.slice(0, 5);
+const top5 = ipShare.slice(0, 7);
 ---
 <section class="section">
   <div class="section-header">
@@ -34,7 +37,7 @@ const top5 = ipShare.slice(0, 5);
 </section>
 
 <style>
-  .ip-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .ip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; }
   .ip-card {
     background: var(--color-card); border-radius: var(--radius);
     padding: 24px 16px; text-align: center;

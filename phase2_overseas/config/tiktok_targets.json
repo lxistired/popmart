@@ -8,7 +8,9 @@
     {"keyword": "molly popmart", "filter_brand": false},
     {"keyword": "skullpanda", "filter_brand": true},
     {"keyword": "dimoo", "filter_brand": true},
-    {"keyword": "popmart unboxing", "filter_brand": false}
+    {"keyword": "popmart unboxing", "filter_brand": false},
+    {"keyword": "twinkle twinkle popmart", "filter_brand": false},
+    {"keyword": "crybaby popmart", "filter_brand": false}
   ],
   "accounts": [
     {"username": "popmartglobal", "label": "official"}

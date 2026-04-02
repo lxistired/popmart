@@ -987,7 +987,12 @@
   {
     "week": "2025-W24",
     "ip": "Pop Mart",
-    "count": 22
+    "count": 9
+  },
+  {
+    "week": "2025-W24",
+    "ip": "Twinkle",
+    "count": 13
   },
   {
     "week": "2025-W25",
@@ -1007,12 +1012,17 @@
   {
     "week": "2025-W25",
     "ip": "Pop Mart",
-    "count": 10
+    "count": 5
   },
   {
     "week": "2025-W25",
     "ip": "Skullpanda",
     "count": 1
+  },
+  {
+    "week": "2025-W25",
+    "ip": "Twinkle",
+    "count": 5
   },
   {
     "week": "2025-W26",
@@ -1057,11 +1067,16 @@
   {
     "week": "2025-W27",
     "ip": "Pop Mart",
-    "count": 9
+    "count": 8
   },
   {
     "week": "2025-W27",
     "ip": "Skullpanda",
+    "count": 1
+  },
+  {
+    "week": "2025-W27",
+    "ip": "Twinkle",
     "count": 1
   },
   {
@@ -1132,12 +1147,17 @@
   {
     "week": "2025-W30",
     "ip": "Pop Mart",
-    "count": 2
+    "count": 1
   },
   {
     "week": "2025-W30",
     "ip": "Skullpanda",
     "count": 25
+  },
+  {
+    "week": "2025-W30",
+    "ip": "Twinkle",
+    "count": 1
   },
   {
     "week": "2025-W31",
@@ -1811,6 +1831,11 @@
   },
   {
     "week": "2026-W08",
+    "ip": "Crybaby",
+    "count": 19
+  },
+  {
+    "week": "2026-W08",
     "ip": "Dimoo",
     "count": 29
   },
@@ -1827,12 +1852,17 @@
   {
     "week": "2026-W08",
     "ip": "Pop Mart",
-    "count": 170
+    "count": 151
   },
   {
     "week": "2026-W08",
     "ip": "Skullpanda",
     "count": 189
+  },
+  {
+    "week": "2026-W09",
+    "ip": "Crybaby",
+    "count": 1
   },
   {
     "week": "2026-W09",
@@ -1852,7 +1882,7 @@
   {
     "week": "2026-W09",
     "ip": "Pop Mart",
-    "count": 78
+    "count": 77
   },
   {
     "week": "2026-W09",
@@ -1932,12 +1962,22 @@
   {
     "week": "2026-W12",
     "ip": "Pop Mart",
-    "count": 218
+    "count": 217
   },
   {
     "week": "2026-W12",
     "ip": "Skullpanda",
     "count": 423
+  },
+  {
+    "week": "2026-W12",
+    "ip": "Twinkle",
+    "count": 1
+  },
+  {
+    "week": "2026-W13",
+    "ip": "Crybaby",
+    "count": 8
   },
   {
     "week": "2026-W13",
@@ -1957,12 +1997,22 @@
   {
     "week": "2026-W13",
     "ip": "Pop Mart",
-    "count": 1365
+    "count": 1355
   },
   {
     "week": "2026-W13",
     "ip": "Skullpanda",
     "count": 1135
+  },
+  {
+    "week": "2026-W13",
+    "ip": "Twinkle",
+    "count": 2
+  },
+  {
+    "week": "2026-W14",
+    "ip": "Crybaby",
+    "count": 6
   },
   {
     "week": "2026-W14",
@@ -1982,7 +2032,7 @@
   {
     "week": "2026-W14",
     "ip": "Pop Mart",
-    "count": 275
+    "count": 269
   },
   {
     "week": "2026-W14",

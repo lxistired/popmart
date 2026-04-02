@@ -1,12 +1,12 @@
 [
   {
     "ip": "Pop Mart",
-    "tiktok_videos": 71,
-    "tiktok_comments": 3619,
-    "instagram_posts": 126,
+    "tiktok_videos": 67,
+    "tiktok_comments": 3562,
+    "instagram_posts": 124,
     "instagram_comments": 2765,
-    "total_comments": 6384,
-    "share_pct": 34.0
+    "total_comments": 6327,
+    "share_pct": 33.7
   },
   {
     "ip": "Labubu",
@@ -43,6 +43,24 @@
     "instagram_comments": 103,
     "total_comments": 718,
     "share_pct": 3.8
+  },
+  {
+    "ip": "Crybaby",
+    "tiktok_videos": 2,
+    "tiktok_comments": 34,
+    "instagram_posts": 1,
+    "instagram_comments": 0,
+    "total_comments": 34,
+    "share_pct": 0.2
+  },
+  {
+    "ip": "Twinkle",
+    "tiktok_videos": 2,
+    "tiktok_comments": 23,
+    "instagram_posts": 1,
+    "instagram_comments": 0,
+    "total_comments": 23,
+    "share_pct": 0.1
   },
   {
     "ip": "Zsiga",

@@ -19,6 +19,8 @@ IP_PATTERNS = [
     ('Dimoo', re.compile(r'dimoo', re.IGNORECASE)),
     ('Skullpanda', re.compile(r'skullpanda|skull\s*panda', re.IGNORECASE)),
     ('Zsiga', re.compile(r'zsiga|嘎子', re.IGNORECASE)),
+    ('Twinkle', re.compile(r'twinkle|星星人', re.IGNORECASE)),
+    ('Crybaby', re.compile(r'crybaby|cry\s*baby|哭娃', re.IGNORECASE)),
 ]
 
 
@@ -416,6 +418,82 @@ def export_comment_quality(conn):
     return result
 
 
+def export_official_engagement(conn):
+    """Official account launch-30d engagement analysis.
+
+    For each post by official accounts (@popmartglobal on TikTok,
+    @popmart on Instagram), count comments received within 30 days
+    of posting. Aggregate by post month to show engagement trends.
+    """
+    result = {}
+
+    # TikTok: popmartglobal
+    tk_rows = conn.execute("""
+        SELECT
+            v.video_id,
+            datetime(v.create_time, 'unixepoch') as post_dt,
+            strftime('%Y-%m', datetime(v.create_time, 'unixepoch')) as post_month,
+            COUNT(c.comment_id) as comments_30d
+        FROM tiktok_videos v
+        LEFT JOIN tiktok_comments c ON v.video_id = c.video_id
+            AND julianday(c.comment_date) - julianday(datetime(v.create_time, 'unixepoch')) BETWEEN 0 AND 30
+        WHERE v.author = 'popmartglobal'
+        GROUP BY v.video_id
+        ORDER BY post_dt
+    """).fetchall()
+
+    tk_monthly = {}
+    for _, _, month, comments in tk_rows:
+        if month not in tk_monthly:
+            tk_monthly[month] = {'posts': 0, 'total_30d': 0}
+        tk_monthly[month]['posts'] += 1
+        tk_monthly[month]['total_30d'] += comments
+
+    result['tiktok'] = [
+        {
+            'month': m,
+            'posts': v['posts'],
+            'total_30d_comments': v['total_30d'],
+            'avg_30d_comments': round(v['total_30d'] / v['posts'], 1) if v['posts'] else 0,
+        }
+        for m, v in sorted(tk_monthly.items())
+    ]
+
+    # Instagram: popmart
+    ig_rows = conn.execute("""
+        SELECT
+            p.shortcode,
+            p.post_date,
+            strftime('%Y-%m', p.post_date) as post_month,
+            COUNT(c.comment_id) as comments_30d
+        FROM instagram_posts p
+        LEFT JOIN instagram_comments c ON p.shortcode = c.shortcode
+            AND julianday(c.comment_date) - julianday(p.post_date) BETWEEN 0 AND 30
+        WHERE p.account = 'popmart'
+        GROUP BY p.shortcode
+        ORDER BY p.post_date
+    """).fetchall()
+
+    ig_monthly = {}
+    for _, _, month, comments in ig_rows:
+        if month not in ig_monthly:
+            ig_monthly[month] = {'posts': 0, 'total_30d': 0}
+        ig_monthly[month]['posts'] += 1
+        ig_monthly[month]['total_30d'] += comments
+
+    result['instagram'] = [
+        {
+            'month': m,
+            'posts': v['posts'],
+            'total_30d_comments': v['total_30d'],
+            'avg_30d_comments': round(v['total_30d'] / v['posts'], 1) if v['posts'] else 0,
+        }
+        for m, v in sorted(ig_monthly.items())
+    ]
+
+    return result
+
+
 def write_all(output_dir):
     """Export all JSON files to output_dir."""
     conn = sqlite3.connect(DB_PATH)
@@ -433,6 +511,7 @@ def write_all(output_dir):
         'cross-platform-index.json': export_cross_platform_index(conn),
         'brand-vs-ugc.json': export_brand_vs_ugc(conn),
         'comment-quality.json': export_comment_quality(conn),
+        'official-engagement.json': export_official_engagement(conn),
     }
 
     for filename, data in exports.items():

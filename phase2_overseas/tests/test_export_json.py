@@ -33,6 +33,19 @@ def test_classify_ip_case_insensitive():
     assert classify_ip('tag/LABUBU', '') == 'Labubu'
     assert classify_ip('tag/popmart', 'SKULLPANDA new series') == 'Skullpanda'
 
+def test_classify_ip_twinkle():
+    from export_json import classify_ip
+    assert classify_ip('tag/twinkle', '') == 'Twinkle'
+    assert classify_ip('tag/popmart', '星星人 new series') == 'Twinkle'
+    assert classify_ip('tag/twinkle twinkle popmart', 'cute star') == 'Twinkle'
+
+def test_classify_ip_crybaby():
+    from export_json import classify_ip
+    assert classify_ip('tag/crybaby', '') == 'Crybaby'
+    assert classify_ip('tag/popmart', 'CryBaby blind box') == 'Crybaby'
+    assert classify_ip('tag/popmart', 'cry baby new series') == 'Crybaby'
+    assert classify_ip('tag/popmart', '哭娃盲盒') == 'Crybaby'
+
 
 import sqlite3
 import tempfile
@@ -66,12 +79,16 @@ def test_db():
         (1, 'v1', 'user1', 'Labubu unboxing!', 10000, 500, 50, 10, '1711929600', 'tag/labubu', '2026-03-31'),
         (2, 'v2', 'user2', 'Dimoo world tour', 5000, 200, 30, 5, '1711929600', 'tag/dimoo', '2026-03-31'),
         (3, 'v3', 'user3', 'Pop Mart haul', 8000, 300, 40, 8, '1712534400', 'tag/popmart unboxing', '2026-03-31'),
+        (4, 'v4', 'popmartglobal', 'Official Labubu launch', 20000, 1000, 100, 20, '1709251200', 'user/popmartglobal', '2026-03-31'),
     ])
     # Insert sample tiktok comments
     conn.executemany("INSERT INTO tiktok_comments VALUES (?,?,?,?,?,?,?,?,?,?,?)", [
         (1, 'v1', 'c1', 'Love it!', '2026-03-01', '2026-03-01T10:00:00', 5, 0, 'fan1', 0, '2026-03-31'),
         (2, 'v1', 'c2', 'Want one!', '2026-03-01', '2026-03-01T11:00:00', 3, 0, 'fan2', 0, '2026-03-31'),
         (3, 'v2', 'c3', 'Cute!', '2026-03-08', '2026-03-08T10:00:00', 2, 0, 'fan3', 0, '2026-03-31'),
+        (4, 'v4', 'c4', 'Official reply', '2024-03-02', '2024-03-02T10:00:00', 10, 0, 'fan4', 0, '2026-03-31'),
+        (5, 'v4', 'c5', 'Great product!', '2024-03-05', '2024-03-05T10:00:00', 8, 0, 'fan5', 0, '2026-03-31'),
+        (6, 'v4', 'c6', 'Late comment', '2024-06-01', '2024-06-01T10:00:00', 1, 0, 'fan6', 0, '2026-03-31'),
     ])
     # Insert sample instagram posts
     conn.executemany("INSERT INTO instagram_posts VALUES (?,?,?,?,?,?,?,?,?,?)", [
@@ -92,8 +109,8 @@ def test_db():
 def test_export_overview(test_db):
     from export_json import export_overview
     result = export_overview(test_db)
-    assert result['tiktok_videos'] == 3
-    assert result['tiktok_comments'] == 3
+    assert result['tiktok_videos'] == 4
+    assert result['tiktok_comments'] == 6
     assert result['instagram_posts'] == 2
     assert result['instagram_comments'] == 3
     assert 'updated_at' in result
@@ -105,7 +122,7 @@ def test_export_ip_share(test_db):
     # result is a list of {ip, tiktok_videos, tiktok_comments, ...}
     assert isinstance(result, list)
     labubu = next(r for r in result if r['ip'] == 'Labubu')
-    assert labubu['tiktok_videos'] == 1
+    assert labubu['tiktok_videos'] == 2  # v1 + v4 (popmartglobal Labubu)
 
 
 def test_export_tiktok_trend(test_db):
@@ -162,3 +179,26 @@ def test_export_comment_quality(test_db):
     for r in result:
         assert 'high_pct' in r and 'med_pct' in r and 'low_pct' in r and 'total' in r
         assert abs(r['high_pct'] + r['med_pct'] + r['low_pct'] - 100) < 0.5
+
+
+def test_export_official_engagement(test_db):
+    from export_json import export_official_engagement
+    result = export_official_engagement(test_db)
+    assert 'tiktok' in result and 'instagram' in result
+
+    # TikTok: v4 is popmartglobal, create_time=1709251200 (2024-03-01)
+    # Comments c4 (2024-03-02) and c5 (2024-03-05) are within 30 days
+    # Comment c6 (2024-06-01) is outside 30 days — should NOT be counted
+    tk = result['tiktok']
+    assert len(tk) == 1
+    assert tk[0]['month'] == '2024-03'
+    assert tk[0]['posts'] == 1
+    assert tk[0]['total_30d_comments'] == 2  # c4 + c5, not c6
+    assert tk[0]['avg_30d_comments'] == 2.0
+
+    # Instagram: popmart account has 2 posts
+    ig = result['instagram']
+    assert len(ig) >= 1
+    # Both posts have comments within 30 days
+    total_ig_comments = sum(m['total_30d_comments'] for m in ig)
+    assert total_ig_comments == 3  # ic1, ic2, ic3 all within 30d of their posts
