@@ -36,9 +36,10 @@ const series = ipsByShare.map(ip => ({
   emphasis: { focus: 'series' },
   smooth: true,
   symbol: 'none',
+  connectNulls: false,
   data: months.map(m => {
     const row = allData.find((r: any) => r.month === m && r.ip === ip);
-    return row ? row.share_pct : 0;
+    return row ? row.share_pct : null;
   }),
   itemStyle: { color: IP_COLORS[ip] || '#999' },
   lineStyle: { color: IP_COLORS[ip] || '#999' },
@@ -91,7 +92,9 @@ const chartData = JSON.stringify({ months, series, xInterval });
         formatter: function(params) {
           let result = params[0].axisValue + '<br/>';
           params.forEach(function(p) {
-            result += p.marker + ' ' + p.seriesName + ': ' + p.value.toFixed(1) + '%<br/>';
+            if (p.value !== null && p.value !== undefined) {
+              result += p.marker + ' ' + p.seriesName + ': ' + p.value.toFixed(1) + '%<br/>';
+            }
           });
           return result;
         }

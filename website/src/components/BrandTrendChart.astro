@@ -3,14 +3,15 @@
 import brandTrend from '../data/brand-trend.json';
 
 const months = (brandTrend as any[]).map((r: any) => r.month);
-const comments = (brandTrend as any[]).map((r: any) => r.comments);
-const density = (brandTrend as any[]).map((r: any) => r.density);
+const avgComments = (brandTrend as any[]).map((r: any) => r.avg_comments_per_post ?? r.comments ?? 0);
+const nValues = (brandTrend as any[]).map((r: any) => r.n ?? r.videos ?? 0);
+const confidence = (brandTrend as any[]).map((r: any) => r.data_confidence ?? '');
 
 // Smart x-axis interval: if >10 months, show every N-th label
 const totalMonths = months.length;
 const xInterval = totalMonths > 10 ? Math.ceil(totalMonths / 10) - 1 : 0;
 
-const chartData = JSON.stringify({ months, comments, density, xInterval });
+const chartData = JSON.stringify({ months, avgComments, nValues, confidence, xInterval });
 ---
 <section class="section">
   <div class="section-header">
@@ -31,33 +32,41 @@ const chartData = JSON.stringify({ months, comments, density, xInterval });
         trigger: 'axis',
         axisPointer: { type: 'cross' },
         formatter: function(params) {
-          let result = params[0].axisValue + '<br/>';
+          var month = params[0].axisValue;
+          var result = month + '<br/>';
           params.forEach(function(p) {
-            result += p.marker + ' ' + p.seriesName + ': ' + p.value + '<br/>';
+            var idx = p.dataIndex;
+            if (p.seriesName === '\u8D34\u5747\u8BC4\u8BBA') {
+              var conf = data.confidence[idx];
+              var nVal = data.nValues[idx];
+              result += p.marker + ' \u8D34\u5747\u8BC4\u8BBA: ' + (p.value !== null ? p.value.toFixed(1) : '--') + ' (n=' + nVal + (conf ? ', ' + conf : '') + ')<br/>';
+            } else {
+              result += p.marker + ' ' + p.seriesName + ': ' + p.value + '<br/>';
+            }
           });
           return result;
         }
       },
       grid: { left: 56, right: 60, top: 24, bottom: 56 },
-      legend: { data: ['月度评论数', '评论密度'], bottom: 0 },
+      legend: { data: ['\u8D34\u5747\u8BC4\u8BBA', '\u6708\u5E16\u6570 (n)'], bottom: 0 },
       xAxis: {
         type: 'category',
         data: data.months,
         axisLabel: { rotate: 30, fontSize: 10, interval: data.xInterval }
       },
       yAxis: [
-        { type: 'value', name: '评论数', nameTextStyle: { fontSize: 10 } },
+        { type: 'value', name: '\u8D34\u5747\u8BC4\u8BBA', nameTextStyle: { fontSize: 10 } },
         {
-          type: 'value', name: '密度', nameTextStyle: { fontSize: 10 },
+          type: 'value', name: '\u5E16\u6570', nameTextStyle: { fontSize: 10 },
           splitLine: { show: false }
         }
       ],
       series: [
         {
-          name: '月度评论数',
+          name: '\u8D34\u5747\u8BC4\u8BBA',
           type: 'bar',
           yAxisIndex: 0,
-          data: data.comments,
+          data: data.avgComments,
           barMaxWidth: 28,
           itemStyle: {
             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
@@ -68,10 +77,10 @@ const chartData = JSON.stringify({ months, comments, density, xInterval });
           }
         },
         {
-          name: '评论密度',
+          name: '\u6708\u5E16\u6570 (n)',
           type: 'line',
           yAxisIndex: 1,
-          data: data.density,
+          data: data.nValues,
           smooth: true,
           symbol: 'circle',
           symbolSize: 5,
