@@ -86,7 +86,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 07-01-PLAN.md — Schema 完整性修复 + upsert 函数 + IP 分类验证
+- [x] 07-01-PLAN.md — Schema 完整性修复 + upsert 函数 + IP 分类验证
 
 #### Phase 8: 采集器增量化重建
 
@@ -99,8 +99,12 @@ Plans:
   3. 新运行开始时 checkpoint 重置为空，日志不出现"已永久完成，跳过整个关键词"
   4. tiktok_browser.py --keywords twinkle crybaby 正常采集并写入，ip 字段分类正确
   5. Instagram 目标覆盖 14 个 hashtag + @popmart 200 帖，配置文件已更新
-**Plans**: TBD
+**Plans**: 2 plans
 **UI hint**: no
+
+Plans:
+- [ ] 08-01-PLAN.md — TikTok scraper three-layer fix (checkpoint + upsert + comment refresh)
+- [ ] 08-02-PLAN.md — Instagram scraper three-layer fix + comment backfill
 
 #### Phase 9: 分析导出层重写（贴均指标）
 
@@ -154,8 +158,8 @@ v1.1: 7 → 8 → 9 → 10 → 11
 | 4. TikTok 时序采集 | v1.0 | 1/1 | Complete | 2026-03-30 |
 | 5. 分析报告 | v1.0 | 1/1 | Complete | 2026-03-30 |
 | 6. 定时任务 | v1.0 | 0/TBD | Deferred to v1.1 | - |
-| 7. Schema 基础修复 | v1.1 | 0/1 | Planned | - |
-| 8. 采集器增量化重建 | v1.1 | 0/TBD | Not started | - |
+| 7. Schema 基础修复 | v1.1 | 1/1 | Complete | 2026-04-02 |
+| 8. 采集器增量化重建 | v1.1 | 0/2 | Planned | - |
 | 9. 分析导出层重写 | v1.1 | 0/TBD | Not started | - |
 | 10. 网站图表全面重做 | v1.1 | 0/TBD | Not started | - |
 | 11. 全量重采 + 部署上线 | v1.1 | 0/TBD | Not started | - |
