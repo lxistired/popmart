@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
-from shared.db import init_db, batch_insert, get_latest_date
+from shared.db import init_db, batch_insert, get_latest_date, upsert_post_metadata
 from shared.log import get_logger
 from shared.rate import sleep_jitter
 from shared.checkpoint import load_checkpoint, save_checkpoint
@@ -380,75 +380,134 @@ def scrape_post_comments(page, shortcode, username, max_comments=500, logger=Non
 
 
 # ---------------------------------------------------------------------------
-# DB operations (reuse shared modules where possible)
+# Comment refresh logic
 # ---------------------------------------------------------------------------
-def upsert_posts(conn, post_rows):
-    """INSERT OR REPLACE posts to update NULL metadata."""
-    if not post_rows:
-        return
-    cols = ['shortcode', 'post_url', 'account', 'caption', 'likes',
-            'comments_count', 'post_date', 'source', 'scraped_at']
-    sql = f"INSERT OR REPLACE INTO instagram_posts ({','.join(cols)}) VALUES ({','.join(['?']*len(cols))})"
-    data = [[r[c] for c in cols] for r in post_rows]
-    conn.executemany(sql, data)
-    conn.commit()
+def _needs_comment_refresh(conn, shortcode):
+    """Check if post needs comment re-scraping.
+    Returns True for: new posts, never-scraped-comments posts, stale recent posts."""
+    row = conn.execute(
+        'SELECT last_comment_scraped_at, post_date FROM instagram_posts WHERE shortcode=?',
+        (shortcode,)
+    ).fetchone()
+    if not row:
+        return True  # new post
+    last_scraped, post_date = row
+    if last_scraped is None:
+        return True  # never scraped comments
+    # Re-scrape if post is recent (within 90 days) and last scrape > 7 days ago
+    try:
+        last_dt = datetime.fromisoformat(last_scraped)
+        if post_date:
+            post_dt = datetime.fromisoformat(post_date + 'T00:00:00+00:00') if len(post_date) == 10 else datetime.fromisoformat(post_date)
+            now = datetime.now(timezone.utc)
+            if (now - post_dt).days <= 90 and (now - last_dt).days > 7:
+                return True
+    except (ValueError, TypeError):
+        pass
+    return False
 
 
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 def _scrape_posts_batch(page, conn, post_codes, source_label, cfg, logger):
-    """Scrape comments for a list of shortcodes. Returns count of posts done."""
+    """Scrape comments for a list of shortcodes. Returns count of posts done.
+    Layer 2 fix: existing posts with NULL/stale last_comment_scraped_at get re-visited."""
     max_comments = cfg.get('max_comments_per_post', 500)
-    all_post_rows = []
-    all_comment_rows = []
+    comment_cols = ['shortcode', 'comment_id', 'comment_text', 'comment_date',
+                    'comment_datetime', 'likes', 'author_name', 'is_author_reply', 'scraped_at']
     posts_done = 0
 
     for i, shortcode in enumerate(post_codes):
-        # Skip if already in DB
+        # Check if already in DB
         existing = conn.execute(
             'SELECT 1 FROM instagram_posts WHERE shortcode=?', (shortcode,)
         ).fetchone()
-        if existing:
-            logger.info(f'  [{i+1}/{len(post_codes)}] {shortcode} already in DB, skip')
+
+        if existing and not _needs_comment_refresh(conn, shortcode):
+            logger.info(f'  [{i+1}/{len(post_codes)}] {shortcode} comments fresh, skip')
             continue
 
-        logger.info(f'  [{i+1}/{len(post_codes)}] Opening {shortcode}...')
+        label = 'NEW' if not existing else 'REFRESH'
+        logger.info(f'  [{i+1}/{len(post_codes)}] Opening {shortcode}... ({label})')
 
         try:
             post_info, comments = scrape_post_comments(
                 page, shortcode, source_label,
                 max_comments=max_comments, logger=logger
             )
-            all_post_rows.append(post_info)
-            all_comment_rows.extend(comments)
+            upsert_post_metadata(conn, post_info)
+            if comments:
+                batch_insert(conn, 'instagram_comments', comments, comment_cols)
+            # Update last_comment_scraped_at
+            conn.execute(
+                "UPDATE instagram_posts SET last_comment_scraped_at=? WHERE shortcode=?",
+                (datetime.now(timezone.utc).isoformat(), shortcode)
+            )
+            conn.commit()
             posts_done += 1
         except Exception as e:
             logger.warning(f'  {shortcode}: error: {e}')
             continue
 
-        # Save every 5 posts
-        if posts_done % 5 == 0 and all_post_rows:
-            upsert_posts(conn, all_post_rows)
-            if all_comment_rows:
-                cols = ['shortcode', 'comment_id', 'comment_text', 'comment_date',
-                        'comment_datetime', 'likes', 'author_name', 'is_author_reply', 'scraped_at']
-                batch_insert(conn, 'instagram_comments', all_comment_rows, cols)
-            logger.info(f'  Saved batch: {len(all_post_rows)} posts, {len(all_comment_rows)} comments')
-            all_post_rows = []
-            all_comment_rows = []
+        sleep_jitter(4.0)
+
+    return posts_done
+
+
+def backfill_comments(page, conn, cfg, logger=None):
+    """
+    Backfill comments for posts with last_comment_scraped_at IS NULL.
+    Targets historically zero-comment posts (SCRP-01: 60 posts).
+    Returns total comments saved.
+    """
+    posts_needing = conn.execute("""
+        SELECT shortcode, account
+        FROM instagram_posts
+        WHERE last_comment_scraped_at IS NULL
+        ORDER BY post_date DESC
+        LIMIT 50
+    """).fetchall()
+
+    if not posts_needing:
+        if logger:
+            logger.info('backfill: no posts need comments')
+        return 0
+
+    if logger:
+        logger.info(f'backfill: {len(posts_needing)} posts need comments')
+
+    max_comments = cfg.get('max_comments_per_post', 500)
+    comment_cols = ['shortcode', 'comment_id', 'comment_text', 'comment_date',
+                    'comment_datetime', 'likes', 'author_name', 'is_author_reply', 'scraped_at']
+    total_saved = 0
+
+    for i, (shortcode, account) in enumerate(posts_needing):
+        try:
+            post_info, comments = scrape_post_comments(
+                page, shortcode, account,
+                max_comments=max_comments, logger=logger
+            )
+            upsert_post_metadata(conn, post_info)
+            if comments:
+                batch_insert(conn, 'instagram_comments', comments, comment_cols)
+                total_saved += len(comments)
+            # Update last_comment_scraped_at
+            conn.execute(
+                "UPDATE instagram_posts SET last_comment_scraped_at=? WHERE shortcode=?",
+                (datetime.now(timezone.utc).isoformat(), shortcode)
+            )
+            conn.commit()
+            if logger:
+                logger.info(f'  backfill [{i+1}/{len(posts_needing)}] {shortcode}: {len(comments)} comments')
+        except Exception as e:
+            if logger:
+                logger.warning(f'  backfill {shortcode}: error: {e}')
+            continue
 
         sleep_jitter(4.0)
 
-    # Save remaining
-    if all_post_rows:
-        upsert_posts(conn, all_post_rows)
-    if all_comment_rows:
-        cols = ['shortcode', 'comment_id', 'comment_text', 'comment_date',
-                'comment_datetime', 'likes', 'author_name', 'is_author_reply', 'scraped_at']
-        batch_insert(conn, 'instagram_comments', all_comment_rows, cols)
-
-    return posts_done
+    return total_saved
 
 
 def main():
@@ -465,10 +524,11 @@ def main():
     run_accounts = '--accounts' in args or not any(a.startswith('--') for a in args)
     explicit_names = [a for a in args if not a.startswith('--')]
 
-    # Load checkpoint
+    # Load checkpoint (for crash recovery only)
     checkpoint = load_checkpoint('instagram_browser')
-    completed_tags = set(checkpoint.get('completed_tags', []))
-    completed_accounts = set(checkpoint.get('completed_accounts', []))
+    # Session-scoped: reset so all tags/accounts are re-scanned each run
+    completed_tags = set()
+    completed_accounts = set()
 
     # Init DB
     conn = init_db()
@@ -571,6 +631,11 @@ def main():
                 })
                 logger.info(f'@{username} complete: {done} posts scraped')
                 sleep_jitter(5.0)
+
+        # ===== Phase C: Backfill comments for posts with no comment data =====
+        logger.info('=== Backfilling comments for zero-comment posts ===')
+        backfilled = backfill_comments(page, conn, cfg, logger=logger)
+        logger.info(f'Backfill complete: {backfilled} comments saved')
 
     except KeyboardInterrupt:
         logger.info('Interrupted by user — saving progress')
