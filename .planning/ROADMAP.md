@@ -133,7 +133,10 @@ Plans:
   3. UGC 放大倍率图表可渲染，显示月度 UGC/官方平均播放比
   4. Comment Quality 图表已从页面移除，替换为数据覆盖率面板（平台覆盖率、日期范围、月帖数）
   5. 当任一平台最新数据超过 7 天时，Hero 区域显示数据过时警告徽章
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 10-01-PLAN.md — Update all chart components for new JSON format, create UGC/Coverage components, add freshness badge
 **UI hint**: yes
 
 #### Phase 11: 全量重采 + 部署上线
@@ -163,6 +166,6 @@ v1.1: 7 → 8 → 9 → 10 → 11
 | 6. 定时任务 | v1.0 | 0/TBD | Deferred to v1.1 | - |
 | 7. Schema 基础修复 | v1.1 | 1/1 | Complete | 2026-04-02 |
 | 8. 采集器增量化重建 | v1.1 | 2/2 | Complete | 2026-04-02 |
-| 9. 分析导出层重写 | v1.1 | 0/1 | Planned | - |
-| 10. 网站图表全面重做 | v1.1 | 0/TBD | Not started | - |
+| 9. 分析导出层重写 | v1.1 | 1/1 | Complete | 2026-04-02 |
+| 10. 网站图表全面重做 | v1.1 | 0/1 | Planned | - |
 | 11. 全量重采 + 部署上线 | v1.1 | 0/TBD | Not started | - |
