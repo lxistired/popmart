@@ -25,15 +25,15 @@ Requirements from v1.0 milestone — shipped and confirmed working.
 
 ### Analysis 分析口径重建 (ANAL)
 
-- [ ] **ANAL-01**: export_brand_trend 从 COUNT(评论行) 改为 AVG(元数据 comments_count) 按月分组
-- [ ] **ANAL-02**: export_tiktok_trend 改为按月统计贴均评论数（使用元数据）
-- [ ] **ANAL-03**: export_instagram_trend 同样改为按月贴均评论数
-- [ ] **ANAL-04**: export_ip_share 和 export_ip_share_trend 改为基于帖子数+元数据评论数
-- [ ] **ANAL-05**: export_cross_platform_index 改用元数据驱动的密度指数
-- [ ] **ANAL-06**: export_official_engagement 使用元数据 comments_count 按发布月分组
-- [ ] **ANAL-07**: 删除 export_comment_quality，替换为数据覆盖率摘要
-- [ ] **ANAL-08**: export_ip_share_trend 排除 Pop Mart 主品牌
-- [ ] **ANAL-09**: 新增 export_ugc_amplification — UGC vs 官方放大倍率趋势
+- [x] **ANAL-01**: export_brand_trend 从 COUNT(评论行) 改为 AVG(元数据 comments_count) 按月分组
+- [x] **ANAL-02**: export_tiktok_trend 改为按月统计贴均评论数（使用元数据）
+- [x] **ANAL-03**: export_instagram_trend 同样改为按月贴均评论数
+- [x] **ANAL-04**: export_ip_share 和 export_ip_share_trend 改为基于帖子数+元数据评论数
+- [x] **ANAL-05**: export_cross_platform_index 改用元数据驱动的密度指数
+- [x] **ANAL-06**: export_official_engagement 使用元数据 comments_count 按发布月分组
+- [x] **ANAL-07**: 删除 export_comment_quality，替换为数据覆盖率摘要
+- [x] **ANAL-08**: export_ip_share_trend 排除 Pop Mart 主品牌
+- [x] **ANAL-09**: 新增 export_ugc_amplification — UGC vs 官方放大倍率趋势
 
 ### Website 网站图表重做 (WEB)
 
@@ -83,15 +83,15 @@ Requirements from v1.0 milestone — shipped and confirmed working.
 | SCRP-01 | Phase 8 | Complete |
 | SCRP-02 | Phase 8 | Complete |
 | SCRP-03 | Phase 8 | Complete |
-| ANAL-01 | Phase 9 | Pending |
-| ANAL-02 | Phase 9 | Pending |
-| ANAL-03 | Phase 9 | Pending |
-| ANAL-04 | Phase 9 | Pending |
-| ANAL-05 | Phase 9 | Pending |
-| ANAL-06 | Phase 9 | Pending |
-| ANAL-07 | Phase 9 | Pending |
-| ANAL-08 | Phase 9 | Pending |
-| ANAL-09 | Phase 9 | Pending |
+| ANAL-01 | Phase 9 | Complete |
+| ANAL-02 | Phase 9 | Complete |
+| ANAL-03 | Phase 9 | Complete |
+| ANAL-04 | Phase 9 | Complete |
+| ANAL-05 | Phase 9 | Complete |
+| ANAL-06 | Phase 9 | Complete |
+| ANAL-07 | Phase 9 | Complete |
+| ANAL-08 | Phase 9 | Complete |
+| ANAL-09 | Phase 9 | Complete |
 | WEB-01 | Phase 10 | Pending |
 | WEB-02 | Phase 10 | Pending |
 | WEB-03 | Phase 10 | Pending |

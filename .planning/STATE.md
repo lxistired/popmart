@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: 数据管道重建 + 图表全面重做
 status: executing
-stopped_at: Completed 08-01-PLAN.md
-last_updated: "2026-04-02T05:57:39.979Z"
+stopped_at: Completed 09-01-PLAN.md
+last_updated: "2026-04-02T06:47:53.715Z"
 last_activity: 2026-04-02
 progress:
   total_phases: 5
-  completed_phases: 2
-  total_plans: 3
-  completed_plans: 3
+  completed_phases: 3
+  total_plans: 4
+  completed_plans: 4
   percent: 40
 ---
 
@@ -26,8 +26,8 @@ See: .planning/PROJECT.md (updated 2026-04-01)
 ## Current Position
 
 Phase: 8 of 11 (采集器增量化重建)
-Plan: 1 of 2 (08-01 complete)
-Status: In progress
+Plan: 2 of 2 (08-01 complete)
+Status: Ready to execute
 Last activity: 2026-04-02
 
 Progress: [####░░░░░░] 40%
@@ -49,6 +49,7 @@ Progress: [####░░░░░░] 40%
 *Updated after each plan completion*
 | Phase 08-scrapers P02 | 6min | 2 tasks | 2 files |
 | Phase 08-scrapers P01 | 8min | 2 tasks | 2 files |
+| Phase 09-export P01 | 11min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -72,6 +73,9 @@ Recent decisions affecting current work:
 - [Phase 08-scrapers]: _needs_comment_refresh: 90-day recency + 7-day staleness window for comment re-scraping
 - [Phase 08-scrapers]: Session-scoped checkpoint: completed=set() at run start for both TikTok and Instagram scrapers
 - [Phase 08-scrapers]: Upsert-all-discovered pattern: every video/post gets metadata refreshed, comment fetch is conditional on _needs_comment_refresh
+- [Phase 09-export]: All volume metrics use metadata comments_count, never COUNT of comment rows
+- [Phase 09-export]: Pop Mart brand excluded from all IP share calculations
+- [Phase 09-export]: export_comment_quality deleted, replaced by export_data_coverage
 
 ### Pending Todos
 
@@ -85,6 +89,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-02T05:57:39.973Z
-Stopped at: Completed 08-01-PLAN.md
+Last session: 2026-04-02T06:47:53.705Z
+Stopped at: Completed 09-01-PLAN.md
 Resume file: None

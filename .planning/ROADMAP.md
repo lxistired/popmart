@@ -120,7 +120,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 09-01-PLAN.md — TDD rewrite: tests RED then export functions GREEN
+- [x] 09-01-PLAN.md — TDD rewrite: tests RED then export functions GREEN
 
 #### Phase 10: 网站图表全面重做
 
