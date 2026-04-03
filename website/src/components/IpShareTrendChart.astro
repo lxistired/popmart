@@ -17,7 +17,7 @@ const IP_IMAGES: Record<string, string> = {
   Crybaby: '/popmart/characters/crybaby.png',
 };
 
-const allData = ipShareTrend as any[];
+const allData = (ipShareTrend as any[]).filter((r: any) => r.month >= '2024-01');
 const months = [...new Set(allData.map((r: any) => r.month))].sort() as string[];
 const ips = [...new Set(allData.map((r: any) => r.ip))] as string[];
 
@@ -56,6 +56,7 @@ const chartData = JSON.stringify({ months, series, xInterval });
     <h2>IP 份额趋势</h2>
     <span class="en">IP Share Trend</span>
   </div>
+  <p class="chart-subtitle">基于 TikTok 各 IP 话题标签下视频的月度评论互动量占比（仅展示 2024 年后数据，早期数据过于稀疏）</p>
   <div class="chart-container">
     <div id="ip-share-trend-chart" class="chart-area"></div>
     <div class="chart-legend">
@@ -119,6 +120,10 @@ const chartData = JSON.stringify({ months, series, xInterval });
 </script>
 
 <style>
+  .chart-subtitle {
+    font-size: 13px; color: var(--color-muted);
+    margin: -8px 0 16px 0;
+  }
   .chart-container {
     background: var(--color-card); border-radius: 20px;
     padding: 32px; box-shadow: var(--shadow);
@@ -145,5 +150,6 @@ const chartData = JSON.stringify({ months, series, xInterval });
     .chart-legend { gap: 12px; margin-top: 12px; }
     .legend-item { font-size: 11px; gap: 6px; }
     .legend-avatar { width: 28px; height: 28px; }
+    .chart-subtitle { font-size: 11px; margin: -4px 0 10px 0; }
   }
 </style>

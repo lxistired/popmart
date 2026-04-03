@@ -2,7 +2,7 @@
 // website/src/components/CrossPlatformChart.astro
 import crossPlatform from '../data/cross-platform-index.json';
 
-const allData = crossPlatform as any[];
+const allData = (crossPlatform as any[]).filter((r: any) => r.month >= '2024-01');
 const months = [...new Set(allData.map((r: any) => r.month))].sort() as string[];
 const platforms = ['TikTok', 'Instagram'];
 
@@ -36,6 +36,7 @@ const chartData = JSON.stringify({ months, series, xInterval });
     <h2>跨平台热度指数</h2>
     <span class="en">Cross-Platform Index</span>
   </div>
+  <p class="chart-subtitle">指数 = ln(1 + 月评论密度) × 100 / ln(1 + 基准密度)，其中评论密度 = 当月视频/帖子的元数据评论总数。基准线 100 = 各平台历史中位月度密度。指数越高表示该月社区互动越活跃。</p>
   <div class="chart-container">
     <div id="cross-platform-chart" class="chart-area"></div>
   </div>
@@ -89,6 +90,10 @@ const chartData = JSON.stringify({ months, series, xInterval });
 </script>
 
 <style>
+  .chart-subtitle {
+    font-size: 13px; color: var(--color-muted);
+    margin: -8px 0 16px 0;
+  }
   .chart-container {
     background: var(--color-card); border-radius: 20px;
     padding: 32px; box-shadow: var(--shadow);
@@ -97,5 +102,6 @@ const chartData = JSON.stringify({ months, series, xInterval });
   @media (max-width: 768px) {
     .chart-area { height: 260px; }
     .chart-container { padding: 16px; border-radius: 14px; }
+    .chart-subtitle { font-size: 11px; margin: -4px 0 10px 0; }
   }
 </style>

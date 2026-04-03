@@ -18,6 +18,7 @@ const chartData = JSON.stringify({ months, avgComments, nValues, confidence, xIn
     <h2>品牌热度趋势</h2>
     <span class="en">Brand Buzz Trend</span>
   </div>
+  <p class="chart-subtitle">贴均评论 = 当月所有 Pop Mart 相关 TikTok 视频的元数据评论数均值。n 为当月视频样本量，悬停可查看数据置信度。样本量越大，指标越稳定。</p>
   <div class="chart-container">
     <div id="brand-trend-chart" class="chart-area"></div>
   </div>
@@ -94,6 +95,10 @@ const chartData = JSON.stringify({ months, avgComments, nValues, confidence, xIn
 </script>
 
 <style>
+  .chart-subtitle {
+    font-size: 13px; color: var(--color-muted);
+    margin: -8px 0 16px 0;
+  }
   .chart-container {
     background: var(--color-card); border-radius: 20px;
     padding: 32px; box-shadow: var(--shadow);
@@ -102,5 +107,6 @@ const chartData = JSON.stringify({ months, avgComments, nValues, confidence, xIn
   @media (max-width: 768px) {
     .chart-area { height: 260px; }
     .chart-container { padding: 16px; border-radius: 14px; }
+    .chart-subtitle { font-size: 11px; margin: -4px 0 10px 0; }
   }
 </style>
