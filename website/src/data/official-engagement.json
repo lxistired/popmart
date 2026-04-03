@@ -3,40 +3,57 @@
     {
       "month": "2025-05",
       "posts": 1,
-      "total_comments": 19,
-      "avg_comments": 19.0
+      "avg_comments": 1075.0,
+      "avg_views": 1600000.0,
+      "avg_likes": 123000.0
     },
     {
       "month": "2025-08",
       "posts": 1,
-      "total_comments": 33,
-      "avg_comments": 33.0
+      "avg_comments": 122.0,
+      "avg_views": 290000.0,
+      "avg_likes": 11000.0
     },
     {
       "month": "2025-10",
       "posts": 1,
-      "total_comments": 19,
-      "avg_comments": 19.0
+      "avg_comments": 110.0,
+      "avg_views": 198800.0,
+      "avg_likes": 11700.0
     },
     {
       "month": "2026-02",
       "posts": 6,
-      "total_comments": 56,
-      "avg_comments": 9.3
+      "avg_comments": 11.2,
+      "avg_views": 34616.7,
+      "avg_likes": 1470.3
     },
     {
       "month": "2026-03",
       "posts": 26,
-      "total_comments": 237,
-      "avg_comments": 9.1
+      "avg_comments": 45.9,
+      "avg_views": 49802.2,
+      "avg_likes": 4688.1
     }
   ],
   "instagram": [
     {
+      "month": "2026-02",
+      "posts": 16,
+      "avg_comments": 13.2,
+      "avg_likes": 0.0
+    },
+    {
       "month": "2026-03",
-      "posts": 44,
-      "total_comments": 2171,
-      "avg_comments": 49.3
+      "posts": 46,
+      "avg_comments": 12.5,
+      "avg_likes": 0.0
+    },
+    {
+      "month": "2026-04",
+      "posts": 3,
+      "avg_comments": 12.3,
+      "avg_likes": 0.0
     }
   ]
 }

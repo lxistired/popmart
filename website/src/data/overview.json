@@ -1,7 +1,17 @@
 {
-  "tiktok_videos": 373,
-  "tiktok_comments": 14099,
-  "instagram_posts": 279,
-  "instagram_comments": 4677,
-  "updated_at": "2026-04-02T02:22:34Z"
+  "tiktok_videos": 539,
+  "tiktok_comments": 27514,
+  "instagram_posts": 670,
+  "instagram_comments": 18005,
+  "data_freshness": {
+    "tiktok": "2026-04-02T12:21:31.999940+00:00",
+    "instagram": "2026-04-03T10:53:53.137970+00:00"
+  },
+  "coverage": {
+    "tiktok_videos": 539,
+    "tiktok_comments": 27514,
+    "instagram_posts": 670,
+    "instagram_comments": 18005
+  },
+  "updated_at": "2026-04-03T11:38:53Z"
 }

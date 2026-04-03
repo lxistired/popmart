@@ -136,7 +136,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 10-01-PLAN.md — Update all chart components for new JSON format, create UGC/Coverage components, add freshness badge
+- [x] 10-01-PLAN.md — Update all chart components for new JSON format, create UGC/Coverage components, add freshness badge
 **UI hint**: yes
 
 #### Phase 11: 全量重采 + 部署上线
@@ -148,7 +148,11 @@ Plans:
   1. tiktok_videos 和 instagram_posts 中 last_comment_scraped_at IS NOT NULL 的行占比超过 90%
   2. GitHub Pages 部署后，网站品牌趋势图显示的贴均评论数与本地 export_json.py 输出一致
   3. Windows Task Scheduler 任务历史显示至少一次自动运行成功，日志文件时间戳正确
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 11-01-PLAN.md — Full rescrape (TikTok + Instagram) + export JSON + deploy to GitHub Pages
+- [ ] 11-02-PLAN.md — Daily automation: standalone batch script + Windows Task Scheduler
 
 ## Progress
 
@@ -167,5 +171,5 @@ v1.1: 7 → 8 → 9 → 10 → 11
 | 7. Schema 基础修复 | v1.1 | 1/1 | Complete | 2026-04-02 |
 | 8. 采集器增量化重建 | v1.1 | 2/2 | Complete | 2026-04-02 |
 | 9. 分析导出层重写 | v1.1 | 1/1 | Complete | 2026-04-02 |
-| 10. 网站图表全面重做 | v1.1 | 0/1 | Planned | - |
-| 11. 全量重采 + 部署上线 | v1.1 | 0/TBD | Not started | - |
+| 10. 网站图表全面重做 | v1.1 | 1/1 | Complete | 2026-04-02 |
+| 11. 全量重采 + 部署上线 | v1.1 | 0/2 | Not started | - |

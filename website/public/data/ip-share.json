@@ -1,74 +1,65 @@
 [
   {
-    "ip": "Pop Mart",
-    "tiktok_videos": 67,
-    "tiktok_comments": 3562,
-    "instagram_posts": 124,
-    "instagram_comments": 2765,
-    "total_comments": 6327,
-    "share_pct": 33.7
-  },
-  {
     "ip": "Labubu",
-    "tiktok_videos": 131,
-    "tiktok_comments": 4016,
-    "instagram_posts": 129,
-    "instagram_comments": 1757,
-    "total_comments": 5773,
-    "share_pct": 30.7
+    "tiktok_posts": 219,
+    "tiktok_comments_meta": 557921,
+    "instagram_posts": 159,
+    "instagram_comments_meta": 5573,
+    "total_engagement": 563494,
+    "share_pct": 91.2
   },
   {
     "ip": "Skullpanda",
-    "tiktok_videos": 61,
-    "tiktok_comments": 4154,
-    "instagram_posts": 5,
-    "instagram_comments": 0,
-    "total_comments": 4154,
-    "share_pct": 22.1
-  },
-  {
-    "ip": "Dimoo",
-    "tiktok_videos": 54,
-    "tiktok_comments": 1689,
-    "instagram_posts": 6,
-    "instagram_comments": 52,
-    "total_comments": 1741,
-    "share_pct": 9.3
+    "tiktok_posts": 65,
+    "tiktok_comments_meta": 26359,
+    "instagram_posts": 61,
+    "instagram_comments_meta": 1311,
+    "total_engagement": 27670,
+    "share_pct": 4.5
   },
   {
     "ip": "Molly",
-    "tiktok_videos": 54,
-    "tiktok_comments": 615,
+    "tiktok_posts": 84,
+    "tiktok_comments_meta": 9517,
     "instagram_posts": 13,
-    "instagram_comments": 103,
-    "total_comments": 718,
-    "share_pct": 3.8
+    "instagram_comments_meta": 153,
+    "total_engagement": 9670,
+    "share_pct": 1.6
+  },
+  {
+    "ip": "Dimoo",
+    "tiktok_posts": 57,
+    "tiktok_comments_meta": 5358,
+    "instagram_posts": 56,
+    "instagram_comments_meta": 919,
+    "total_engagement": 6277,
+    "share_pct": 1.0
   },
   {
     "ip": "Crybaby",
-    "tiktok_videos": 2,
-    "tiktok_comments": 34,
-    "instagram_posts": 1,
-    "instagram_comments": 0,
-    "total_comments": 34,
-    "share_pct": 0.2
+    "tiktok_posts": 3,
+    "tiktok_comments_meta": 4016,
+    "instagram_posts": 79,
+    "instagram_comments_meta": 2096,
+    "total_engagement": 6112,
+    "share_pct": 1.0
   },
   {
     "ip": "Twinkle",
-    "tiktok_videos": 2,
-    "tiktok_comments": 23,
-    "instagram_posts": 1,
-    "instagram_comments": 0,
-    "total_comments": 23,
-    "share_pct": 0.1
+    "tiktok_posts": 23,
+    "tiktok_comments_meta": 2998,
+    "instagram_posts": 95,
+    "instagram_comments_meta": 1325,
+    "total_engagement": 4323,
+    "share_pct": 0.7
   },
   {
     "ip": "Zsiga",
-    "tiktok_videos": 2,
-    "tiktok_comments": 6,
+    "tiktok_posts": 2,
+    "tiktok_comments_meta": 10,
     "instagram_posts": 0,
-    "instagram_comments": 0,
-    "total_comments": 6,
+    "instagram_comments_meta": 0,
+    "total_engagement": 10,
     "share_pct": 0.0
   }
 ]
