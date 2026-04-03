@@ -30,19 +30,15 @@ const ipsByShare = ips.sort((a, b) => {
 
 const series = ipsByShare.map(ip => ({
   name: ip,
-  type: 'line',
+  type: 'bar',
   stack: 'total',
-  areaStyle: { opacity: 0.75 },
   emphasis: { focus: 'series' },
-  smooth: true,
-  symbol: 'none',
+  barMaxWidth: 40,
   data: months.map(m => {
     const row = allData.find((r: any) => r.month === m && r.ip === ip);
     return row ? row.share_pct : 0;
   }),
   itemStyle: { color: IP_COLORS[ip] || '#999' },
-  lineStyle: { color: IP_COLORS[ip] || '#999' },
-  areaStyleColor: IP_COLORS[ip] || '#999',
 }));
 
 const totalMonths = months.length;
@@ -79,20 +75,13 @@ const chartData = JSON.stringify({ months, series, xInterval });
     const data = JSON.parse(chartData);
     const chart = echarts.init(document.getElementById('ip-share-trend-chart'));
 
-    // Attach color back to series areaStyle
-    const seriesOpt = data.series.map(function(s) {
-      return Object.assign({}, s, {
-        areaStyle: { opacity: 0.75, color: s.itemStyle.color }
-      });
-    });
-
     chart.setOption({
       tooltip: {
         trigger: 'axis',
         formatter: function(params) {
           let result = params[0].axisValue + '<br/>';
           params.forEach(function(p) {
-            if (p.value !== null && p.value !== undefined) {
+            if (p.value > 0) {
               result += p.marker + ' ' + p.seriesName + ': ' + p.value.toFixed(1) + '%<br/>';
             }
           });
@@ -103,8 +92,7 @@ const chartData = JSON.stringify({ months, series, xInterval });
       xAxis: {
         type: 'category',
         data: data.months,
-        axisLabel: { rotate: 30, fontSize: 10, interval: data.xInterval },
-        boundaryGap: false
+        axisLabel: { rotate: 30, fontSize: 10, interval: data.xInterval }
       },
       yAxis: {
         type: 'value',
@@ -112,7 +100,7 @@ const chartData = JSON.stringify({ months, series, xInterval });
         max: 100,
         axisLabel: { formatter: '{value}%' }
       },
-      series: seriesOpt
+      series: data.series
     });
     window.addEventListener('resize', () => chart.resize());
   });
