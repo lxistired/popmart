@@ -1,709 +1,1164 @@
 [
   {
+    "month": "2020-07",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 18.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2020-08",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 1.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2020-12",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 1.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2021-01",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 19.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2021-04",
+    "ip": "Twinkle",
+    "avg_comments_per_post": 20.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-02",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 1.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-02",
+    "ip": "Labubu",
+    "avg_comments_per_post": 3.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-02",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 6.0,
+    "n": 2,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-03",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 1.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-03",
+    "ip": "Labubu",
+    "avg_comments_per_post": 1.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-03",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 2.0,
+    "n": 2,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-04",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 1.0,
+    "n": 2,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-05",
+    "ip": "Labubu",
+    "avg_comments_per_post": 1.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-08",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 17.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-09",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 19.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-09",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 2.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-10",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 7.5,
+    "n": 2,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-11",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 3.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-11",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 12.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-12",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 2.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2023-12",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 3.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
     "month": "2024-01",
     "ip": "Pop Mart",
-    "avg_comments_per_post": 434.5,
-    "n": 2,
+    "avg_comments_per_post": 11.0,
+    "n": 1,
     "data_confidence": "low"
   },
   {
     "month": "2024-01",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 1363.0,
+    "avg_comments_per_post": 18.0,
     "n": 1,
     "data_confidence": "low"
   },
   {
     "month": "2024-02",
     "ip": "Molly",
-    "avg_comments_per_post": 201.0,
+    "avg_comments_per_post": 2.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-02",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 4.0,
     "n": 1,
     "data_confidence": "low"
   },
   {
     "month": "2024-02",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 2292.0,
-    "n": 1,
+    "avg_comments_per_post": 14.5,
+    "n": 2,
     "data_confidence": "low"
   },
   {
     "month": "2024-03",
     "ip": "Molly",
-    "avg_comments_per_post": 160.0,
+    "avg_comments_per_post": 2.0,
+    "n": 2,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-03",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 1.0,
     "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-03",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 3.0,
+    "n": 2,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-04",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 5.0,
+    "n": 2,
     "data_confidence": "low"
   },
   {
     "month": "2024-05",
     "ip": "Labubu",
-    "avg_comments_per_post": 28.0,
+    "avg_comments_per_post": 13.0,
     "n": 1,
     "data_confidence": "low"
   },
   {
     "month": "2024-05",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 147.0,
-    "n": 1,
+    "avg_comments_per_post": 3.0,
+    "n": 2,
     "data_confidence": "low"
   },
   {
     "month": "2024-06",
     "ip": "Dimoo",
-    "avg_comments_per_post": 376.7,
+    "avg_comments_per_post": 21.2,
+    "n": 5,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2024-06",
+    "ip": "Molly",
+    "avg_comments_per_post": 5.0,
+    "n": 2,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-06",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 8.3,
     "n": 3,
     "data_confidence": "low"
   },
   {
-    "month": "2024-06",
-    "ip": "Labubu",
-    "avg_comments_per_post": 1650.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
     "month": "2024-07",
     "ip": "Dimoo",
-    "avg_comments_per_post": 248.0,
-    "n": 1,
-    "data_confidence": "low"
+    "avg_comments_per_post": 3.7,
+    "n": 7,
+    "data_confidence": "medium"
   },
   {
     "month": "2024-07",
     "ip": "Labubu",
-    "avg_comments_per_post": 124.0,
+    "avg_comments_per_post": 19.0,
     "n": 1,
     "data_confidence": "low"
   },
   {
     "month": "2024-07",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 92.0,
+    "avg_comments_per_post": 4.2,
+    "n": 5,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2024-08",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 2.7,
+    "n": 3,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-08",
+    "ip": "Labubu",
+    "avg_comments_per_post": 3.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-08",
+    "ip": "Molly",
+    "avg_comments_per_post": 2.0,
     "n": 1,
     "data_confidence": "low"
   },
   {
     "month": "2024-08",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 183.0,
-    "n": 1,
+    "avg_comments_per_post": 3.0,
+    "n": 3,
     "data_confidence": "low"
   },
   {
     "month": "2024-09",
     "ip": "Dimoo",
-    "avg_comments_per_post": 392.0,
+    "avg_comments_per_post": 8.4,
+    "n": 5,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2024-09",
+    "ip": "Labubu",
+    "avg_comments_per_post": 2.3,
+    "n": 3,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-09",
+    "ip": "Molly",
+    "avg_comments_per_post": 1.7,
+    "n": 3,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-09",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 1.0,
     "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-09",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 4.2,
+    "n": 4,
     "data_confidence": "low"
   },
   {
     "month": "2024-10",
     "ip": "Dimoo",
-    "avg_comments_per_post": 129.5,
-    "n": 2,
+    "avg_comments_per_post": 10.5,
+    "n": 4,
     "data_confidence": "low"
   },
   {
     "month": "2024-10",
     "ip": "Labubu",
-    "avg_comments_per_post": 190.7,
-    "n": 3,
+    "avg_comments_per_post": 2.6,
+    "n": 5,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2024-10",
+    "ip": "Molly",
+    "avg_comments_per_post": 3.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-10",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 1.0,
+    "n": 1,
     "data_confidence": "low"
   },
   {
     "month": "2024-10",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 239.0,
-    "n": 1,
-    "data_confidence": "low"
+    "avg_comments_per_post": 10.2,
+    "n": 6,
+    "data_confidence": "medium"
   },
   {
     "month": "2024-10",
     "ip": "Twinkle",
-    "avg_comments_per_post": 316.0,
+    "avg_comments_per_post": 18.0,
     "n": 1,
     "data_confidence": "low"
   },
   {
     "month": "2024-11",
     "ip": "Dimoo",
-    "avg_comments_per_post": 46.5,
-    "n": 2,
-    "data_confidence": "low"
+    "avg_comments_per_post": 15.4,
+    "n": 5,
+    "data_confidence": "medium"
   },
   {
     "month": "2024-11",
     "ip": "Labubu",
-    "avg_comments_per_post": 1275.7,
+    "avg_comments_per_post": 7.0,
+    "n": 4,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-11",
+    "ip": "Molly",
+    "avg_comments_per_post": 1.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-11",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 1.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-11",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 3.5,
+    "n": 4,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-12",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 3.8,
+    "n": 5,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2024-12",
+    "ip": "Labubu",
+    "avg_comments_per_post": 3.4,
+    "n": 5,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2024-12",
+    "ip": "Molly",
+    "avg_comments_per_post": 1.7,
     "n": 3,
     "data_confidence": "low"
   },
   {
     "month": "2024-12",
-    "ip": "Dimoo",
-    "avg_comments_per_post": 286.0,
-    "n": 2,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2024-12",
-    "ip": "Molly",
-    "avg_comments_per_post": 35.5,
-    "n": 2,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2024-12",
     "ip": "Pop Mart",
-    "avg_comments_per_post": 137.0,
+    "avg_comments_per_post": 16.7,
+    "n": 3,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-12",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 12.2,
+    "n": 6,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2024-12",
+    "ip": "Twinkle",
+    "avg_comments_per_post": 3.0,
     "n": 1,
     "data_confidence": "low"
   },
   {
     "month": "2025-01",
-    "ip": "Labubu",
-    "avg_comments_per_post": 649.0,
-    "n": 2,
-    "data_confidence": "low"
+    "ip": "Dimoo",
+    "avg_comments_per_post": 5.4,
+    "n": 8,
+    "data_confidence": "medium"
   },
   {
     "month": "2025-01",
-    "ip": "Molly",
-    "avg_comments_per_post": 207.5,
+    "ip": "Labubu",
+    "avg_comments_per_post": 7.2,
     "n": 4,
     "data_confidence": "low"
   },
   {
     "month": "2025-01",
+    "ip": "Molly",
+    "avg_comments_per_post": 9.0,
+    "n": 5,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-01",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 17.0,
+    "n": 2,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-01",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 7.2,
+    "n": 5,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-01",
     "ip": "Twinkle",
-    "avg_comments_per_post": 413.0,
-    "n": 1,
+    "avg_comments_per_post": 9.7,
+    "n": 3,
     "data_confidence": "low"
   },
   {
     "month": "2025-02",
     "ip": "Crybaby",
-    "avg_comments_per_post": 3967.0,
+    "avg_comments_per_post": 16.0,
     "n": 1,
     "data_confidence": "low"
   },
   {
     "month": "2025-02",
-    "ip": "Labubu",
-    "avg_comments_per_post": 563.7,
-    "n": 3,
-    "data_confidence": "low"
+    "ip": "Dimoo",
+    "avg_comments_per_post": 3.2,
+    "n": 5,
+    "data_confidence": "medium"
   },
   {
     "month": "2025-02",
-    "ip": "Molly",
-    "avg_comments_per_post": 40.0,
-    "n": 2,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-02",
-    "ip": "Pop Mart",
-    "avg_comments_per_post": 103.0,
-    "n": 2,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-03",
-    "ip": "Dimoo",
-    "avg_comments_per_post": 0.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-03",
     "ip": "Labubu",
-    "avg_comments_per_post": 945.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-03",
-    "ip": "Molly",
-    "avg_comments_per_post": 21.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-04",
-    "ip": "Dimoo",
-    "avg_comments_per_post": 448.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-04",
-    "ip": "Labubu",
-    "avg_comments_per_post": 846.7,
-    "n": 9,
-    "data_confidence": "medium"
-  },
-  {
-    "month": "2025-04",
-    "ip": "Pop Mart",
-    "avg_comments_per_post": 14578.0,
-    "n": 2,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-04",
-    "ip": "Skullpanda",
-    "avg_comments_per_post": 156.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-05",
-    "ip": "Dimoo",
-    "avg_comments_per_post": 337.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-05",
-    "ip": "Labubu",
-    "avg_comments_per_post": 5441.0,
-    "n": 11,
-    "data_confidence": "high"
-  },
-  {
-    "month": "2025-05",
-    "ip": "Molly",
-    "avg_comments_per_post": 1120.3,
-    "n": 3,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-05",
-    "ip": "Pop Mart",
-    "avg_comments_per_post": 6124.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-05",
-    "ip": "Skullpanda",
-    "avg_comments_per_post": 674.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-05",
-    "ip": "Twinkle",
-    "avg_comments_per_post": 24.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-06",
-    "ip": "Dimoo",
-    "avg_comments_per_post": 71.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-06",
-    "ip": "Labubu",
-    "avg_comments_per_post": 5420.8,
-    "n": 34,
-    "data_confidence": "high"
-  },
-  {
-    "month": "2025-06",
-    "ip": "Molly",
-    "avg_comments_per_post": 855.5,
-    "n": 2,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-06",
-    "ip": "Pop Mart",
-    "avg_comments_per_post": 81.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-06",
-    "ip": "Skullpanda",
-    "avg_comments_per_post": 133.3,
-    "n": 3,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-06",
-    "ip": "Twinkle",
-    "avg_comments_per_post": 307.0,
-    "n": 2,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-07",
-    "ip": "Dimoo",
-    "avg_comments_per_post": 176.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-07",
-    "ip": "Labubu",
-    "avg_comments_per_post": 1402.3,
-    "n": 33,
-    "data_confidence": "high"
-  },
-  {
-    "month": "2025-07",
-    "ip": "Skullpanda",
-    "avg_comments_per_post": 981.0,
-    "n": 3,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-07",
-    "ip": "Twinkle",
-    "avg_comments_per_post": 60.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-08",
-    "ip": "Dimoo",
-    "avg_comments_per_post": 40.7,
-    "n": 3,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-08",
-    "ip": "Labubu",
-    "avg_comments_per_post": 1079.7,
-    "n": 41,
-    "data_confidence": "high"
-  },
-  {
-    "month": "2025-08",
-    "ip": "Skullpanda",
-    "avg_comments_per_post": 459.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-08",
-    "ip": "Twinkle",
-    "avg_comments_per_post": 141.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-09",
-    "ip": "Dimoo",
-    "avg_comments_per_post": 38.7,
-    "n": 3,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-09",
-    "ip": "Labubu",
-    "avg_comments_per_post": 2709.4,
-    "n": 12,
-    "data_confidence": "high"
-  },
-  {
-    "month": "2025-09",
-    "ip": "Molly",
-    "avg_comments_per_post": 60.0,
-    "n": 2,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-09",
-    "ip": "Skullpanda",
-    "avg_comments_per_post": 200.0,
-    "n": 7,
-    "data_confidence": "medium"
-  },
-  {
-    "month": "2025-10",
-    "ip": "Dimoo",
-    "avg_comments_per_post": 64.5,
-    "n": 4,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-10",
-    "ip": "Labubu",
-    "avg_comments_per_post": 14849.6,
-    "n": 9,
-    "data_confidence": "medium"
-  },
-  {
-    "month": "2025-10",
-    "ip": "Skullpanda",
-    "avg_comments_per_post": 791.8,
-    "n": 4,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-10",
-    "ip": "Twinkle",
-    "avg_comments_per_post": 43.5,
-    "n": 2,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-11",
-    "ip": "Dimoo",
-    "avg_comments_per_post": 21.0,
-    "n": 3,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-11",
-    "ip": "Labubu",
-    "avg_comments_per_post": 6281.9,
-    "n": 7,
-    "data_confidence": "medium"
-  },
-  {
-    "month": "2025-11",
-    "ip": "Pop Mart",
-    "avg_comments_per_post": 1937.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-11",
-    "ip": "Skullpanda",
-    "avg_comments_per_post": 213.7,
-    "n": 3,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-11",
-    "ip": "Twinkle",
-    "avg_comments_per_post": 259.0,
-    "n": 2,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-12",
-    "ip": "Dimoo",
-    "avg_comments_per_post": 26.0,
-    "n": 4,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2025-12",
-    "ip": "Labubu",
-    "avg_comments_per_post": 813.1,
-    "n": 11,
-    "data_confidence": "high"
-  },
-  {
-    "month": "2025-12",
-    "ip": "Molly",
-    "avg_comments_per_post": 162.6,
+    "avg_comments_per_post": 5.6,
     "n": 10,
     "data_confidence": "high"
   },
   {
-    "month": "2025-12",
-    "ip": "Pop Mart",
-    "avg_comments_per_post": 237.3,
-    "n": 9,
+    "month": "2025-02",
+    "ip": "Molly",
+    "avg_comments_per_post": 3.8,
+    "n": 5,
     "data_confidence": "medium"
   },
   {
-    "month": "2025-12",
+    "month": "2025-02",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 5.0,
+    "n": 5,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-02",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 142.7,
-    "n": 3,
+    "avg_comments_per_post": 5.2,
+    "n": 4,
     "data_confidence": "low"
   },
   {
-    "month": "2025-12",
+    "month": "2025-02",
     "ip": "Twinkle",
+    "avg_comments_per_post": 1.0,
+    "n": 2,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-03",
+    "ip": "Crybaby",
     "avg_comments_per_post": 4.0,
     "n": 1,
     "data_confidence": "low"
   },
   {
-    "month": "2026-01",
+    "month": "2025-03",
     "ip": "Dimoo",
-    "avg_comments_per_post": 41.3,
+    "avg_comments_per_post": 3.2,
+    "n": 11,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-03",
+    "ip": "Labubu",
+    "avg_comments_per_post": 5.9,
+    "n": 9,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-03",
+    "ip": "Molly",
+    "avg_comments_per_post": 1.8,
+    "n": 6,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-03",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 10.0,
+    "n": 5,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-03",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 2.3,
     "n": 3,
     "data_confidence": "low"
   },
   {
-    "month": "2026-01",
-    "ip": "Labubu",
-    "avg_comments_per_post": 72.0,
-    "n": 4,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2026-01",
-    "ip": "Molly",
-    "avg_comments_per_post": 116.2,
-    "n": 4,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2026-01",
-    "ip": "Pop Mart",
-    "avg_comments_per_post": 170.8,
-    "n": 4,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2026-01",
-    "ip": "Skullpanda",
-    "avg_comments_per_post": 776.6,
-    "n": 5,
-    "data_confidence": "medium"
-  },
-  {
-    "month": "2026-01",
+    "month": "2025-03",
     "ip": "Twinkle",
-    "avg_comments_per_post": 38.5,
-    "n": 4,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2026-02",
-    "ip": "Crybaby",
-    "avg_comments_per_post": 28.0,
-    "n": 1,
-    "data_confidence": "low"
-  },
-  {
-    "month": "2026-02",
-    "ip": "Dimoo",
-    "avg_comments_per_post": 123.0,
+    "avg_comments_per_post": 1.0,
     "n": 2,
     "data_confidence": "low"
   },
   {
-    "month": "2026-02",
-    "ip": "Labubu",
-    "avg_comments_per_post": 191.0,
-    "n": 4,
-    "data_confidence": "low"
+    "month": "2025-04",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 10.0,
+    "n": 7,
+    "data_confidence": "medium"
   },
   {
-    "month": "2026-02",
-    "ip": "Molly",
-    "avg_comments_per_post": 39.3,
-    "n": 11,
+    "month": "2025-04",
+    "ip": "Labubu",
+    "avg_comments_per_post": 7.4,
+    "n": 18,
     "data_confidence": "high"
   },
   {
-    "month": "2026-02",
+    "month": "2025-04",
+    "ip": "Molly",
+    "avg_comments_per_post": 2.3,
+    "n": 6,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-04",
     "ip": "Pop Mart",
-    "avg_comments_per_post": 185.1,
+    "avg_comments_per_post": 9.4,
+    "n": 5,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-04",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 2.7,
+    "n": 3,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-04",
+    "ip": "Twinkle",
+    "avg_comments_per_post": 1.0,
+    "n": 2,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-05",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 10.0,
     "n": 8,
     "data_confidence": "medium"
   },
   {
-    "month": "2026-02",
+    "month": "2025-05",
+    "ip": "Labubu",
+    "avg_comments_per_post": 10.5,
+    "n": 29,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-05",
+    "ip": "Molly",
+    "avg_comments_per_post": 9.2,
+    "n": 8,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-05",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 8.3,
+    "n": 3,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-05",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 502.3,
+    "avg_comments_per_post": 3.5,
+    "n": 2,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-05",
+    "ip": "Twinkle",
+    "avg_comments_per_post": 7.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-06",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 15.3,
+    "n": 10,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-06",
+    "ip": "Labubu",
+    "avg_comments_per_post": 8.8,
+    "n": 64,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-06",
+    "ip": "Molly",
+    "avg_comments_per_post": 6.3,
+    "n": 6,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-06",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 7.0,
+    "n": 3,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-06",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 7.8,
+    "n": 8,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-06",
+    "ip": "Twinkle",
+    "avg_comments_per_post": 10.0,
+    "n": 4,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-07",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 4.2,
     "n": 14,
     "data_confidence": "high"
   },
   {
-    "month": "2026-02",
+    "month": "2025-07",
+    "ip": "Labubu",
+    "avg_comments_per_post": 9.3,
+    "n": 72,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-07",
+    "ip": "Molly",
+    "avg_comments_per_post": 4.2,
+    "n": 4,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-07",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 6.0,
+    "n": 3,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-07",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 8.4,
+    "n": 11,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-07",
     "ip": "Twinkle",
-    "avg_comments_per_post": 129.2,
+    "avg_comments_per_post": 5.2,
+    "n": 4,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-08",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 13.0,
+    "n": 10,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-08",
+    "ip": "Labubu",
+    "avg_comments_per_post": 7.1,
+    "n": 87,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-08",
+    "ip": "Molly",
+    "avg_comments_per_post": 2.8,
+    "n": 6,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-08",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 16.0,
+    "n": 3,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-08",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 3.8,
+    "n": 12,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-08",
+    "ip": "Twinkle",
+    "avg_comments_per_post": 4.2,
+    "n": 4,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-09",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 4.8,
+    "n": 13,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-09",
+    "ip": "Labubu",
+    "avg_comments_per_post": 4.5,
+    "n": 59,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-09",
+    "ip": "Molly",
+    "avg_comments_per_post": 3.3,
+    "n": 7,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-09",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 7.2,
+    "n": 4,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-09",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 6.9,
+    "n": 17,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-09",
+    "ip": "Twinkle",
+    "avg_comments_per_post": 6.8,
     "n": 5,
     "data_confidence": "medium"
   },
   {
+    "month": "2025-10",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 9.6,
+    "n": 11,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-10",
+    "ip": "Labubu",
+    "avg_comments_per_post": 4.4,
+    "n": 59,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-10",
+    "ip": "Molly",
+    "avg_comments_per_post": 2.2,
+    "n": 4,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-10",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 2.2,
+    "n": 5,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-10",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 7.6,
+    "n": 19,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-10",
+    "ip": "Twinkle",
+    "avg_comments_per_post": 20.6,
+    "n": 5,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-11",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 4.0,
+    "n": 17,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-11",
+    "ip": "Labubu",
+    "avg_comments_per_post": 3.7,
+    "n": 49,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-11",
+    "ip": "Molly",
+    "avg_comments_per_post": 2.3,
+    "n": 6,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-11",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 11.0,
+    "n": 3,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2025-11",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 9.4,
+    "n": 21,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-11",
+    "ip": "Twinkle",
+    "avg_comments_per_post": 13.8,
+    "n": 9,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2025-12",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 4.1,
+    "n": 15,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-12",
+    "ip": "Labubu",
+    "avg_comments_per_post": 4.1,
+    "n": 50,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-12",
+    "ip": "Molly",
+    "avg_comments_per_post": 10.7,
+    "n": 14,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-12",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 19.6,
+    "n": 15,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-12",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 6.1,
+    "n": 20,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2025-12",
+    "ip": "Twinkle",
+    "avg_comments_per_post": 5.4,
+    "n": 7,
+    "data_confidence": "medium"
+  },
+  {
+    "month": "2026-01",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 3.1,
+    "n": 13,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2026-01",
+    "ip": "Labubu",
+    "avg_comments_per_post": 10.3,
+    "n": 55,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2026-01",
+    "ip": "Molly",
+    "avg_comments_per_post": 5.3,
+    "n": 17,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2026-01",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 38.6,
+    "n": 21,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2026-01",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 23.3,
+    "n": 25,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2026-01",
+    "ip": "Twinkle",
+    "avg_comments_per_post": 8.3,
+    "n": 10,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2026-02",
+    "ip": "Crybaby",
+    "avg_comments_per_post": 20.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2026-02",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 9.7,
+    "n": 15,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2026-02",
+    "ip": "Labubu",
+    "avg_comments_per_post": 16.0,
+    "n": 51,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2026-02",
+    "ip": "Molly",
+    "avg_comments_per_post": 7.1,
+    "n": 23,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2026-02",
+    "ip": "Pop Mart",
+    "avg_comments_per_post": 37.8,
+    "n": 29,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2026-02",
+    "ip": "Skullpanda",
+    "avg_comments_per_post": 23.0,
+    "n": 41,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2026-02",
+    "ip": "Twinkle",
+    "avg_comments_per_post": 25.8,
+    "n": 15,
+    "data_confidence": "high"
+  },
+  {
     "month": "2026-03",
     "ip": "Crybaby",
-    "avg_comments_per_post": 21.0,
+    "avg_comments_per_post": 16.0,
     "n": 1,
     "data_confidence": "low"
   },
   {
     "month": "2026-03",
     "ip": "Dimoo",
-    "avg_comments_per_post": 31.5,
-    "n": 19,
+    "avg_comments_per_post": 16.4,
+    "n": 43,
     "data_confidence": "high"
   },
   {
     "month": "2026-03",
     "ip": "Labubu",
-    "avg_comments_per_post": 253.0,
-    "n": 42,
+    "avg_comments_per_post": 30.9,
+    "n": 123,
     "data_confidence": "high"
   },
   {
     "month": "2026-03",
     "ip": "Molly",
-    "avg_comments_per_post": 9.8,
-    "n": 30,
+    "avg_comments_per_post": 6.7,
+    "n": 40,
     "data_confidence": "high"
   },
   {
     "month": "2026-03",
     "ip": "Pop Mart",
-    "avg_comments_per_post": 91.6,
-    "n": 51,
+    "avg_comments_per_post": 49.5,
+    "n": 68,
     "data_confidence": "high"
   },
   {
     "month": "2026-03",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 63.7,
-    "n": 13,
+    "avg_comments_per_post": 72.6,
+    "n": 55,
     "data_confidence": "high"
   },
   {
     "month": "2026-03",
     "ip": "Twinkle",
-    "avg_comments_per_post": 10.5,
-    "n": 2,
-    "data_confidence": "low"
+    "avg_comments_per_post": 54.0,
+    "n": 16,
+    "data_confidence": "high"
   },
   {
     "month": "2026-03",
     "ip": "Zsiga",
-    "avg_comments_per_post": 5.0,
+    "avg_comments_per_post": 3.5,
     "n": 2,
     "data_confidence": "low"
   },
   {
     "month": "2026-04",
+    "ip": "Crybaby",
+    "avg_comments_per_post": 2.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2026-04",
+    "ip": "Dimoo",
+    "avg_comments_per_post": 10.7,
+    "n": 19,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2026-04",
     "ip": "Labubu",
-    "avg_comments_per_post": 80.8,
-    "n": 8,
-    "data_confidence": "medium"
+    "avg_comments_per_post": 9.5,
+    "n": 67,
+    "data_confidence": "high"
   },
   {
     "month": "2026-04",
     "ip": "Molly",
-    "avg_comments_per_post": 13.1,
-    "n": 11,
+    "avg_comments_per_post": 10.0,
+    "n": 22,
     "data_confidence": "high"
   },
   {
     "month": "2026-04",
     "ip": "Pop Mart",
-    "avg_comments_per_post": 53.2,
-    "n": 4,
-    "data_confidence": "low"
+    "avg_comments_per_post": 9.5,
+    "n": 37,
+    "data_confidence": "high"
   },
   {
     "month": "2026-04",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 32.0,
-    "n": 1,
-    "data_confidence": "low"
+    "avg_comments_per_post": 27.3,
+    "n": 23,
+    "data_confidence": "high"
+  },
+  {
+    "month": "2026-04",
+    "ip": "Twinkle",
+    "avg_comments_per_post": 15.6,
+    "n": 11,
+    "data_confidence": "high"
   }
 ]

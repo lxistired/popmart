@@ -3,56 +3,91 @@
     {
       "month": "2025-05",
       "posts": 1,
-      "avg_comments": 1075.0,
+      "avg_comments": 20.0,
       "avg_views": 1600000.0,
       "avg_likes": 123000.0
     },
     {
       "month": "2025-08",
       "posts": 1,
-      "avg_comments": 122.0,
+      "avg_comments": 18.0,
       "avg_views": 290000.0,
       "avg_likes": 11000.0
     },
     {
+      "month": "2025-09",
+      "posts": 1,
+      "avg_comments": 2.0,
+      "avg_views": 0.0,
+      "avg_likes": 0.0
+    },
+    {
       "month": "2025-10",
       "posts": 1,
-      "avg_comments": 110.0,
+      "avg_comments": 15.0,
       "avg_views": 198800.0,
       "avg_likes": 11700.0
     },
     {
+      "month": "2025-11",
+      "posts": 2,
+      "avg_comments": 3.5,
+      "avg_views": 0.0,
+      "avg_likes": 0.0
+    },
+    {
+      "month": "2025-12",
+      "posts": 1,
+      "avg_comments": 1.0,
+      "avg_views": 0.0,
+      "avg_likes": 0.0
+    },
+    {
+      "month": "2026-01",
+      "posts": 1,
+      "avg_comments": 1.0,
+      "avg_views": 0.0,
+      "avg_likes": 0.0
+    },
+    {
       "month": "2026-02",
       "posts": 6,
-      "avg_comments": 11.2,
+      "avg_comments": 6.7,
       "avg_views": 34616.7,
       "avg_likes": 1470.3
     },
     {
       "month": "2026-03",
       "posts": 26,
-      "avg_comments": 45.9,
-      "avg_views": 49802.2,
-      "avg_likes": 4688.1
+      "avg_comments": 9.9,
+      "avg_views": 50444.5,
+      "avg_likes": 4718.9
+    },
+    {
+      "month": "2026-04",
+      "posts": 1,
+      "avg_comments": 4.3,
+      "avg_views": 23400.0,
+      "avg_likes": 2289.0
     }
   ],
   "instagram": [
     {
       "month": "2026-02",
       "posts": 16,
-      "avg_comments": 13.2,
+      "avg_comments": 11.3,
       "avg_likes": 0.0
     },
     {
       "month": "2026-03",
       "posts": 46,
-      "avg_comments": 12.5,
+      "avg_comments": 48.7,
       "avg_likes": 0.0
     },
     {
       "month": "2026-04",
       "posts": 3,
-      "avg_comments": 12.3,
+      "avg_comments": 5.5,
       "avg_likes": 0.0
     }
   ]

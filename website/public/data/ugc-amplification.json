@@ -1,42 +1,50 @@
 [
   {
     "month": "2025-05",
-    "ugc_avg_views": 4983742.8,
+    "ugc_avg_views": 5154566.3,
     "official_avg_views": 1600000.0,
-    "amplification_ratio": 3.11,
-    "ugc_n": 17,
+    "amplification_ratio": 3.22,
+    "ugc_n": 20,
     "official_n": 1
   },
   {
     "month": "2025-08",
-    "ugc_avg_views": 1126239.7,
+    "ugc_avg_views": 1163976.3,
     "official_avg_views": 290000.0,
-    "amplification_ratio": 3.88,
-    "ugc_n": 45,
+    "amplification_ratio": 4.01,
+    "ugc_n": 47,
     "official_n": 1
   },
   {
     "month": "2025-10",
-    "ugc_avg_views": 11606098.1,
+    "ugc_avg_views": 11007040.3,
     "official_avg_views": 198800.0,
-    "amplification_ratio": 58.38,
-    "ugc_n": 18,
+    "amplification_ratio": 55.37,
+    "ugc_n": 19,
     "official_n": 1
   },
   {
     "month": "2026-02",
-    "ugc_avg_views": 381176.6,
+    "ugc_avg_views": 461647.2,
     "official_avg_views": 34616.7,
-    "amplification_ratio": 11.01,
-    "ugc_n": 39,
+    "amplification_ratio": 13.34,
+    "ugc_n": 40,
     "official_n": 6
   },
   {
     "month": "2026-03",
-    "ugc_avg_views": 135822.9,
-    "official_avg_views": 49802.2,
-    "amplification_ratio": 2.73,
-    "ugc_n": 134,
+    "ugc_avg_views": 140039.2,
+    "official_avg_views": 50444.5,
+    "amplification_ratio": 2.78,
+    "ugc_n": 139,
     "official_n": 26
+  },
+  {
+    "month": "2026-04",
+    "ugc_avg_views": 22400.9,
+    "official_avg_views": 23400.0,
+    "amplification_ratio": 0.96,
+    "ugc_n": 52,
+    "official_n": 1
   }
 ]
