@@ -1,21 +1,20 @@
 @echo off
-REM daily_scrape.bat - Fully automated daily data pipeline
-REM WARNING: This script will FORCE CLOSE Chrome if running.
+REM weekly_scrape.bat - Weekly full scrape with comment backfill
+REM Runs full TikTok (with backfill) + Instagram + Export + Push
 setlocal enabledelayedexpansion
 
-REM Derive paths from script location (avoids Chinese path encoding issues)
 set "SCRIPT_DIR=%~dp0"
 set "PROJECT_DIR=%SCRIPT_DIR%.."
 set "PHASE2_DIR=%PROJECT_DIR%\phase2_overseas"
 
 for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /value') do set "DT=%%I"
 set "DATESTAMP=!DT:~0,8!"
-set "LOG_FILE=%SCRIPT_DIR%logs\daily_scrape_!DATESTAMP!.log"
+set "LOG_FILE=%SCRIPT_DIR%logs\weekly_scrape_!DATESTAMP!.log"
 
 if not exist "%SCRIPT_DIR%logs" mkdir "%SCRIPT_DIR%logs"
 
 echo ============================================ >> "!LOG_FILE!"
-echo   Pop Mart Daily Scrape >> "!LOG_FILE!"
+echo   Pop Mart Weekly Scrape >> "!LOG_FILE!"
 echo   Started: %date% %time% >> "!LOG_FILE!"
 echo ============================================ >> "!LOG_FILE!"
 
@@ -36,25 +35,16 @@ if !ERRORLEVEL!==0 (
 )
 echo [%time%] Chrome check done >> "!LOG_FILE!"
 
-echo [%time%] === Step 1: TikTok Scraper (--daily) === >> "!LOG_FILE!"
+echo [%time%] === Step 1: TikTok Backfill === >> "!LOG_FILE!"
 cd /d "%PHASE2_DIR%"
-python -u tiktok_browser.py --daily >> "!LOG_FILE!" 2>&1
+python -u tiktok_browser.py --backfill >> "!LOG_FILE!" 2>&1
 if !ERRORLEVEL! NEQ 0 (
-    echo [%time%] WARNING: TikTok scraper exited with error !ERRORLEVEL! >> "!LOG_FILE!"
+    echo [%time%] WARNING: TikTok backfill exited with error !ERRORLEVEL! >> "!LOG_FILE!"
 ) else (
-    echo [%time%] TikTok scraper completed OK >> "!LOG_FILE!"
+    echo [%time%] TikTok backfill completed OK >> "!LOG_FILE!"
 )
 
-echo [%time%] === Step 2: Instagram Scraper === >> "!LOG_FILE!"
-cd /d "%PHASE2_DIR%"
-python -u instagram_browser.py >> "!LOG_FILE!" 2>&1
-if !ERRORLEVEL! NEQ 0 (
-    echo [%time%] WARNING: Instagram scraper exited with error !ERRORLEVEL! >> "!LOG_FILE!"
-) else (
-    echo [%time%] Instagram scraper completed OK >> "!LOG_FILE!"
-)
-
-echo [%time%] === Step 3: Export JSON === >> "!LOG_FILE!"
+echo [%time%] === Step 2: Export JSON === >> "!LOG_FILE!"
 cd /d "%PHASE2_DIR%"
 python -u export_json.py >> "!LOG_FILE!" 2>&1
 if !ERRORLEVEL! NEQ 0 (
@@ -63,14 +53,14 @@ if !ERRORLEVEL! NEQ 0 (
 )
 echo [%time%] Export completed OK >> "!LOG_FILE!"
 
-echo [%time%] === Step 4: Git Commit + Push === >> "!LOG_FILE!"
+echo [%time%] === Step 3: Git Commit + Push === >> "!LOG_FILE!"
 cd /d "%PROJECT_DIR%"
 git add website\src\data\ website\public\data\ >> "!LOG_FILE!" 2>&1
 git diff --cached --quiet
 if !ERRORLEVEL!==0 (
     echo [%time%] No data changes to commit >> "!LOG_FILE!"
 ) else (
-    git commit -m "data: daily update !DT:~0,4!-!DT:~4,2!-!DT:~6,2!" >> "!LOG_FILE!" 2>&1
+    git commit -m "data: weekly update !DT:~0,4!-!DT:~4,2!-!DT:~6,2!" >> "!LOG_FILE!" 2>&1
     git push origin main >> "!LOG_FILE!" 2>&1
     if !ERRORLEVEL! NEQ 0 (
         echo [%time%] WARNING: Git push failed >> "!LOG_FILE!"

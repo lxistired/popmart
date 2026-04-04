@@ -395,19 +395,12 @@ def _needs_comment_refresh(conn, video_id):
     return False
 
 
-def scrape_hashtag(page, conn, keyword, max_videos=50, since_date=None, logger=None):
+def scrape_hashtag(page, conn, keyword, max_videos=50, since_date=None, logger=None, daily_mode=False):
     """采集一个话题标签的视频元数据并写入数据库。返回 (new_count, skip_count)。
 
-    Rebuilt with three-layer fix:
-      - Processes ALL discovered videos (not just new ones)
-      - Uses upsert_video_metadata for each video (refreshes views/likes/comments_count/shares)
-      - Selectively fetches comments based on _needs_comment_refresh()
-
-    Age-gated skip (optimization for daily runs):
-      - New videos (not in DB): always fetch detail + comments (unchanged)
-      - Existing videos <= 45 days old: fetch detail + conditionally fetch comments (unchanged)
-      - Existing videos > 45 days old: skip entirely — saves ~4-7s per video since
-        old videos rarely get new views/likes and comment timestamps are already captured
+    Modes:
+      - daily_mode=False (default/weekly): process all videos with age-gated skip for >45d
+      - daily_mode=True: ONLY process new videos (not in DB), skip all existing ones
     """
     if logger:
         logger.info(f'=== #{keyword} ===')
@@ -430,20 +423,25 @@ def scrape_hashtag(page, conn, keyword, max_videos=50, since_date=None, logger=N
         existing.add(r[0])
 
     new_count = len([vid for vid in video_ids if vid not in existing])
+    mode_label = 'daily (new only)' if daily_mode else 'full'
     if logger:
-        logger.info(f'  {new_count} new / {len(video_ids) - new_count} existing — processing ALL')
+        logger.info(f'  {new_count} new / {len(video_ids) - new_count} existing — mode: {mode_label}')
 
     now_str = datetime.now(timezone.utc).isoformat()
     drug_filtered = 0
     upserted = 0
     comments_fetched = 0
-    age_skipped = 0
+    skipped = 0
 
     fail_streak = 0
     for i, vid_id in enumerate(video_ids):
         try:
-            # Age-gated skip: for existing videos older than 45 days, skip entirely
+            # Daily mode: skip ALL existing videos, only process new ones
             if vid_id in existing:
+                if daily_mode:
+                    skipped += 1
+                    continue
+                # Full mode: age-gated skip for >45 days old
                 row = conn.execute(
                     'SELECT create_time FROM tiktok_videos WHERE video_id=?', (vid_id,)
                 ).fetchone()
@@ -452,7 +450,7 @@ def scrape_hashtag(page, conn, keyword, max_videos=50, since_date=None, logger=N
                         now = datetime.now(timezone.utc)
                         age_cutoff_ts = int((now - timedelta(days=45)).timestamp())
                         if int(row[0]) < age_cutoff_ts:
-                            age_skipped += 1
+                            skipped += 1
                             if logger:
                                 ct_str = datetime.fromtimestamp(int(row[0])).strftime('%Y-%m-%d')
                                 logger.info(f'  [{i+1}/{len(video_ids)}] {vid_id} | {ct_str} | SKIP (>45d old)')
@@ -542,7 +540,7 @@ def scrape_hashtag(page, conn, keyword, max_videos=50, since_date=None, logger=N
     if logger:
         logger.info(
             f'  #{keyword}: {upserted} upserted, {comments_fetched} comments, '
-            f'{drug_filtered} drug-filtered, {age_skipped} age-skipped (>45d)'
+            f'{drug_filtered} drug-filtered, {skipped} skipped'
         )
     return upserted, drug_filtered
 
@@ -735,6 +733,7 @@ def main():
     # CLI override
     args = [a for a in sys.argv[1:] if not a.startswith('--')]
     run_backfill = '--backfill' in sys.argv
+    daily_mode = '--daily' in sys.argv
     if args:
         queries = [q for q in queries if q['keyword'] in args]
 
@@ -785,7 +784,8 @@ def main():
                 logger.info(f'[{i+1}/{len(queries)}]')
                 new, filtered = scrape_hashtag(
                     page, conn, keyword,
-                    max_videos=max_videos, since_date=since_date, logger=logger
+                    max_videos=max_videos, since_date=since_date, logger=logger,
+                    daily_mode=daily_mode
                 )
                 total_new += new
 
@@ -814,11 +814,14 @@ def main():
                     'completed': list(completed), 'total_new': total_new
                 })
 
-            # Also backfill comments after hashtag collection
-            logger.info('=== Backfilling comments for existing videos ===')
-            page = _ensure_browser_global(page, logger=logger)
-            backfilled = backfill_comments(page, conn, logger=logger)
-            logger.info(f'Backfill complete: {backfilled} comments saved')
+            # Backfill comments after hashtag collection (skip in daily mode)
+            if daily_mode:
+                logger.info('=== Skipping backfill (daily mode) ===')
+            else:
+                logger.info('=== Backfilling comments for existing videos ===')
+                page = _ensure_browser_global(page, logger=logger)
+                backfilled = backfill_comments(page, conn, logger=logger)
+                logger.info(f'Backfill complete: {backfilled} comments saved')
 
     except KeyboardInterrupt:
         logger.info('Interrupted — saving checkpoint')
