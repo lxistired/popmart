@@ -1,10 +1,10 @@
 [
   {
     "month": "2025-05",
-    "ugc_avg_views": 5887309.1,
+    "ugc_avg_views": 4983742.8,
     "official_avg_views": 1600000.0,
-    "amplification_ratio": 3.68,
-    "ugc_n": 14,
+    "amplification_ratio": 3.11,
+    "ugc_n": 17,
     "official_n": 1
   },
   {
@@ -17,10 +17,10 @@
   },
   {
     "month": "2025-10",
-    "ugc_avg_views": 12288667.4,
+    "ugc_avg_views": 11606098.1,
     "official_avg_views": 198800.0,
-    "amplification_ratio": 61.81,
-    "ugc_n": 17,
+    "amplification_ratio": 58.38,
+    "ugc_n": 18,
     "official_n": 1
   },
   {
@@ -33,10 +33,10 @@
   },
   {
     "month": "2026-03",
-    "ugc_avg_views": 134740.4,
+    "ugc_avg_views": 135822.9,
     "official_avg_views": 49802.2,
-    "amplification_ratio": 2.71,
-    "ugc_n": 133,
+    "amplification_ratio": 2.73,
+    "ugc_n": 134,
     "official_n": 26
   }
 ]

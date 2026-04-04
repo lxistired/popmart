@@ -106,56 +106,56 @@
   },
   {
     "month": "2025-05",
-    "avg_comments_per_post": 4461.7,
-    "n": 15,
+    "avg_comments_per_post": 3909.5,
+    "n": 18,
     "data_confidence": "high",
-    "videos": 15
+    "videos": 18
   },
   {
     "month": "2025-06",
-    "avg_comments_per_post": 4633.5,
-    "n": 37,
+    "avg_comments_per_post": 4353.1,
+    "n": 43,
     "data_confidence": "high",
-    "videos": 37
+    "videos": 43
   },
   {
     "month": "2025-07",
-    "avg_comments_per_post": 1368.7,
-    "n": 32,
+    "avg_comments_per_post": 1301.5,
+    "n": 38,
     "data_confidence": "high",
-    "videos": 32
+    "videos": 38
   },
   {
     "month": "2025-08",
-    "avg_comments_per_post": 978.0,
+    "avg_comments_per_post": 978.1,
     "n": 46,
     "data_confidence": "high",
     "videos": 46
   },
   {
     "month": "2025-09",
-    "avg_comments_per_post": 1466.0,
-    "n": 23,
+    "avg_comments_per_post": 1422.9,
+    "n": 24,
     "data_confidence": "high",
-    "videos": 23
+    "videos": 24
   },
   {
     "month": "2025-10",
-    "avg_comments_per_post": 7619.9,
-    "n": 18,
+    "avg_comments_per_post": 7218.8,
+    "n": 19,
     "data_confidence": "high",
-    "videos": 18
+    "videos": 19
   },
   {
     "month": "2025-11",
-    "avg_comments_per_post": 3140.1,
-    "n": 15,
+    "avg_comments_per_post": 2945.8,
+    "n": 16,
     "data_confidence": "high",
-    "videos": 15
+    "videos": 16
   },
   {
     "month": "2025-12",
-    "avg_comments_per_post": 348.7,
+    "avg_comments_per_post": 348.5,
     "n": 38,
     "data_confidence": "high",
     "videos": 38
@@ -176,16 +176,16 @@
   },
   {
     "month": "2026-03",
-    "avg_comments_per_post": 106.6,
-    "n": 159,
+    "avg_comments_per_post": 106.7,
+    "n": 160,
     "data_confidence": "high",
-    "videos": 159
+    "videos": 160
   },
   {
     "month": "2026-04",
-    "avg_comments_per_post": 23.5,
-    "n": 22,
+    "avg_comments_per_post": 43.1,
+    "n": 24,
     "data_confidence": "high",
-    "videos": 22
+    "videos": 24
   }
 ]

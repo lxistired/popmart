@@ -268,9 +268,9 @@
   {
     "month": "2025-05",
     "ip": "Labubu",
-    "avg_comments_per_post": 7050.6,
-    "n": 8,
-    "data_confidence": "medium"
+    "avg_comments_per_post": 5441.0,
+    "n": 11,
+    "data_confidence": "high"
   },
   {
     "month": "2025-05",
@@ -310,8 +310,8 @@
   {
     "month": "2025-06",
     "ip": "Labubu",
-    "avg_comments_per_post": 6020.1,
-    "n": 28,
+    "avg_comments_per_post": 5420.8,
+    "n": 34,
     "data_confidence": "high"
   },
   {
@@ -352,8 +352,8 @@
   {
     "month": "2025-07",
     "ip": "Labubu",
-    "avg_comments_per_post": 1504.4,
-    "n": 27,
+    "avg_comments_per_post": 1402.3,
+    "n": 33,
     "data_confidence": "high"
   },
   {
@@ -408,8 +408,8 @@
   {
     "month": "2025-09",
     "ip": "Labubu",
-    "avg_comments_per_post": 2916.6,
-    "n": 11,
+    "avg_comments_per_post": 2709.4,
+    "n": 12,
     "data_confidence": "high"
   },
   {
@@ -436,8 +436,8 @@
   {
     "month": "2025-10",
     "ip": "Labubu",
-    "avg_comments_per_post": 16705.8,
-    "n": 8,
+    "avg_comments_per_post": 14849.6,
+    "n": 9,
     "data_confidence": "medium"
   },
   {
@@ -464,8 +464,8 @@
   {
     "month": "2025-11",
     "ip": "Labubu",
-    "avg_comments_per_post": 7323.8,
-    "n": 6,
+    "avg_comments_per_post": 6281.9,
+    "n": 7,
     "data_confidence": "medium"
   },
   {
@@ -499,7 +499,7 @@
   {
     "month": "2025-12",
     "ip": "Labubu",
-    "avg_comments_per_post": 813.7,
+    "avg_comments_per_post": 813.1,
     "n": 11,
     "data_confidence": "high"
   },
@@ -639,8 +639,8 @@
   {
     "month": "2026-03",
     "ip": "Labubu",
-    "avg_comments_per_post": 256.3,
-    "n": 41,
+    "avg_comments_per_post": 253.0,
+    "n": 42,
     "data_confidence": "high"
   },
   {
@@ -681,8 +681,8 @@
   {
     "month": "2026-04",
     "ip": "Labubu",
-    "avg_comments_per_post": 21.3,
-    "n": 6,
+    "avg_comments_per_post": 80.8,
+    "n": 8,
     "data_confidence": "medium"
   },
   {

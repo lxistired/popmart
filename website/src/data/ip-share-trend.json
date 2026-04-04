@@ -362,19 +362,19 @@
   {
     "month": "2025-05",
     "ip": "Dimoo",
-    "share_pct": 0.6,
+    "share_pct": 0.5,
     "engagement": 341
   },
   {
     "month": "2025-05",
     "ip": "Labubu",
-    "share_pct": 92.3,
-    "engagement": 56956
+    "share_pct": 92.7,
+    "engagement": 60402
   },
   {
     "month": "2025-05",
     "ip": "Molly",
-    "share_pct": 5.4,
+    "share_pct": 5.2,
     "engagement": 3361
   },
   {
@@ -404,13 +404,13 @@
   {
     "month": "2025-06",
     "ip": "Labubu",
-    "share_pct": 98.3,
-    "engagement": 168628
+    "share_pct": 98.4,
+    "engagement": 184371
   },
   {
     "month": "2025-06",
     "ip": "Molly",
-    "share_pct": 1.0,
+    "share_pct": 0.9,
     "engagement": 1711
   },
   {
@@ -422,7 +422,7 @@
   {
     "month": "2025-06",
     "ip": "Twinkle",
-    "share_pct": 0.4,
+    "share_pct": 0.3,
     "engagement": 614
   },
   {
@@ -440,13 +440,13 @@
   {
     "month": "2025-07",
     "ip": "Labubu",
-    "share_pct": 92.5,
-    "engagement": 41478
+    "share_pct": 93.3,
+    "engagement": 47137
   },
   {
     "month": "2025-07",
     "ip": "Skullpanda",
-    "share_pct": 6.8,
+    "share_pct": 6.0,
     "engagement": 3043
   },
   {
@@ -471,7 +471,7 @@
     "month": "2025-08",
     "ip": "Labubu",
     "share_pct": 97.1,
-    "engagement": 45026
+    "engagement": 45027
   },
   {
     "month": "2025-08",
@@ -500,19 +500,19 @@
   {
     "month": "2025-09",
     "ip": "Labubu",
-    "share_pct": 94.3,
-    "engagement": 32320
+    "share_pct": 94.4,
+    "engagement": 32750
   },
   {
     "month": "2025-09",
     "ip": "Molly",
-    "share_pct": 0.4,
+    "share_pct": 0.3,
     "engagement": 120
   },
   {
     "month": "2025-09",
     "ip": "Skullpanda",
-    "share_pct": 4.9,
+    "share_pct": 4.8,
     "engagement": 1667
   },
   {
@@ -566,13 +566,13 @@
   {
     "month": "2025-11",
     "ip": "Labubu",
-    "share_pct": 96.8,
-    "engagement": 44282
+    "share_pct": 96.9,
+    "engagement": 44312
   },
   {
     "month": "2025-11",
     "ip": "Skullpanda",
-    "share_pct": 1.9,
+    "share_pct": 1.8,
     "engagement": 846
   },
   {
@@ -597,7 +597,7 @@
     "month": "2025-12",
     "ip": "Labubu",
     "share_pct": 79.0,
-    "engagement": 9026
+    "engagement": 9019
   },
   {
     "month": "2025-12",
@@ -698,25 +698,25 @@
   {
     "month": "2026-03",
     "ip": "Dimoo",
-    "share_pct": 7.1,
+    "share_pct": 7.0,
     "engagement": 949
   },
   {
     "month": "2026-03",
     "ip": "Labubu",
-    "share_pct": 80.9,
-    "engagement": 10860
+    "share_pct": 81.1,
+    "engagement": 10979
   },
   {
     "month": "2026-03",
     "ip": "Molly",
-    "share_pct": 3.1,
+    "share_pct": 3.0,
     "engagement": 410
   },
   {
     "month": "2026-03",
     "ip": "Skullpanda",
-    "share_pct": 7.3,
+    "share_pct": 7.2,
     "engagement": 981
   },
   {
@@ -734,25 +734,25 @@
   {
     "month": "2026-04",
     "ip": "Dimoo",
-    "share_pct": 2.3,
+    "share_pct": 0.8,
     "engagement": 7
   },
   {
     "month": "2026-04",
     "ip": "Labubu",
-    "share_pct": 41.2,
-    "engagement": 128
+    "share_pct": 77.9,
+    "engagement": 646
   },
   {
     "month": "2026-04",
     "ip": "Molly",
-    "share_pct": 46.3,
+    "share_pct": 17.4,
     "engagement": 144
   },
   {
     "month": "2026-04",
     "ip": "Skullpanda",
-    "share_pct": 10.3,
+    "share_pct": 3.9,
     "engagement": 32
   }
 ]
