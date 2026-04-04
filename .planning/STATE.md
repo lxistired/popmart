@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: 数据管道重建 + 图表全面重做
-status: executing
-stopped_at: Completed 09-01-PLAN.md
-last_updated: "2026-04-02T06:47:53.715Z"
+status: planning
+stopped_at: Completed quick-260404-2oo-PLAN.md
+last_updated: "2026-04-04T09:12:26.735Z"
 last_activity: 2026-04-02
 progress:
   total_phases: 5
   completed_phases: 3
-  total_plans: 4
+  total_plans: 7
   completed_plans: 4
-  percent: 40
+  percent: 80
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-01)
 
 **Core value:** 能稳定采集并增量更新三个平台的评论时序数据，通过标准化贴均指标产出可持续追踪的热度分析
-**Current focus:** Phase 8 — 采集器增量化重建
+**Current focus:** Phase 11 — 全量重采 + 部署上线
 
 ## Current Position
 
-Phase: 8 of 11 (采集器增量化重建)
-Plan: 2 of 2 (08-01 complete)
-Status: Ready to execute
+Phase: 10 of 11 (网站图表全面重做) — Complete
+Next: Phase 11 (全量重采 + 部署上线)
+Status: Ready to plan Phase 11
 Last activity: 2026-04-02
 
-Progress: [####░░░░░░] 40%
+Progress: [########░░] 80%
 
 ## Performance Metrics
 
@@ -50,6 +50,7 @@ Progress: [####░░░░░░] 40%
 | Phase 08-scrapers P02 | 6min | 2 tasks | 2 files |
 | Phase 08-scrapers P01 | 8min | 2 tasks | 2 files |
 | Phase 09-export P01 | 11min | 2 tasks | 2 files |
+| Phase 10-website P01 | 15min | 3 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -76,6 +77,8 @@ Recent decisions affecting current work:
 - [Phase 09-export]: All volume metrics use metadata comments_count, never COUNT of comment rows
 - [Phase 09-export]: Pop Mart brand excluded from all IP share calculations
 - [Phase 09-export]: export_comment_quality deleted, replaced by export_data_coverage
+- [Phase quick-260404-2oo]: Comment engagement metrics now use actual comment timestamps (comment_date) not video metadata comments_count
+- [Phase quick-260404-2oo]: tiktok_browser.py scrape_hashtag skips fetch_video_detail for existing videos older than 45 days (age-gated optimization)
 
 ### Pending Todos
 
@@ -89,6 +92,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-02T06:47:53.705Z
-Stopped at: Completed 09-01-PLAN.md
+Last session: 2026-04-04T09:12:19.000Z
+Stopped at: Completed quick-260404-2oo-PLAN.md
 Resume file: None
