@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-04-01)
 Phase: 10 of 11 (网站图表全面重做) — Complete
 Next: Phase 11 (全量重采 + 部署上线)
 Status: Ready to plan Phase 11
-Last activity: 2026-04-02
+Last activity: 2026-04-04 - Completed quick task 260404-2oo: export_json.py 评论时间戳聚合 + tiktok_browser.py 每日更新优化
 
 Progress: [########░░] 80%
 
@@ -89,6 +89,12 @@ None yet.
 - Chrome 必须关闭才能运行采集脚本（Phase 8/11 执行前需确认）
 - TikTok session 1-2 天过期，全量重采（Phase 11）需监控登录态
 - 60 个 Instagram 零评论帖子部分可能因平台限制无法补抓（Phase 8 需评估策略）
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Status | Directory |
+|---|-------------|------|--------|--------|-----------|
+| 260404-2oo | 将 export_json.py 改为按评论时间戳聚合并优化每日更新逻辑 | 2026-04-04 | e88f105 | Verified | [260404-2oo-export-json-py](./quick/260404-2oo-export-json-py/) |
 
 ## Session Continuity
 
