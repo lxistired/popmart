@@ -371,7 +371,7 @@ def _needs_comment_refresh(conn, video_id):
     """Check if a video needs comment re-scraping.
     Returns True if:
       - last_comment_scraped_at IS NULL (never scraped)
-      - create_time is within 90 days AND last_comment_scraped_at is older than 7 days
+      - create_time is within 45 days AND last_comment_scraped_at is older than 7 days
     """
     row = conn.execute(
         'SELECT last_comment_scraped_at, create_time FROM tiktok_videos WHERE video_id=?',
@@ -385,8 +385,8 @@ def _needs_comment_refresh(conn, video_id):
     # Check if recent video with stale comment scrape
     try:
         now = datetime.now(timezone.utc)
-        ninety_days_ago_ts = int((now - timedelta(days=90)).timestamp())
-        if int(create_time) > ninety_days_ago_ts:
+        refresh_window_ts = int((now - timedelta(days=45)).timestamp())
+        if int(create_time) > refresh_window_ts:
             seven_days_ago = (now - timedelta(days=7)).isoformat()
             if last_scraped < seven_days_ago:
                 return True
@@ -402,6 +402,12 @@ def scrape_hashtag(page, conn, keyword, max_videos=50, since_date=None, logger=N
       - Processes ALL discovered videos (not just new ones)
       - Uses upsert_video_metadata for each video (refreshes views/likes/comments_count/shares)
       - Selectively fetches comments based on _needs_comment_refresh()
+
+    Age-gated skip (optimization for daily runs):
+      - New videos (not in DB): always fetch detail + comments (unchanged)
+      - Existing videos <= 45 days old: fetch detail + conditionally fetch comments (unchanged)
+      - Existing videos > 45 days old: skip entirely — saves ~4-7s per video since
+        old videos rarely get new views/likes and comment timestamps are already captured
     """
     if logger:
         logger.info(f'=== #{keyword} ===')
@@ -431,10 +437,29 @@ def scrape_hashtag(page, conn, keyword, max_videos=50, since_date=None, logger=N
     drug_filtered = 0
     upserted = 0
     comments_fetched = 0
+    age_skipped = 0
 
     fail_streak = 0
     for i, vid_id in enumerate(video_ids):
         try:
+            # Age-gated skip: for existing videos older than 45 days, skip entirely
+            if vid_id in existing:
+                row = conn.execute(
+                    'SELECT create_time FROM tiktok_videos WHERE video_id=?', (vid_id,)
+                ).fetchone()
+                if row and row[0]:
+                    try:
+                        now = datetime.now(timezone.utc)
+                        age_cutoff_ts = int((now - timedelta(days=45)).timestamp())
+                        if int(row[0]) < age_cutoff_ts:
+                            age_skipped += 1
+                            if logger:
+                                ct_str = datetime.fromtimestamp(int(row[0])).strftime('%Y-%m-%d')
+                                logger.info(f'  [{i+1}/{len(video_ids)}] {vid_id} | {ct_str} | SKIP (>45d old)')
+                            continue
+                    except (ValueError, TypeError):
+                        pass
+
             detail = fetch_video_detail(page, vid_id, logger)
             fail_streak = 0  # reset on success (even if no data)
             if not detail:
@@ -515,7 +540,10 @@ def scrape_hashtag(page, conn, keyword, max_videos=50, since_date=None, logger=N
             sleep_jitter(random.uniform(5, 9))
 
     if logger:
-        logger.info(f'  #{keyword}: {upserted} upserted, {comments_fetched} comments, {drug_filtered} drug-filtered')
+        logger.info(
+            f'  #{keyword}: {upserted} upserted, {comments_fetched} comments, '
+            f'{drug_filtered} drug-filtered, {age_skipped} age-skipped (>45d)'
+        )
     return upserted, drug_filtered
 
 
