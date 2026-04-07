@@ -1,16 +1,16 @@
 {
   "brand": {
-    "avg_views": 100923.8,
-    "avg_likes": 7768.7,
-    "avg_er_pct": 4.9,
-    "avg_comments": 12.3,
-    "count": 36
+    "avg_views": 144932.9,
+    "avg_likes": 8669.6,
+    "avg_er_pct": 4.79,
+    "avg_comments": 11.4,
+    "count": 45
   },
   "ugc": {
-    "avg_views": 1440390.8,
-    "avg_likes": 120494.7,
-    "avg_er_pct": 603.35,
-    "avg_comments": 46.7,
-    "count": 610
+    "avg_views": 1243507.6,
+    "avg_likes": 96102.7,
+    "avg_er_pct": 375.81,
+    "avg_comments": 33.7,
+    "count": 987
   }
 }

@@ -1,17 +1,17 @@
 {
-  "tiktok_videos": 646,
-  "tiktok_comments": 28901,
-  "instagram_posts": 670,
-  "instagram_comments": 18005,
+  "tiktok_videos": 1032,
+  "tiktok_comments": 33793,
+  "instagram_posts": 725,
+  "instagram_comments": 19180,
   "data_freshness": {
-    "tiktok": "2026-04-04T10:30:21.540934+00:00",
-    "instagram": "2026-04-03T10:53:53.137970+00:00"
+    "tiktok": "2026-04-07T15:41:51.653017+00:00",
+    "instagram": "2026-04-07T17:05:16.363194+00:00"
   },
   "coverage": {
-    "tiktok_videos": 646,
-    "tiktok_comments": 28901,
-    "instagram_posts": 670,
-    "instagram_comments": 18005
+    "tiktok_videos": 1032,
+    "tiktok_comments": 33793,
+    "instagram_posts": 725,
+    "instagram_comments": 19180
   },
-  "updated_at": "2026-04-04T10:34:01Z"
+  "updated_at": "2026-04-07T17:05:48Z"
 }

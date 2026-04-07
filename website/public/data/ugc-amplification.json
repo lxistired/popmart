@@ -1,50 +1,74 @@
 [
   {
+    "month": "2024-08",
+    "ugc_avg_views": 765233.3,
+    "official_avg_views": 2200000.0,
+    "amplification_ratio": 0.35,
+    "ugc_n": 6,
+    "official_n": 1
+  },
+  {
     "month": "2025-05",
-    "ugc_avg_views": 5154566.3,
+    "ugc_avg_views": 4006647.7,
     "official_avg_views": 1600000.0,
-    "amplification_ratio": 3.22,
-    "ugc_n": 20,
+    "amplification_ratio": 2.5,
+    "ugc_n": 32,
     "official_n": 1
   },
   {
     "month": "2025-08",
-    "ugc_avg_views": 1120322.2,
+    "ugc_avg_views": 1165662.9,
     "official_avg_views": 290000.0,
-    "amplification_ratio": 3.86,
-    "ugc_n": 49,
+    "amplification_ratio": 4.02,
+    "ugc_n": 65,
     "official_n": 1
   },
   {
     "month": "2025-10",
-    "ugc_avg_views": 11007040.3,
+    "ugc_avg_views": 7674554.6,
     "official_avg_views": 198800.0,
-    "amplification_ratio": 55.37,
-    "ugc_n": 19,
+    "amplification_ratio": 38.6,
+    "ugc_n": 28,
+    "official_n": 1
+  },
+  {
+    "month": "2025-11",
+    "ugc_avg_views": 1546015.9,
+    "official_avg_views": 221300.0,
+    "amplification_ratio": 6.99,
+    "ugc_n": 29,
+    "official_n": 1
+  },
+  {
+    "month": "2026-01",
+    "ugc_avg_views": 471045.4,
+    "official_avg_views": 190300.0,
+    "amplification_ratio": 2.48,
+    "ugc_n": 48,
     "official_n": 1
   },
   {
     "month": "2026-02",
-    "ugc_avg_views": 461647.2,
+    "ugc_avg_views": 452898.1,
     "official_avg_views": 34616.7,
-    "amplification_ratio": 13.34,
-    "ugc_n": 40,
+    "amplification_ratio": 13.08,
+    "ugc_n": 57,
     "official_n": 6
   },
   {
     "month": "2026-03",
-    "ugc_avg_views": 141440.8,
-    "official_avg_views": 50444.5,
-    "amplification_ratio": 2.8,
-    "ugc_n": 141,
-    "official_n": 26
+    "ugc_avg_views": 126200.2,
+    "official_avg_views": 57191.5,
+    "amplification_ratio": 2.21,
+    "ugc_n": 163,
+    "official_n": 27
   },
   {
     "month": "2026-04",
-    "ugc_avg_views": 25651.2,
-    "official_avg_views": 25200.0,
-    "amplification_ratio": 1.02,
-    "ugc_n": 61,
-    "official_n": 1
+    "ugc_avg_views": 22338.2,
+    "official_avg_views": 11618.2,
+    "amplification_ratio": 1.92,
+    "ugc_n": 181,
+    "official_n": 6
   }
 ]
