@@ -79,10 +79,10 @@
     },
     {
       "month": "2026-04",
-      "posts": 6,
-      "avg_comments": 5.1,
-      "avg_views": 11618.2,
-      "avg_likes": 923.2
+      "posts": 10,
+      "avg_comments": 8.1,
+      "avg_views": 39012.8,
+      "avg_likes": 4695.1
     }
   ],
   "instagram": [
@@ -95,13 +95,13 @@
     {
       "month": "2026-03",
       "posts": 46,
-      "avg_comments": 48.7,
+      "avg_comments": 52.8,
       "avg_likes": 0.0
     },
     {
       "month": "2026-04",
       "posts": 7,
-      "avg_comments": 6.9,
+      "avg_comments": 8.1,
       "avg_likes": 0.0
     }
   ]

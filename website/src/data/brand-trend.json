@@ -134,31 +134,31 @@
   },
   {
     "month": "2024-06",
-    "avg_comments_per_post": 11.8,
-    "n": 165,
+    "avg_comments_per_post": 11.9,
+    "n": 179,
     "data_confidence": "high",
-    "videos": 14
+    "videos": 15
   },
   {
     "month": "2024-07",
     "avg_comments_per_post": 4.7,
-    "n": 84,
+    "n": 89,
     "data_confidence": "high",
-    "videos": 18
+    "videos": 19
   },
   {
     "month": "2024-08",
-    "avg_comments_per_post": 6.1,
-    "n": 110,
+    "avg_comments_per_post": 5.8,
+    "n": 111,
     "data_confidence": "high",
-    "videos": 18
+    "videos": 19
   },
   {
     "month": "2024-09",
-    "avg_comments_per_post": 4.2,
-    "n": 105,
+    "avg_comments_per_post": 4.1,
+    "n": 107,
     "data_confidence": "high",
-    "videos": 25
+    "videos": 26
   },
   {
     "month": "2024-10",
@@ -169,17 +169,17 @@
   },
   {
     "month": "2024-11",
-    "avg_comments_per_post": 6.8,
-    "n": 149,
+    "avg_comments_per_post": 7.3,
+    "n": 168,
     "data_confidence": "high",
-    "videos": 22
+    "videos": 23
   },
   {
     "month": "2024-12",
-    "avg_comments_per_post": 6.5,
-    "n": 213,
+    "avg_comments_per_post": 6.4,
+    "n": 217,
     "data_confidence": "high",
-    "videos": 33
+    "videos": 34
   },
   {
     "month": "2025-01",
@@ -191,106 +191,106 @@
   {
     "month": "2025-02",
     "avg_comments_per_post": 4.2,
-    "n": 205,
+    "n": 211,
     "data_confidence": "high",
-    "videos": 49
+    "videos": 50
   },
   {
     "month": "2025-03",
-    "avg_comments_per_post": 4.0,
-    "n": 240,
+    "avg_comments_per_post": 4.2,
+    "n": 262,
     "data_confidence": "high",
-    "videos": 60
+    "videos": 62
   },
   {
     "month": "2025-04",
-    "avg_comments_per_post": 6.2,
-    "n": 399,
+    "avg_comments_per_post": 6.1,
+    "n": 405,
     "data_confidence": "high",
-    "videos": 64
+    "videos": 66
   },
   {
     "month": "2025-05",
-    "avg_comments_per_post": 8.7,
-    "n": 728,
+    "avg_comments_per_post": 8.8,
+    "n": 769,
     "data_confidence": "high",
-    "videos": 84
+    "videos": 87
   },
   {
     "month": "2025-06",
-    "avg_comments_per_post": 8.5,
-    "n": 1281,
+    "avg_comments_per_post": 8.8,
+    "n": 1381,
     "data_confidence": "high",
-    "videos": 150
+    "videos": 157
   },
   {
     "month": "2025-07",
-    "avg_comments_per_post": 7.5,
-    "n": 1341,
-    "data_confidence": "high",
-    "videos": 178
-  },
-  {
-    "month": "2025-08",
-    "avg_comments_per_post": 6.6,
-    "n": 1248,
-    "data_confidence": "high",
-    "videos": 190
-  },
-  {
-    "month": "2025-09",
-    "avg_comments_per_post": 4.4,
-    "n": 710,
-    "data_confidence": "high",
-    "videos": 162
-  },
-  {
-    "month": "2025-10",
-    "avg_comments_per_post": 5.7,
-    "n": 811,
-    "data_confidence": "high",
-    "videos": 142
-  },
-  {
-    "month": "2025-11",
-    "avg_comments_per_post": 5.7,
-    "n": 795,
-    "data_confidence": "high",
-    "videos": 139
-  },
-  {
-    "month": "2025-12",
-    "avg_comments_per_post": 6.8,
-    "n": 1304,
+    "avg_comments_per_post": 7.8,
+    "n": 1494,
     "data_confidence": "high",
     "videos": 191
   },
   {
-    "month": "2026-01",
-    "avg_comments_per_post": 12.0,
-    "n": 2595,
+    "month": "2025-08",
+    "avg_comments_per_post": 6.6,
+    "n": 1337,
     "data_confidence": "high",
-    "videos": 216
+    "videos": 202
+  },
+  {
+    "month": "2025-09",
+    "avg_comments_per_post": 4.9,
+    "n": 882,
+    "data_confidence": "high",
+    "videos": 179
+  },
+  {
+    "month": "2025-10",
+    "avg_comments_per_post": 5.8,
+    "n": 929,
+    "data_confidence": "high",
+    "videos": 161
+  },
+  {
+    "month": "2025-11",
+    "avg_comments_per_post": 5.8,
+    "n": 879,
+    "data_confidence": "high",
+    "videos": 151
+  },
+  {
+    "month": "2025-12",
+    "avg_comments_per_post": 6.6,
+    "n": 1352,
+    "data_confidence": "high",
+    "videos": 205
+  },
+  {
+    "month": "2026-01",
+    "avg_comments_per_post": 11.8,
+    "n": 2749,
+    "data_confidence": "high",
+    "videos": 233
   },
   {
     "month": "2026-02",
-    "avg_comments_per_post": 15.8,
-    "n": 3895,
+    "avg_comments_per_post": 15.2,
+    "n": 3977,
     "data_confidence": "high",
-    "videos": 247
+    "videos": 261
   },
   {
     "month": "2026-03",
-    "avg_comments_per_post": 31.2,
-    "n": 13402,
+    "avg_comments_per_post": 29.6,
+    "n": 13483,
     "data_confidence": "high",
-    "videos": 429
+    "videos": 455
   },
   {
     "month": "2026-04",
-    "avg_comments_per_post": 9.9,
-    "n": 3172,
+    "avg_comments_per_post": 10.0,
+    "n": 4695,
     "data_confidence": "high",
-    "videos": 319
+    "videos": 468
   }
 ]
