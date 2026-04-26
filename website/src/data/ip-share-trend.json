@@ -194,31 +194,31 @@
   {
     "month": "2024-03",
     "ip": "Crybaby",
-    "share_pct": 17.9,
+    "share_pct": 16.1,
     "engagement": 5
   },
   {
     "month": "2024-03",
     "ip": "Dimoo",
-    "share_pct": 28.6,
+    "share_pct": 25.8,
     "engagement": 8
   },
   {
     "month": "2024-03",
     "ip": "Molly",
-    "share_pct": 14.3,
-    "engagement": 4
+    "share_pct": 22.6,
+    "engagement": 7
   },
   {
     "month": "2024-03",
     "ip": "Skullpanda",
-    "share_pct": 35.7,
+    "share_pct": 32.3,
     "engagement": 10
   },
   {
     "month": "2024-03",
     "ip": "Twinkle",
-    "share_pct": 3.6,
+    "share_pct": 3.2,
     "engagement": 1
   },
   {
@@ -248,25 +248,31 @@
   {
     "month": "2024-05",
     "ip": "Crybaby",
-    "share_pct": 2.9,
+    "share_pct": 2.7,
     "engagement": 1
   },
   {
     "month": "2024-05",
     "ip": "Labubu",
-    "share_pct": 38.2,
+    "share_pct": 35.1,
     "engagement": 13
   },
   {
     "month": "2024-05",
+    "ip": "Molly",
+    "share_pct": 2.7,
+    "engagement": 1
+  },
+  {
+    "month": "2024-05",
     "ip": "Skullpanda",
-    "share_pct": 52.9,
-    "engagement": 18
+    "share_pct": 54.1,
+    "engagement": 20
   },
   {
     "month": "2024-05",
     "ip": "Twinkle",
-    "share_pct": 5.9,
+    "share_pct": 5.4,
     "engagement": 2
   },
   {
@@ -308,55 +314,55 @@
   {
     "month": "2024-07",
     "ip": "Dimoo",
-    "share_pct": 38.0,
+    "share_pct": 37.6,
     "engagement": 38
   },
   {
     "month": "2024-07",
     "ip": "Labubu",
-    "share_pct": 33.0,
+    "share_pct": 32.7,
     "engagement": 33
   },
   {
     "month": "2024-07",
     "ip": "Skullpanda",
-    "share_pct": 26.0,
-    "engagement": 26
+    "share_pct": 26.7,
+    "engagement": 27
   },
   {
     "month": "2024-08",
     "ip": "Crybaby",
-    "share_pct": 1.4,
+    "share_pct": 1.3,
     "engagement": 2
   },
   {
     "month": "2024-08",
     "ip": "Dimoo",
-    "share_pct": 11.1,
+    "share_pct": 10.7,
     "engagement": 16
   },
   {
     "month": "2024-08",
     "ip": "Labubu",
-    "share_pct": 2.1,
+    "share_pct": 2.0,
     "engagement": 3
   },
   {
     "month": "2024-08",
     "ip": "Molly",
-    "share_pct": 5.6,
+    "share_pct": 5.4,
     "engagement": 8
   },
   {
     "month": "2024-08",
     "ip": "Skullpanda",
-    "share_pct": 15.3,
-    "engagement": 22
+    "share_pct": 18.1,
+    "engagement": 27
   },
   {
     "month": "2024-08",
     "ip": "Twinkle",
-    "share_pct": 64.6,
+    "share_pct": 62.4,
     "engagement": 93
   },
   {
@@ -368,31 +374,31 @@
   {
     "month": "2024-09",
     "ip": "Dimoo",
-    "share_pct": 32.3,
+    "share_pct": 29.4,
     "engagement": 52
   },
   {
     "month": "2024-09",
     "ip": "Labubu",
-    "share_pct": 21.7,
+    "share_pct": 19.8,
     "engagement": 35
   },
   {
     "month": "2024-09",
     "ip": "Molly",
-    "share_pct": 5.6,
+    "share_pct": 5.1,
     "engagement": 9
   },
   {
     "month": "2024-09",
     "ip": "Skullpanda",
-    "share_pct": 19.3,
-    "engagement": 31
+    "share_pct": 26.6,
+    "engagement": 47
   },
   {
     "month": "2024-09",
     "ip": "Twinkle",
-    "share_pct": 20.5,
+    "share_pct": 18.6,
     "engagement": 33
   },
   {
@@ -404,169 +410,169 @@
   {
     "month": "2024-10",
     "ip": "Dimoo",
-    "share_pct": 22.4,
-    "engagement": 50
+    "share_pct": 21.3,
+    "engagement": 51
   },
   {
     "month": "2024-10",
     "ip": "Labubu",
-    "share_pct": 17.9,
+    "share_pct": 16.7,
     "engagement": 40
   },
   {
     "month": "2024-10",
     "ip": "Molly",
-    "share_pct": 15.7,
+    "share_pct": 14.6,
     "engagement": 35
   },
   {
     "month": "2024-10",
     "ip": "Skullpanda",
-    "share_pct": 31.4,
-    "engagement": 70
+    "share_pct": 33.5,
+    "engagement": 80
   },
   {
     "month": "2024-10",
     "ip": "Twinkle",
-    "share_pct": 12.1,
-    "engagement": 27
+    "share_pct": 13.4,
+    "engagement": 32
   },
   {
     "month": "2024-11",
     "ip": "Crybaby",
-    "share_pct": 20.4,
+    "share_pct": 19.5,
     "engagement": 46
   },
   {
     "month": "2024-11",
     "ip": "Dimoo",
-    "share_pct": 36.0,
-    "engagement": 81
+    "share_pct": 35.2,
+    "engagement": 83
   },
   {
     "month": "2024-11",
     "ip": "Labubu",
-    "share_pct": 31.6,
+    "share_pct": 30.1,
     "engagement": 71
   },
   {
     "month": "2024-11",
     "ip": "Molly",
-    "share_pct": 3.6,
+    "share_pct": 3.4,
     "engagement": 8
   },
   {
     "month": "2024-11",
     "ip": "Skullpanda",
-    "share_pct": 7.6,
-    "engagement": 17
+    "share_pct": 10.6,
+    "engagement": 25
   },
   {
     "month": "2024-11",
     "ip": "Twinkle",
-    "share_pct": 0.9,
-    "engagement": 2
+    "share_pct": 1.3,
+    "engagement": 3
   },
   {
     "month": "2024-12",
     "ip": "Crybaby",
-    "share_pct": 4.5,
+    "share_pct": 4.4,
     "engagement": 12
   },
   {
     "month": "2024-12",
     "ip": "Dimoo",
-    "share_pct": 26.9,
-    "engagement": 71
+    "share_pct": 28.3,
+    "engagement": 77
   },
   {
     "month": "2024-12",
     "ip": "Labubu",
-    "share_pct": 29.9,
+    "share_pct": 29.0,
     "engagement": 79
   },
   {
     "month": "2024-12",
     "ip": "Molly",
-    "share_pct": 5.7,
-    "engagement": 15
+    "share_pct": 5.9,
+    "engagement": 16
   },
   {
     "month": "2024-12",
     "ip": "Skullpanda",
-    "share_pct": 30.3,
-    "engagement": 80
+    "share_pct": 29.8,
+    "engagement": 81
   },
   {
     "month": "2024-12",
     "ip": "Twinkle",
-    "share_pct": 2.7,
+    "share_pct": 2.6,
     "engagement": 7
   },
   {
     "month": "2025-01",
     "ip": "Crybaby",
-    "share_pct": 38.1,
+    "share_pct": 36.3,
     "engagement": 190
   },
   {
     "month": "2025-01",
     "ip": "Dimoo",
-    "share_pct": 10.8,
-    "engagement": 54
+    "share_pct": 11.8,
+    "engagement": 62
   },
   {
     "month": "2025-01",
     "ip": "Labubu",
-    "share_pct": 25.1,
-    "engagement": 125
+    "share_pct": 24.8,
+    "engagement": 130
   },
   {
     "month": "2025-01",
     "ip": "Molly",
-    "share_pct": 9.4,
-    "engagement": 47
+    "share_pct": 10.3,
+    "engagement": 54
   },
   {
     "month": "2025-01",
     "ip": "Skullpanda",
-    "share_pct": 10.0,
+    "share_pct": 9.5,
     "engagement": 50
   },
   {
     "month": "2025-01",
     "ip": "Twinkle",
-    "share_pct": 6.6,
-    "engagement": 33
+    "share_pct": 7.3,
+    "engagement": 38
   },
   {
     "month": "2025-02",
     "ip": "Crybaby",
-    "share_pct": 48.2,
+    "share_pct": 46.6,
     "engagement": 216
   },
   {
     "month": "2025-02",
     "ip": "Dimoo",
-    "share_pct": 4.2,
-    "engagement": 19
+    "share_pct": 4.3,
+    "engagement": 20
   },
   {
     "month": "2025-02",
     "ip": "Labubu",
-    "share_pct": 34.6,
-    "engagement": 155
+    "share_pct": 33.8,
+    "engagement": 157
   },
   {
     "month": "2025-02",
     "ip": "Molly",
-    "share_pct": 6.2,
-    "engagement": 28
+    "share_pct": 8.8,
+    "engagement": 41
   },
   {
     "month": "2025-02",
     "ip": "Skullpanda",
-    "share_pct": 5.8,
+    "share_pct": 5.6,
     "engagement": 26
   },
   {
@@ -578,26 +584,26 @@
   {
     "month": "2025-03",
     "ip": "Crybaby",
-    "share_pct": 19.9,
+    "share_pct": 19.5,
     "engagement": 63
   },
   {
     "month": "2025-03",
     "ip": "Dimoo",
-    "share_pct": 34.8,
-    "engagement": 110
+    "share_pct": 34.4,
+    "engagement": 111
   },
   {
     "month": "2025-03",
     "ip": "Labubu",
-    "share_pct": 32.3,
-    "engagement": 102
+    "share_pct": 31.9,
+    "engagement": 103
   },
   {
     "month": "2025-03",
     "ip": "Molly",
-    "share_pct": 9.5,
-    "engagement": 30
+    "share_pct": 10.8,
+    "engagement": 35
   },
   {
     "month": "2025-03",
@@ -614,68 +620,68 @@
   {
     "month": "2025-04",
     "ip": "Crybaby",
-    "share_pct": 12.0,
+    "share_pct": 11.6,
     "engagement": 66
   },
   {
     "month": "2025-04",
     "ip": "Dimoo",
-    "share_pct": 15.1,
+    "share_pct": 14.6,
     "engagement": 83
   },
   {
     "month": "2025-04",
     "ip": "Labubu",
-    "share_pct": 61.0,
+    "share_pct": 58.8,
     "engagement": 335
   },
   {
     "month": "2025-04",
     "ip": "Molly",
-    "share_pct": 5.3,
-    "engagement": 29
+    "share_pct": 5.8,
+    "engagement": 33
   },
   {
     "month": "2025-04",
     "ip": "Skullpanda",
-    "share_pct": 2.4,
-    "engagement": 13
+    "share_pct": 5.3,
+    "engagement": 30
   },
   {
     "month": "2025-04",
     "ip": "Twinkle",
-    "share_pct": 4.2,
+    "share_pct": 4.0,
     "engagement": 23
   },
   {
     "month": "2025-05",
     "ip": "Crybaby",
-    "share_pct": 23.0,
+    "share_pct": 22.9,
     "engagement": 237
   },
   {
     "month": "2025-05",
     "ip": "Dimoo",
-    "share_pct": 8.4,
+    "share_pct": 8.3,
     "engagement": 86
   },
   {
     "month": "2025-05",
     "ip": "Labubu",
-    "share_pct": 51.9,
+    "share_pct": 51.5,
     "engagement": 534
   },
   {
     "month": "2025-05",
     "ip": "Molly",
-    "share_pct": 10.0,
-    "engagement": 103
+    "share_pct": 10.2,
+    "engagement": 106
   },
   {
     "month": "2025-05",
     "ip": "Skullpanda",
-    "share_pct": 4.5,
-    "engagement": 46
+    "share_pct": 4.8,
+    "engagement": 50
   },
   {
     "month": "2025-05",
@@ -692,8 +698,8 @@
   {
     "month": "2025-06",
     "ip": "Dimoo",
-    "share_pct": 7.9,
-    "engagement": 199
+    "share_pct": 8.0,
+    "engagement": 200
   },
   {
     "month": "2025-06",
@@ -710,8 +716,8 @@
   {
     "month": "2025-06",
     "ip": "Skullpanda",
-    "share_pct": 8.1,
-    "engagement": 204
+    "share_pct": 8.2,
+    "engagement": 205
   },
   {
     "month": "2025-06",
@@ -741,7 +747,7 @@
     "month": "2025-07",
     "ip": "Molly",
     "share_pct": 0.9,
-    "engagement": 26
+    "engagement": 27
   },
   {
     "month": "2025-07",
@@ -758,20 +764,20 @@
   {
     "month": "2025-08",
     "ip": "Crybaby",
-    "share_pct": 17.7,
+    "share_pct": 17.6,
     "engagement": 500
   },
   {
     "month": "2025-08",
     "ip": "Dimoo",
-    "share_pct": 8.6,
+    "share_pct": 8.5,
     "engagement": 242
   },
   {
     "month": "2025-08",
     "ip": "Labubu",
-    "share_pct": 65.4,
-    "engagement": 1841
+    "share_pct": 65.5,
+    "engagement": 1858
   },
   {
     "month": "2025-08",
@@ -783,7 +789,7 @@
     "month": "2025-08",
     "ip": "Skullpanda",
     "share_pct": 5.6,
-    "engagement": 157
+    "engagement": 159
   },
   {
     "month": "2025-08",
@@ -806,7 +812,7 @@
   {
     "month": "2025-09",
     "ip": "Labubu",
-    "share_pct": 57.9,
+    "share_pct": 57.8,
     "engagement": 844
   },
   {
@@ -818,8 +824,8 @@
   {
     "month": "2025-09",
     "ip": "Skullpanda",
-    "share_pct": 23.9,
-    "engagement": 348
+    "share_pct": 24.0,
+    "engagement": 350
   },
   {
     "month": "2025-09",
@@ -836,8 +842,8 @@
   {
     "month": "2025-10",
     "ip": "Dimoo",
-    "share_pct": 5.1,
-    "engagement": 138
+    "share_pct": 5.2,
+    "engagement": 139
   },
   {
     "month": "2025-10",
@@ -848,8 +854,8 @@
   {
     "month": "2025-10",
     "ip": "Molly",
-    "share_pct": 0.4,
-    "engagement": 12
+    "share_pct": 0.5,
+    "engagement": 13
   },
   {
     "month": "2025-10",
@@ -879,7 +885,7 @@
     "month": "2025-11",
     "ip": "Labubu",
     "share_pct": 57.2,
-    "engagement": 1016
+    "engagement": 1017
   },
   {
     "month": "2025-11",
@@ -908,8 +914,8 @@
   {
     "month": "2025-12",
     "ip": "Dimoo",
-    "share_pct": 7.0,
-    "engagement": 116
+    "share_pct": 7.1,
+    "engagement": 118
   },
   {
     "month": "2025-12",
@@ -944,14 +950,14 @@
   {
     "month": "2026-01",
     "ip": "Dimoo",
-    "share_pct": 9.8,
+    "share_pct": 9.7,
     "engagement": 276
   },
   {
     "month": "2026-01",
     "ip": "Labubu",
-    "share_pct": 41.9,
-    "engagement": 1184
+    "share_pct": 42.0,
+    "engagement": 1188
   },
   {
     "month": "2026-01",
@@ -963,7 +969,7 @@
     "month": "2026-01",
     "ip": "Skullpanda",
     "share_pct": 23.1,
-    "engagement": 653
+    "engagement": 654
   },
   {
     "month": "2026-01",
@@ -987,7 +993,7 @@
     "month": "2026-02",
     "ip": "Labubu",
     "share_pct": 28.5,
-    "engagement": 1408
+    "engagement": 1412
   },
   {
     "month": "2026-02",
@@ -1023,24 +1029,24 @@
     "month": "2026-03",
     "ip": "Labubu",
     "share_pct": 42.3,
-    "engagement": 5445
+    "engagement": 5452
   },
   {
     "month": "2026-03",
     "ip": "Molly",
-    "share_pct": 4.1,
-    "engagement": 528
+    "share_pct": 4.2,
+    "engagement": 540
   },
   {
     "month": "2026-03",
     "ip": "Skullpanda",
     "share_pct": 32.9,
-    "engagement": 4235
+    "engagement": 4242
   },
   {
     "month": "2026-03",
     "ip": "Twinkle",
-    "share_pct": 8.8,
+    "share_pct": 8.7,
     "engagement": 1127
   },
   {
@@ -1052,37 +1058,37 @@
   {
     "month": "2026-04",
     "ip": "Crybaby",
-    "share_pct": 5.1,
+    "share_pct": 5.0,
     "engagement": 226
   },
   {
     "month": "2026-04",
     "ip": "Dimoo",
-    "share_pct": 15.7,
-    "engagement": 702
+    "share_pct": 15.6,
+    "engagement": 703
   },
   {
     "month": "2026-04",
     "ip": "Labubu",
-    "share_pct": 29.2,
-    "engagement": 1305
+    "share_pct": 29.1,
+    "engagement": 1311
   },
   {
     "month": "2026-04",
     "ip": "Molly",
     "share_pct": 11.3,
-    "engagement": 503
+    "engagement": 511
   },
   {
     "month": "2026-04",
     "ip": "Skullpanda",
-    "share_pct": 29.1,
-    "engagement": 1298
+    "share_pct": 29.4,
+    "engagement": 1325
   },
   {
     "month": "2026-04",
     "ip": "Twinkle",
-    "share_pct": 9.7,
+    "share_pct": 9.6,
     "engagement": 431
   }
 ]

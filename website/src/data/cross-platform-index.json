@@ -2,25 +2,25 @@
   {
     "month": "2020-07",
     "platform": "TikTok",
-    "index": 221.1,
+    "index": 220.6,
     "density": 18.0
   },
   {
     "month": "2020-08",
     "platform": "TikTok",
-    "index": 116.7,
+    "index": 116.4,
     "density": 1.0
   },
   {
     "month": "2020-12",
     "platform": "TikTok",
-    "index": 81.9,
+    "index": 81.7,
     "density": 1.0
   },
   {
     "month": "2021-01",
     "platform": "TikTok",
-    "index": 86.0,
+    "index": 85.8,
     "density": 19.0
   },
   {
@@ -32,7 +32,7 @@
   {
     "month": "2021-04",
     "platform": "TikTok",
-    "index": 163.8,
+    "index": 163.4,
     "density": 20.0
   },
   {
@@ -50,7 +50,7 @@
   {
     "month": "2023-02",
     "platform": "TikTok",
-    "index": 176.1,
+    "index": 175.7,
     "density": 4.0
   },
   {
@@ -62,7 +62,7 @@
   {
     "month": "2023-03",
     "platform": "TikTok",
-    "index": 104.4,
+    "index": 104.2,
     "density": 1.5
   },
   {
@@ -104,7 +104,7 @@
   {
     "month": "2023-08",
     "platform": "TikTok",
-    "index": 77.8,
+    "index": 77.6,
     "density": 17.0
   },
   {
@@ -116,13 +116,13 @@
   {
     "month": "2023-09",
     "platform": "TikTok",
-    "index": 116.7,
+    "index": 116.4,
     "density": 10.5
   },
   {
     "month": "2023-10",
     "platform": "TikTok",
-    "index": 143.3,
+    "index": 143.0,
     "density": 7.5
   },
   {
@@ -134,7 +134,7 @@
   {
     "month": "2023-11",
     "platform": "TikTok",
-    "index": 104.4,
+    "index": 104.2,
     "density": 7.5
   },
   {
@@ -146,7 +146,7 @@
   {
     "month": "2023-12",
     "platform": "TikTok",
-    "index": 71.7,
+    "index": 71.5,
     "density": 2.5
   },
   {
@@ -158,13 +158,13 @@
   {
     "month": "2024-01",
     "platform": "TikTok",
-    "index": 100.3,
+    "index": 100.1,
     "density": 14.5
   },
   {
     "month": "2024-02",
     "platform": "TikTok",
-    "index": 112.2,
+    "index": 111.9,
     "density": 10.4
   },
   {
@@ -176,8 +176,8 @@
   {
     "month": "2024-03",
     "platform": "TikTok",
-    "index": 112.7,
-    "density": 2.62
+    "index": 114.0,
+    "density": 3.0
   },
   {
     "month": "2024-04",
@@ -188,7 +188,7 @@
   {
     "month": "2024-04",
     "platform": "TikTok",
-    "index": 78.9,
+    "index": 80.3,
     "density": 6.25
   },
   {
@@ -200,8 +200,8 @@
   {
     "month": "2024-05",
     "platform": "TikTok",
-    "index": 61.7,
-    "density": 6.2
+    "index": 60.9,
+    "density": 5.67
   },
   {
     "month": "2024-06",
@@ -212,7 +212,7 @@
   {
     "month": "2024-06",
     "platform": "TikTok",
-    "index": 99.9,
+    "index": 97.4,
     "density": 11.93
   },
   {
@@ -224,8 +224,8 @@
   {
     "month": "2024-07",
     "platform": "TikTok",
-    "index": 93.4,
-    "density": 4.68
+    "index": 91.3,
+    "density": 4.74
   },
   {
     "month": "2024-08",
@@ -236,8 +236,8 @@
   {
     "month": "2024-08",
     "platform": "TikTok",
-    "index": 92.0,
-    "density": 5.84
+    "index": 93.0,
+    "density": 6.11
   },
   {
     "month": "2024-09",
@@ -248,8 +248,8 @@
   {
     "month": "2024-09",
     "platform": "TikTok",
-    "index": 60.0,
-    "density": 4.12
+    "index": 62.2,
+    "density": 4.39
   },
   {
     "month": "2024-10",
@@ -260,8 +260,8 @@
   {
     "month": "2024-10",
     "platform": "TikTok",
-    "index": 67.7,
-    "density": 6.58
+    "index": 71.9,
+    "density": 7.1
   },
   {
     "month": "2024-11",
@@ -272,8 +272,8 @@
   {
     "month": "2024-11",
     "platform": "TikTok",
-    "index": 73.7,
-    "density": 7.3
+    "index": 75.1,
+    "density": 6.88
   },
   {
     "month": "2024-12",
@@ -284,8 +284,8 @@
   {
     "month": "2024-12",
     "platform": "TikTok",
-    "index": 83.0,
-    "density": 6.38
+    "index": 84.2,
+    "density": 6.62
   },
   {
     "month": "2025-01",
@@ -296,8 +296,8 @@
   {
     "month": "2025-01",
     "platform": "TikTok",
-    "index": 85.0,
-    "density": 7.07
+    "index": 86.5,
+    "density": 7.67
   },
   {
     "month": "2025-02",
@@ -308,8 +308,8 @@
   {
     "month": "2025-02",
     "platform": "TikTok",
-    "index": 72.4,
-    "density": 4.22
+    "index": 76.4,
+    "density": 4.4
   },
   {
     "month": "2025-03",
@@ -320,8 +320,8 @@
   {
     "month": "2025-03",
     "platform": "TikTok",
-    "index": 63.5,
-    "density": 4.23
+    "index": 66.4,
+    "density": 4.18
   },
   {
     "month": "2025-04",
@@ -332,8 +332,8 @@
   {
     "month": "2025-04",
     "platform": "TikTok",
-    "index": 59.7,
-    "density": 6.14
+    "index": 60.4,
+    "density": 6.19
   },
   {
     "month": "2025-05",
@@ -344,8 +344,8 @@
   {
     "month": "2025-05",
     "platform": "TikTok",
-    "index": 78.6,
-    "density": 8.84
+    "index": 77.3,
+    "density": 8.54
   },
   {
     "month": "2025-06",
@@ -356,8 +356,8 @@
   {
     "month": "2025-06",
     "platform": "TikTok",
-    "index": 97.4,
-    "density": 8.8
+    "index": 95.7,
+    "density": 8.7
   },
   {
     "month": "2025-07",
@@ -368,8 +368,8 @@
   {
     "month": "2025-07",
     "platform": "TikTok",
-    "index": 104.3,
-    "density": 7.82
+    "index": 102.2,
+    "density": 7.79
   },
   {
     "month": "2025-08",
@@ -380,8 +380,8 @@
   {
     "month": "2025-08",
     "platform": "TikTok",
-    "index": 95.2,
-    "density": 6.62
+    "index": 94.6,
+    "density": 6.68
   },
   {
     "month": "2025-09",
@@ -392,8 +392,8 @@
   {
     "month": "2025-09",
     "platform": "TikTok",
-    "index": 79.3,
-    "density": 4.93
+    "index": 79.2,
+    "density": 4.91
   },
   {
     "month": "2025-10",
@@ -404,8 +404,8 @@
   {
     "month": "2025-10",
     "platform": "TikTok",
-    "index": 70.9,
-    "density": 5.77
+    "index": 70.8,
+    "density": 5.75
   },
   {
     "month": "2025-11",
@@ -416,8 +416,8 @@
   {
     "month": "2025-11",
     "platform": "TikTok",
-    "index": 67.6,
-    "density": 5.82
+    "index": 67.2,
+    "density": 5.79
   },
   {
     "month": "2025-12",
@@ -428,8 +428,8 @@
   {
     "month": "2025-12",
     "platform": "TikTok",
-    "index": 74.5,
-    "density": 6.6
+    "index": 74.0,
+    "density": 6.57
   },
   {
     "month": "2026-01",
@@ -440,8 +440,8 @@
   {
     "month": "2026-01",
     "platform": "TikTok",
-    "index": 99.2,
-    "density": 11.8
+    "index": 98.4,
+    "density": 11.72
   },
   {
     "month": "2026-02",
@@ -452,8 +452,8 @@
   {
     "month": "2026-02",
     "platform": "TikTok",
-    "index": 137.7,
-    "density": 15.24
+    "index": 136.8,
+    "density": 15.19
   },
   {
     "month": "2026-03",
@@ -464,8 +464,8 @@
   {
     "month": "2026-03",
     "platform": "TikTok",
-    "index": 232.1,
-    "density": 29.63
+    "index": 230.5,
+    "density": 29.5
   },
   {
     "month": "2026-04",
@@ -476,7 +476,7 @@
   {
     "month": "2026-04",
     "platform": "TikTok",
-    "index": 224.8,
-    "density": 10.03
+    "index": 223.5,
+    "density": 10.01
   }
 ]

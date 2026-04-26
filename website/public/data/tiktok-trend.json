@@ -191,7 +191,7 @@
   {
     "month": "2024-03",
     "ip": "Molly",
-    "avg_comments_per_post": 2.0,
+    "avg_comments_per_post": 3.5,
     "n": 2,
     "data_confidence": "low"
   },
@@ -246,8 +246,15 @@
   },
   {
     "month": "2024-05",
+    "ip": "Molly",
+    "avg_comments_per_post": 1.0,
+    "n": 1,
+    "data_confidence": "low"
+  },
+  {
+    "month": "2024-05",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 4.5,
+    "avg_comments_per_post": 5.0,
     "n": 4,
     "data_confidence": "low"
   },
@@ -317,7 +324,7 @@
   {
     "month": "2024-07",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 3.8,
+    "avg_comments_per_post": 4.0,
     "n": 6,
     "data_confidence": "medium"
   },
@@ -359,7 +366,7 @@
   {
     "month": "2024-08",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 3.2,
+    "avg_comments_per_post": 4.2,
     "n": 5,
     "data_confidence": "medium"
   },
@@ -401,8 +408,8 @@
   {
     "month": "2024-09",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 4.0,
-    "n": 5,
+    "avg_comments_per_post": 5.1,
+    "n": 7,
     "data_confidence": "medium"
   },
   {
@@ -422,7 +429,7 @@
   {
     "month": "2024-10",
     "ip": "Dimoo",
-    "avg_comments_per_post": 6.9,
+    "avg_comments_per_post": 7.0,
     "n": 7,
     "data_confidence": "medium"
   },
@@ -450,14 +457,14 @@
   {
     "month": "2024-10",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 9.0,
+    "avg_comments_per_post": 10.4,
     "n": 7,
     "data_confidence": "medium"
   },
   {
     "month": "2024-10",
     "ip": "Twinkle",
-    "avg_comments_per_post": 5.8,
+    "avg_comments_per_post": 7.0,
     "n": 4,
     "data_confidence": "low"
   },
@@ -471,8 +478,8 @@
   {
     "month": "2024-11",
     "ip": "Dimoo",
-    "avg_comments_per_post": 13.2,
-    "n": 6,
+    "avg_comments_per_post": 11.6,
+    "n": 7,
     "data_confidence": "medium"
   },
   {
@@ -499,21 +506,21 @@
   {
     "month": "2024-11",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 3.5,
-    "n": 4,
-    "data_confidence": "low"
+    "avg_comments_per_post": 4.4,
+    "n": 5,
+    "data_confidence": "medium"
   },
   {
     "month": "2024-11",
     "ip": "Twinkle",
     "avg_comments_per_post": 1.0,
-    "n": 1,
+    "n": 2,
     "data_confidence": "low"
   },
   {
     "month": "2024-12",
     "ip": "Dimoo",
-    "avg_comments_per_post": 5.0,
+    "avg_comments_per_post": 5.9,
     "n": 7,
     "data_confidence": "medium"
   },
@@ -527,7 +534,7 @@
   {
     "month": "2024-12",
     "ip": "Molly",
-    "avg_comments_per_post": 3.0,
+    "avg_comments_per_post": 3.2,
     "n": 5,
     "data_confidence": "medium"
   },
@@ -541,7 +548,7 @@
   {
     "month": "2024-12",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 10.7,
+    "avg_comments_per_post": 10.9,
     "n": 7,
     "data_confidence": "medium"
   },
@@ -562,21 +569,21 @@
   {
     "month": "2025-01",
     "ip": "Dimoo",
-    "avg_comments_per_post": 4.2,
+    "avg_comments_per_post": 4.9,
     "n": 11,
     "data_confidence": "high"
   },
   {
     "month": "2025-01",
     "ip": "Labubu",
-    "avg_comments_per_post": 8.1,
+    "avg_comments_per_post": 8.7,
     "n": 9,
     "data_confidence": "medium"
   },
   {
     "month": "2025-01",
     "ip": "Molly",
-    "avg_comments_per_post": 6.7,
+    "avg_comments_per_post": 7.7,
     "n": 7,
     "data_confidence": "medium"
   },
@@ -597,7 +604,7 @@
   {
     "month": "2025-01",
     "ip": "Twinkle",
-    "avg_comments_per_post": 8.2,
+    "avg_comments_per_post": 9.5,
     "n": 4,
     "data_confidence": "low"
   },
@@ -611,28 +618,28 @@
   {
     "month": "2025-02",
     "ip": "Dimoo",
-    "avg_comments_per_post": 2.6,
+    "avg_comments_per_post": 2.7,
     "n": 7,
     "data_confidence": "medium"
   },
   {
     "month": "2025-02",
     "ip": "Labubu",
-    "avg_comments_per_post": 5.1,
+    "avg_comments_per_post": 5.2,
     "n": 17,
     "data_confidence": "high"
   },
   {
     "month": "2025-02",
     "ip": "Molly",
-    "avg_comments_per_post": 3.5,
-    "n": 8,
-    "data_confidence": "medium"
+    "avg_comments_per_post": 4.1,
+    "n": 10,
+    "data_confidence": "high"
   },
   {
     "month": "2025-02",
     "ip": "Pop Mart",
-    "avg_comments_per_post": 5.0,
+    "avg_comments_per_post": 5.4,
     "n": 5,
     "data_confidence": "medium"
   },
@@ -660,7 +667,7 @@
   {
     "month": "2025-03",
     "ip": "Dimoo",
-    "avg_comments_per_post": 2.9,
+    "avg_comments_per_post": 3.0,
     "n": 13,
     "data_confidence": "high"
   },
@@ -674,14 +681,14 @@
   {
     "month": "2025-03",
     "ip": "Molly",
-    "avg_comments_per_post": 3.0,
-    "n": 10,
+    "avg_comments_per_post": 2.7,
+    "n": 13,
     "data_confidence": "high"
   },
   {
     "month": "2025-03",
     "ip": "Pop Mart",
-    "avg_comments_per_post": 10.0,
+    "avg_comments_per_post": 10.6,
     "n": 5,
     "data_confidence": "medium"
   },
@@ -723,23 +730,23 @@
   {
     "month": "2025-04",
     "ip": "Molly",
-    "avg_comments_per_post": 2.6,
-    "n": 11,
+    "avg_comments_per_post": 2.8,
+    "n": 12,
     "data_confidence": "high"
   },
   {
     "month": "2025-04",
     "ip": "Pop Mart",
-    "avg_comments_per_post": 9.4,
+    "avg_comments_per_post": 9.6,
     "n": 5,
     "data_confidence": "medium"
   },
   {
     "month": "2025-04",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 2.2,
-    "n": 4,
-    "data_confidence": "low"
+    "avg_comments_per_post": 4.3,
+    "n": 6,
+    "data_confidence": "medium"
   },
   {
     "month": "2025-04",
@@ -772,23 +779,23 @@
   {
     "month": "2025-05",
     "ip": "Molly",
-    "avg_comments_per_post": 9.4,
-    "n": 11,
+    "avg_comments_per_post": 8.8,
+    "n": 12,
     "data_confidence": "high"
   },
   {
     "month": "2025-05",
     "ip": "Pop Mart",
-    "avg_comments_per_post": 12.0,
-    "n": 6,
+    "avg_comments_per_post": 10.4,
+    "n": 7,
     "data_confidence": "medium"
   },
   {
     "month": "2025-05",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 6.8,
-    "n": 4,
-    "data_confidence": "low"
+    "avg_comments_per_post": 5.2,
+    "n": 6,
+    "data_confidence": "medium"
   },
   {
     "month": "2025-05",
@@ -807,8 +814,8 @@
   {
     "month": "2025-06",
     "ip": "Dimoo",
-    "avg_comments_per_post": 13.1,
-    "n": 15,
+    "avg_comments_per_post": 12.4,
+    "n": 16,
     "data_confidence": "high"
   },
   {
@@ -835,8 +842,8 @@
   {
     "month": "2025-06",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 8.4,
-    "n": 11,
+    "avg_comments_per_post": 7.8,
+    "n": 12,
     "data_confidence": "high"
   },
   {
@@ -870,9 +877,9 @@
   {
     "month": "2025-07",
     "ip": "Molly",
-    "avg_comments_per_post": 2.9,
-    "n": 9,
-    "data_confidence": "medium"
+    "avg_comments_per_post": 2.7,
+    "n": 10,
+    "data_confidence": "high"
   },
   {
     "month": "2025-07",
@@ -912,8 +919,8 @@
   {
     "month": "2025-08",
     "ip": "Labubu",
-    "avg_comments_per_post": 6.6,
-    "n": 135,
+    "avg_comments_per_post": 6.7,
+    "n": 136,
     "data_confidence": "high"
   },
   {
@@ -933,7 +940,7 @@
   {
     "month": "2025-08",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 5.3,
+    "avg_comments_per_post": 5.4,
     "n": 18,
     "data_confidence": "high"
   },
@@ -982,8 +989,8 @@
   {
     "month": "2025-09",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 5.4,
-    "n": 24,
+    "avg_comments_per_post": 5.3,
+    "n": 25,
     "data_confidence": "high"
   },
   {
@@ -1003,7 +1010,7 @@
   {
     "month": "2025-10",
     "ip": "Dimoo",
-    "avg_comments_per_post": 8.3,
+    "avg_comments_per_post": 8.4,
     "n": 15,
     "data_confidence": "high"
   },
@@ -1017,8 +1024,8 @@
   {
     "month": "2025-10",
     "ip": "Molly",
-    "avg_comments_per_post": 2.0,
-    "n": 6,
+    "avg_comments_per_post": 1.9,
+    "n": 7,
     "data_confidence": "medium"
   },
   {
@@ -1059,8 +1066,8 @@
   {
     "month": "2025-11",
     "ip": "Labubu",
-    "avg_comments_per_post": 4.8,
-    "n": 73,
+    "avg_comments_per_post": 4.7,
+    "n": 74,
     "data_confidence": "high"
   },
   {
@@ -1101,8 +1108,8 @@
   {
     "month": "2025-12",
     "ip": "Dimoo",
-    "avg_comments_per_post": 4.2,
-    "n": 22,
+    "avg_comments_per_post": 4.1,
+    "n": 23,
     "data_confidence": "high"
   },
   {
@@ -1158,7 +1165,7 @@
     "month": "2026-01",
     "ip": "Labubu",
     "avg_comments_per_post": 8.2,
-    "n": 89,
+    "n": 90,
     "data_confidence": "high"
   },
   {
@@ -1178,8 +1185,8 @@
   {
     "month": "2026-01",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 17.0,
-    "n": 37,
+    "avg_comments_per_post": 16.6,
+    "n": 38,
     "data_confidence": "high"
   },
   {
@@ -1206,8 +1213,8 @@
   {
     "month": "2026-02",
     "ip": "Labubu",
-    "avg_comments_per_post": 12.3,
-    "n": 74,
+    "avg_comments_per_post": 12.2,
+    "n": 75,
     "data_confidence": "high"
   },
   {
@@ -1255,15 +1262,15 @@
   {
     "month": "2026-03",
     "ip": "Labubu",
-    "avg_comments_per_post": 24.2,
-    "n": 164,
+    "avg_comments_per_post": 23.9,
+    "n": 166,
     "data_confidence": "high"
   },
   {
     "month": "2026-03",
     "ip": "Molly",
-    "avg_comments_per_post": 5.8,
-    "n": 53,
+    "avg_comments_per_post": 5.9,
+    "n": 54,
     "data_confidence": "high"
   },
   {
@@ -1276,7 +1283,7 @@
   {
     "month": "2026-03",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 61.1,
+    "avg_comments_per_post": 61.2,
     "n": 66,
     "data_confidence": "high"
   },
@@ -1304,22 +1311,22 @@
   {
     "month": "2026-04",
     "ip": "Dimoo",
-    "avg_comments_per_post": 9.3,
-    "n": 64,
+    "avg_comments_per_post": 9.2,
+    "n": 65,
     "data_confidence": "high"
   },
   {
     "month": "2026-04",
     "ip": "Labubu",
     "avg_comments_per_post": 8.2,
-    "n": 126,
+    "n": 127,
     "data_confidence": "high"
   },
   {
     "month": "2026-04",
     "ip": "Molly",
-    "avg_comments_per_post": 9.0,
-    "n": 56,
+    "avg_comments_per_post": 8.8,
+    "n": 58,
     "data_confidence": "high"
   },
   {
@@ -1332,8 +1339,8 @@
   {
     "month": "2026-04",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 14.4,
-    "n": 89,
+    "avg_comments_per_post": 14.6,
+    "n": 90,
     "data_confidence": "high"
   },
   {
