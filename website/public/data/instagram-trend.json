@@ -268,8 +268,8 @@
   {
     "month": "2024-09",
     "ip": "Dimoo",
-    "avg_comments_per_post": 2.0,
-    "n": 1,
+    "avg_comments_per_post": 18.0,
+    "n": 2,
     "data_confidence": "low"
   },
   {
@@ -303,8 +303,8 @@
   {
     "month": "2024-10",
     "ip": "Dimoo",
-    "avg_comments_per_post": 2.0,
-    "n": 1,
+    "avg_comments_per_post": 13.0,
+    "n": 2,
     "data_confidence": "low"
   },
   {
@@ -499,8 +499,8 @@
   {
     "month": "2025-03",
     "ip": "Crybaby",
-    "avg_comments_per_post": 2.0,
-    "n": 8,
+    "avg_comments_per_post": 8.9,
+    "n": 9,
     "data_confidence": "medium"
   },
   {
@@ -527,8 +527,8 @@
   {
     "month": "2025-04",
     "ip": "Crybaby",
-    "avg_comments_per_post": 4.4,
-    "n": 5,
+    "avg_comments_per_post": 4.8,
+    "n": 6,
     "data_confidence": "medium"
   },
   {
@@ -570,7 +570,7 @@
     "month": "2025-05",
     "ip": "Crybaby",
     "avg_comments_per_post": 14.4,
-    "n": 13,
+    "n": 14,
     "data_confidence": "high"
   },
   {
@@ -611,8 +611,8 @@
   {
     "month": "2025-06",
     "ip": "Crybaby",
-    "avg_comments_per_post": 8.9,
-    "n": 15,
+    "avg_comments_per_post": 8.4,
+    "n": 16,
     "data_confidence": "high"
   },
   {
@@ -653,8 +653,8 @@
   {
     "month": "2025-07",
     "ip": "Crybaby",
-    "avg_comments_per_post": 9.9,
-    "n": 15,
+    "avg_comments_per_post": 11.5,
+    "n": 16,
     "data_confidence": "high"
   },
   {
@@ -695,8 +695,8 @@
   {
     "month": "2025-08",
     "ip": "Dimoo",
-    "avg_comments_per_post": 43.0,
-    "n": 2,
+    "avg_comments_per_post": 30.0,
+    "n": 3,
     "data_confidence": "low"
   },
   {
@@ -737,9 +737,9 @@
   {
     "month": "2025-09",
     "ip": "Dimoo",
-    "avg_comments_per_post": 8.5,
-    "n": 4,
-    "data_confidence": "low"
+    "avg_comments_per_post": 6.3,
+    "n": 6,
+    "data_confidence": "medium"
   },
   {
     "month": "2025-09",
@@ -856,8 +856,8 @@
   {
     "month": "2025-12",
     "ip": "Crybaby",
-    "avg_comments_per_post": 8.6,
-    "n": 7,
+    "avg_comments_per_post": 8.1,
+    "n": 8,
     "data_confidence": "medium"
   },
   {
@@ -898,43 +898,43 @@
   {
     "month": "2026-01",
     "ip": "Crybaby",
-    "avg_comments_per_post": 5.6,
-    "n": 7,
+    "avg_comments_per_post": 5.3,
+    "n": 9,
     "data_confidence": "medium"
   },
   {
     "month": "2026-01",
     "ip": "Dimoo",
-    "avg_comments_per_post": 19.9,
-    "n": 8,
+    "avg_comments_per_post": 17.8,
+    "n": 9,
     "data_confidence": "medium"
   },
   {
     "month": "2026-01",
     "ip": "Labubu",
-    "avg_comments_per_post": 9.4,
-    "n": 48,
+    "avg_comments_per_post": 9.2,
+    "n": 49,
     "data_confidence": "high"
   },
   {
     "month": "2026-01",
     "ip": "Pop Mart",
-    "avg_comments_per_post": 31.6,
-    "n": 29,
+    "avg_comments_per_post": 32.4,
+    "n": 30,
     "data_confidence": "high"
   },
   {
     "month": "2026-01",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 4.8,
-    "n": 5,
+    "avg_comments_per_post": 5.3,
+    "n": 6,
     "data_confidence": "medium"
   },
   {
     "month": "2026-01",
     "ip": "Twinkle",
-    "avg_comments_per_post": 7.1,
-    "n": 35,
+    "avg_comments_per_post": 7.0,
+    "n": 36,
     "data_confidence": "high"
   },
   {
@@ -947,7 +947,7 @@
   {
     "month": "2026-02",
     "ip": "Dimoo",
-    "avg_comments_per_post": 15.5,
+    "avg_comments_per_post": 16.1,
     "n": 11,
     "data_confidence": "high"
   },
@@ -968,28 +968,28 @@
   {
     "month": "2026-02",
     "ip": "Pop Mart",
-    "avg_comments_per_post": 21.5,
-    "n": 66,
+    "avg_comments_per_post": 22.2,
+    "n": 68,
     "data_confidence": "high"
   },
   {
     "month": "2026-02",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 5.0,
-    "n": 19,
+    "avg_comments_per_post": 18.4,
+    "n": 36,
     "data_confidence": "high"
   },
   {
     "month": "2026-02",
     "ip": "Twinkle",
-    "avg_comments_per_post": 24.6,
-    "n": 35,
+    "avg_comments_per_post": 26.1,
+    "n": 36,
     "data_confidence": "high"
   },
   {
     "month": "2026-03",
     "ip": "Crybaby",
-    "avg_comments_per_post": 12.3,
+    "avg_comments_per_post": 13.4,
     "n": 27,
     "data_confidence": "high"
   },
@@ -1017,36 +1017,36 @@
   {
     "month": "2026-03",
     "ip": "Pop Mart",
-    "avg_comments_per_post": 33.9,
-    "n": 110,
+    "avg_comments_per_post": 33.4,
+    "n": 113,
     "data_confidence": "high"
   },
   {
     "month": "2026-03",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 16.8,
-    "n": 12,
+    "avg_comments_per_post": 14.1,
+    "n": 29,
     "data_confidence": "high"
   },
   {
     "month": "2026-03",
     "ip": "Twinkle",
-    "avg_comments_per_post": 6.5,
-    "n": 32,
+    "avg_comments_per_post": 7.7,
+    "n": 34,
     "data_confidence": "high"
   },
   {
     "month": "2026-04",
     "ip": "Crybaby",
-    "avg_comments_per_post": 9.4,
-    "n": 16,
+    "avg_comments_per_post": 10.1,
+    "n": 19,
     "data_confidence": "high"
   },
   {
     "month": "2026-04",
     "ip": "Dimoo",
-    "avg_comments_per_post": 6.3,
-    "n": 17,
+    "avg_comments_per_post": 6.0,
+    "n": 21,
     "data_confidence": "high"
   },
   {
@@ -1059,22 +1059,22 @@
   {
     "month": "2026-04",
     "ip": "Pop Mart",
-    "avg_comments_per_post": 13.5,
-    "n": 74,
+    "avg_comments_per_post": 30.6,
+    "n": 101,
     "data_confidence": "high"
   },
   {
     "month": "2026-04",
     "ip": "Skullpanda",
-    "avg_comments_per_post": 6.5,
-    "n": 2,
-    "data_confidence": "low"
+    "avg_comments_per_post": 13.7,
+    "n": 21,
+    "data_confidence": "high"
   },
   {
     "month": "2026-04",
     "ip": "Twinkle",
-    "avg_comments_per_post": 6.2,
-    "n": 28,
+    "avg_comments_per_post": 5.9,
+    "n": 31,
     "data_confidence": "high"
   }
 ]

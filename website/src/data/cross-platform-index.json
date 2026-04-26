@@ -26,7 +26,7 @@
   {
     "month": "2021-03",
     "platform": "Instagram",
-    "index": 20.0,
+    "index": 19.2,
     "density": 2.0
   },
   {
@@ -38,13 +38,13 @@
   {
     "month": "2021-12",
     "platform": "Instagram",
-    "index": 55.1,
+    "index": 52.9,
     "density": 9.0
   },
   {
     "month": "2022-01",
     "platform": "Instagram",
-    "index": 56.7,
+    "index": 54.5,
     "density": 6.0
   },
   {
@@ -56,7 +56,7 @@
   {
     "month": "2023-03",
     "platform": "Instagram",
-    "index": 73.4,
+    "index": 70.5,
     "density": 7.0
   },
   {
@@ -74,7 +74,7 @@
   {
     "month": "2023-05",
     "platform": "Instagram",
-    "index": 63.4,
+    "index": 60.9,
     "density": 6.0
   },
   {
@@ -86,19 +86,19 @@
   {
     "month": "2023-06",
     "platform": "Instagram",
-    "index": 59.0,
+    "index": 56.6,
     "density": 4.67
   },
   {
     "month": "2023-07",
     "platform": "Instagram",
-    "index": 38.9,
+    "index": 37.4,
     "density": 1.0
   },
   {
     "month": "2023-08",
     "platform": "Instagram",
-    "index": 23.9,
+    "index": 23.0,
     "density": 1.5
   },
   {
@@ -110,7 +110,7 @@
   {
     "month": "2023-09",
     "platform": "Instagram",
-    "index": 11.7,
+    "index": 11.2,
     "density": 1.0
   },
   {
@@ -128,7 +128,7 @@
   {
     "month": "2023-11",
     "platform": "Instagram",
-    "index": 31.7,
+    "index": 30.5,
     "density": 7.0
   },
   {
@@ -140,7 +140,7 @@
   {
     "month": "2023-12",
     "platform": "Instagram",
-    "index": 30.0,
+    "index": 28.9,
     "density": 1.0
   },
   {
@@ -152,7 +152,7 @@
   {
     "month": "2024-01",
     "platform": "Instagram",
-    "index": 32.3,
+    "index": 31.0,
     "density": 1.67
   },
   {
@@ -170,7 +170,7 @@
   {
     "month": "2024-03",
     "platform": "Instagram",
-    "index": 18.9,
+    "index": 18.2,
     "density": 3.0
   },
   {
@@ -182,7 +182,7 @@
   {
     "month": "2024-04",
     "platform": "Instagram",
-    "index": 20.0,
+    "index": 19.2,
     "density": 1.33
   },
   {
@@ -194,7 +194,7 @@
   {
     "month": "2024-05",
     "platform": "Instagram",
-    "index": 28.6,
+    "index": 27.5,
     "density": 4.25
   },
   {
@@ -206,7 +206,7 @@
   {
     "month": "2024-06",
     "platform": "Instagram",
-    "index": 77.7,
+    "index": 74.7,
     "density": 17.71
   },
   {
@@ -218,7 +218,7 @@
   {
     "month": "2024-07",
     "platform": "Instagram",
-    "index": 85.7,
+    "index": 82.3,
     "density": 3.71
   },
   {
@@ -230,7 +230,7 @@
   {
     "month": "2024-08",
     "platform": "Instagram",
-    "index": 114.0,
+    "index": 109.6,
     "density": 12.75
   },
   {
@@ -242,8 +242,8 @@
   {
     "month": "2024-09",
     "platform": "Instagram",
-    "index": 76.8,
-    "density": 6.56
+    "index": 82.6,
+    "density": 9.3
   },
   {
     "month": "2024-09",
@@ -254,8 +254,8 @@
   {
     "month": "2024-10",
     "platform": "Instagram",
-    "index": 92.8,
-    "density": 8.5
+    "index": 103.5,
+    "density": 10.22
   },
   {
     "month": "2024-10",
@@ -266,7 +266,7 @@
   {
     "month": "2024-11",
     "platform": "Instagram",
-    "index": 67.5,
+    "index": 79.1,
     "density": 5.17
   },
   {
@@ -278,7 +278,7 @@
   {
     "month": "2024-12",
     "platform": "Instagram",
-    "index": 87.9,
+    "index": 89.9,
     "density": 12.67
   },
   {
@@ -290,7 +290,7 @@
   {
     "month": "2025-01",
     "platform": "Instagram",
-    "index": 122.1,
+    "index": 117.3,
     "density": 18.77
   },
   {
@@ -302,7 +302,7 @@
   {
     "month": "2025-02",
     "platform": "Instagram",
-    "index": 148.9,
+    "index": 143.1,
     "density": 13.19
   },
   {
@@ -314,8 +314,8 @@
   {
     "month": "2025-03",
     "platform": "Instagram",
-    "index": 130.5,
-    "density": 7.14
+    "index": 133.3,
+    "density": 9.61
   },
   {
     "month": "2025-03",
@@ -326,8 +326,8 @@
   {
     "month": "2025-04",
     "platform": "Instagram",
-    "index": 110.7,
-    "density": 12.83
+    "index": 113.2,
+    "density": 12.53
   },
   {
     "month": "2025-04",
@@ -338,8 +338,8 @@
   {
     "month": "2025-05",
     "platform": "Instagram",
-    "index": 127.8,
-    "density": 18.33
+    "index": 129.4,
+    "density": 18.23
   },
   {
     "month": "2025-05",
@@ -350,8 +350,8 @@
   {
     "month": "2025-06",
     "platform": "Instagram",
-    "index": 175.8,
-    "density": 21.52
+    "index": 166.6,
+    "density": 21.22
   },
   {
     "month": "2025-06",
@@ -362,8 +362,8 @@
   {
     "month": "2025-07",
     "platform": "Instagram",
-    "index": 212.1,
-    "density": 23.72
+    "index": 203.1,
+    "density": 23.88
   },
   {
     "month": "2025-07",
@@ -374,8 +374,8 @@
   {
     "month": "2025-08",
     "platform": "Instagram",
-    "index": 229.2,
-    "density": 23.45
+    "index": 219.0,
+    "density": 23.21
   },
   {
     "month": "2025-08",
@@ -386,8 +386,8 @@
   {
     "month": "2025-09",
     "platform": "Instagram",
-    "index": 192.6,
-    "density": 10.56
+    "index": 184.2,
+    "density": 10.36
   },
   {
     "month": "2025-09",
@@ -398,7 +398,7 @@
   {
     "month": "2025-10",
     "platform": "Instagram",
-    "index": 182.7,
+    "index": 174.1,
     "density": 20.74
   },
   {
@@ -410,7 +410,7 @@
   {
     "month": "2025-11",
     "platform": "Instagram",
-    "index": 141.3,
+    "index": 135.1,
     "density": 11.04
   },
   {
@@ -422,8 +422,8 @@
   {
     "month": "2025-12",
     "platform": "Instagram",
-    "index": 133.0,
-    "density": 8.07
+    "index": 127.6,
+    "density": 8.04
   },
   {
     "month": "2025-12",
@@ -434,8 +434,8 @@
   {
     "month": "2026-01",
     "platform": "Instagram",
-    "index": 110.2,
-    "density": 13.92
+    "index": 105.3,
+    "density": 13.78
   },
   {
     "month": "2026-01",
@@ -446,8 +446,8 @@
   {
     "month": "2026-02",
     "platform": "Instagram",
-    "index": 133.2,
-    "density": 17.92
+    "index": 133.1,
+    "density": 19.7
   },
   {
     "month": "2026-02",
@@ -458,8 +458,8 @@
   {
     "month": "2026-03",
     "platform": "Instagram",
-    "index": 186.3,
-    "density": 23.99
+    "index": 182.2,
+    "density": 23.36
   },
   {
     "month": "2026-03",
@@ -470,8 +470,8 @@
   {
     "month": "2026-04",
     "platform": "Instagram",
-    "index": 176.3,
-    "density": 10.94
+    "index": 200.6,
+    "density": 19.5
   },
   {
     "month": "2026-04",
